@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
     },
     IconHeartCon:{
         backgroundColor:colors.white,
-        padding:15,
+        padding:10,
         borderRadius:10
     }
 })

@@ -14,6 +14,7 @@ import BottomNavigation from '../../Navigation/BottomNavigation/BottomNavigation
 import {colors} from '../../Contants/Colors';
 import {DataofHomeScreen} from '../../Contants/Dummydata';
 import Indoor from './Indoor';
+
 export default function Home() {
   const [data, setdata] = useState({
     indexofFlatlist: 0,
@@ -25,6 +26,8 @@ export default function Home() {
           ...styles.BtnCon,
           backgroundColor:
             index == data.indexofFlatlist ? colors.lightgreen : colors.white,
+            marginLeft:index==0?0:20
+            
         }}
         onPress={() => setdata({indexofFlatlist: index})}>
         <Text

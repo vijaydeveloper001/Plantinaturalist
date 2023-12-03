@@ -1,18 +1,21 @@
-import { Text, TextInput, View } from 'react-native'
+import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { styles } from './styles'
+import { AppIcon, Images } from '../../assets/Images'
 export default function Header() {
   return (
     <View style = {styles.MainHeader}>
       <View style = {styles.MainHeaderLeftSideCon}>
-        <Text>Image</Text>
+        <TouchableOpacity>
+            {Images.search}
+        </TouchableOpacity>
         <TextInput placeholder='Search' style = {styles.TextInputStyle}/>
       </View>
-      <View style= {styles.IconHeartCon}>
-        <Text>h</Text>
-      </View><View style= {styles.IconHeartCon}>
-        <Text>h</Text>
-      </View>
+      <TouchableOpacity style= {styles.IconHeartCon}>
+         {Images.heart}
+      </TouchableOpacity><TouchableOpacity style= {styles.IconHeartCon}>
+        {AppIcon('heart',29)}
+      </TouchableOpacity>
     </View>
   )
 }

@@ -1,15 +1,17 @@
 import { StyleSheet, Text, View ,FlatList,ImageBackground, TouchableOpacity,Image} from 'react-native'
 import React from 'react'
-import { Images } from '../../assets/Images'
+import { AppIcon, Images } from '../../assets/Images'
 import {responsiveHeight,responsiveScreenWidth} from 'react-native-responsive-dimensions'
 import { colors } from '../../Contants/Colors'
 export default function Indoor() {
 
     const renderItemIndoor = ({item,index}) =>{
         return (
-            <View style = {styles.RenderItem}>
+            <View style = {{...styles.RenderItem, marginLeft:index==0?0:20}}>
                 <Image source={Images.nature} style = {styles.ImageCon} />
-                    <TouchableOpacity style = {styles.LikeCon}/>
+                    <TouchableOpacity style = {styles.LikeCon}>
+                        {AppIcon('heart',25,'red')}
+                    </TouchableOpacity>
                 
                 <Text style = {styles.TypeText}>Indoor</Text>
                 <Text style = {styles.TypeTextRoseName}>Nature</Text>
@@ -31,7 +33,6 @@ const styles = StyleSheet.create({
     RenderItem:{
         height:320,
         width:250,
-        marginRight:20,
         backgroundColor:colors.white,
         borderRadius:5
 
@@ -63,7 +64,9 @@ const styles = StyleSheet.create({
         borderRadius:5,
         position:'absolute',
         right:0,
-        margin:10
+        margin:10,
+        justifyContent:'center',
+        alignItems:'center'
     }
     
 })
