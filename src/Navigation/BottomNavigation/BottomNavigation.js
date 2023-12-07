@@ -23,7 +23,6 @@ const bottomdata = [
 export default function BottomNavigation() {
     const [data, setdata] = useState({
         indexofBottom:0,
-        
     })
 
   return (

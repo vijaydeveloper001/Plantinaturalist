@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {styles} from './styles';
 import Header from '../../Common/Headers/Header';
 import Banner from './Banner';
@@ -14,11 +14,25 @@ import BottomNavigation from '../../Navigation/BottomNavigation/BottomNavigation
 import {colors} from '../../Contants/Colors';
 import {DataofHomeScreen} from '../../Contants/Dummydata';
 import Indoor from './Indoor';
-
+import firestore from '@react-native-firebase/firestore';
 export default function Home() {
   const [data, setdata] = useState({
     indexofFlatlist: 0,
   });
+
+  const addData = async () => {
+    try {
+      let data = await firestore().collection('IPlantAdd').doc().set({name:'rose'});
+      console.log(data, 'sergfbvc');
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  
+  useEffect(() => {
+    addData();
+  }, []);
+
   const ItemSelect = ({item, index}) => {
     return (
       <TouchableOpacity
@@ -26,8 +40,7 @@ export default function Home() {
           ...styles.BtnCon,
           backgroundColor:
             index == data.indexofFlatlist ? colors.lightgreen : colors.white,
-            marginLeft:index==0?0:20
-            
+          marginLeft: index == 0 ? 0 : 20,
         }}
         onPress={() => setdata({indexofFlatlist: index})}>
         <Text
@@ -44,7 +57,7 @@ export default function Home() {
   return (
     <View style={styles.Main}>
       <Header />
-      <ScrollView contentContainerStyle = {{paddingBottom:20}}>
+      <ScrollView contentContainerStyle={{paddingBottom: 20}}>
         <Banner />
         <FlatList
           data={DataofHomeScreen}
@@ -53,9 +66,9 @@ export default function Home() {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
         />
-        <Indoor/>
-        <Text style = {styles.RectenVieText}>Recent View</Text>
-        <Indoor/>
+        <Indoor />
+        <Text style={styles.RectenVieText}>Recent View</Text>
+        <Indoor />
       </ScrollView>
       <BottomNavigation />
     </View>

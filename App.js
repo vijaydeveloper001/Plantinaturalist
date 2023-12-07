@@ -5,8 +5,7 @@
  * @format
  */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, { useEffect } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -26,10 +25,28 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import AppNavgigation from './src/Navigation/AppNavigation/AppNavgigation';
-
-
+import {initializeApp,getApps} from 'firebase/app'
+import { Secret } from './src/Contants/Secrets';
+import firebase from '@react-native-firebase/app';
 function App(){
+  const firebaseConfig = {
+    apiKey: Secret.apiKey,
+    authDomain:Secret.authDomain,
+    databaseURL: Secret.databaseURL,
+    projectId: Secret.projectId,
+    storageBucket: Secret.storageBucket,
+    messagingSenderId: Secret.messagingSenderId,
+    appId: Secret.appId,
+  };
+
+  useEffect(()=>{
   
+  //  if (!Firebase.app.)
+  if (!getApps().length){
+    firebase.initializeApp(firebaseConfig)
+  
+  }
+  },[])
 
   return (
     <NavigationContainer>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "605322469789",
+    "project_id": "iplants-82bca",
+    "storage_bucket": "iplants-82bca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605322469789:android:76fb2c794b9281f8118f74",
+        "android_client_info": {
+          "package_name": "com.plantinaturalist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "605322469789-l6377rp3oeo4u03u8tq89m23hgtmb7gq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjq7rW2Q4K98o8oA1AxyotdSQAIQgjhYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "605322469789-l6377rp3oeo4u03u8tq89m23hgtmb7gq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
