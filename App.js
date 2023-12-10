@@ -43,9 +43,9 @@ function App(){
   
   //  if (!Firebase.app.)
   if (!getApps().length){
-    firebase.initializeApp(firebaseConfig)
+    console.log('Firebase app already exits',getApps())
   
-  }
+  }else  firebase.initializeApp(firebaseConfig)
   },[])
 
   return (

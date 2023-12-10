@@ -15,23 +15,25 @@ import {colors} from '../../Contants/Colors';
 import {DataofHomeScreen} from '../../Contants/Dummydata';
 import Indoor from './Indoor';
 import firestore from '@react-native-firebase/firestore';
+import { useNavigation } from '@react-navigation/native';
 export default function Home() {
+  const naivgation = useNavigation()
   const [data, setdata] = useState({
     indexofFlatlist: 0,
   });
 
-  const addData = async () => {
-    try {
-      let data = await firestore().collection('IPlantAdd').doc().set({name:'rose'});
-      console.log(data, 'sergfbvc');
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+  // const addData = async () => {
+  //   try {
+  //     let data = await firestore().collection('IPlantAdd').doc().set({name:'rose'});
+  //     console.log(data, 'sergfbvc');
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //   }
+  // };
   
-  useEffect(() => {
-    addData();
-  }, []);
+  // useEffect(() => {
+  //   addData();
+  // }, []);
 
   const ItemSelect = ({item, index}) => {
     return (

@@ -3,11 +3,13 @@ import React from 'react'
 import { AppIcon, Images } from '../../assets/Images'
 import {responsiveHeight,responsiveScreenWidth} from 'react-native-responsive-dimensions'
 import { colors } from '../../Contants/Colors'
-export default function Indoor() {
-
+import { useNavigation } from '@react-navigation/native'
+import { Screens } from '../../Contants/NaivgationName'
+export default function Indoor() { 
+    const navigation = useNavigation()
     const renderItemIndoor = ({item,index}) =>{
         return (
-            <View style = {{...styles.RenderItem, marginLeft:index==0?0:20}}>
+            <TouchableOpacity style = {{...styles.RenderItem, marginLeft:index==0?0:20}} onPress={()=>navigation.navigate(Screens.ADDDATA)}>
                 <Image source={Images.nature} style = {styles.ImageCon} />
                     <TouchableOpacity style = {styles.LikeCon}>
                         {AppIcon('heart',25,'red')}
@@ -15,7 +17,7 @@ export default function Indoor() {
                 
                 <Text style = {styles.TypeText}>Indoor</Text>
                 <Text style = {styles.TypeTextRoseName}>Nature</Text>
-            </View>
+            </TouchableOpacity>
         )
     }
   return (

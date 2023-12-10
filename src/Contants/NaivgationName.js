@@ -1,4 +1,5 @@
 export const Screens= {
     // App Navigation
-    HOMESCREENS:'HomeScreens'
+    HOMESCREENS:'HomeScreens',
+    ADDDATA:'ADDDATA'
 }
