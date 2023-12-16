@@ -5,24 +5,25 @@ import {responsiveHeight,responsiveScreenWidth} from 'react-native-responsive-di
 import { colors } from '../../Contants/Colors'
 import { useNavigation } from '@react-navigation/native'
 import { Screens } from '../../Contants/NaivgationName'
-export default function Indoor() { 
+export default function Indoor({dataProps}) { 
     const navigation = useNavigation()
     const renderItemIndoor = ({item,index}) =>{
         return (
             <TouchableOpacity style = {{...styles.RenderItem, marginLeft:index==0?0:20}} onPress={()=>navigation.navigate(Screens.ADDDATA)}>
-                <Image source={Images.nature} style = {styles.ImageCon} />
+                <Image source={{uri:item.image}} style = {styles.ImageCon} />
                     <TouchableOpacity style = {styles.LikeCon}>
                         {AppIcon('heart',25,'red')}
                     </TouchableOpacity>
                 
-                <Text style = {styles.TypeText}>Indoor</Text>
-                <Text style = {styles.TypeTextRoseName}>Nature</Text>
+                <Text style = {styles.TypeText}>{item.Name}</Text>
+                <Text style = {styles.TypeTextRoseName}>{item.Soil}</Text>
+                <Text style = {styles.TypeTextRoseName}>{item.Location}</Text>
             </TouchableOpacity>
         )
     }
   return (
     <View style = {styles.MainIndoor}>
-      <FlatList data={[0,1,2,3,4]} renderItem={renderItemIndoor} horizontal = {true} showsHorizontalScrollIndicator = {false}/>
+      <FlatList data={dataProps} renderItem={renderItemIndoor} horizontal = {true} showsHorizontalScrollIndicator = {false}/>
     </View>
   )
 }

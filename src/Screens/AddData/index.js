@@ -11,9 +11,12 @@ import React, {useState} from 'react';
 import {styles} from './styles';
 import {colors} from '../../Contants/Colors';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import firestore from '@react-native-firebase/firestore';
+import  firestore from '@react-native-firebase/firestore';
 import RNFS from 'react-native-fs';
 import base64 from 'base64-js';
+import storage from '@react-native-firebase/storage';
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+
 export default function AddData() {
    
   const [data, setdata] = useState({
@@ -27,13 +30,29 @@ export default function AddData() {
     
    
     try {
-      const result = await launchCamera({mediaType: 'photo',includeBase64:true}, image => {
+       await launchCamera({mediaType: 'photo'},async image => {
+        console.log(image)
+        // let upload = storage().ref('upload');
+        const filename = image?.assets[0]?.uri.substring(image?.assets[0]?.uri.lastIndexOf('/') + 1);
+        const reference = storage().ref(`/images/${filename}`);
+        try {
+          await reference.putFile(image?.assets[0]?.uri);
+          const downloadURL = await reference.getDownloadURL();
+          console.log('Image uploaded successfully!',downloadURL);
+          setdata({...data,img:downloadURL})
+        } catch (error) {
+          console.error('Error uploading image: ', error);
+        }
         
-        RNFS.readFile( image?.assets[0]?.uri, "base64").then(data => {
-            // binary data
-            console.log(data);
-          });
-        setdata({...data, img: image?.assets[0]?.uri});
+        // let imageRef = storage().ref('/' + image?.assets[0]?.uri);
+        // imageRef
+        //   .getDownloadURL()
+        //   .then(url => {
+        //     //from url you can fetch the uploaded image easily
+        //     console.log(url);
+        //   })
+        //   .catch(e => console.log('getting downloadURL of image error => ', e));
+       
       });
     } catch (e) {
       console.log(e);
@@ -51,37 +70,27 @@ export default function AddData() {
     }
   };
 
-  const imageToBase64 = async (imageUri) => {
-    try {
-      // Read the image file
-      const imageFile = await RNFS.readFile(imageUri, 'base64');
-  
-      // Convert the base64-encoded string to a Uint8Array
-      const uint8Array = base64.toByteArray(imageFile);
-  
-      // Use the uint8Array as needed (e.g., for uploading to a server)
-      console.log('Binary image data:', uint8Array);
-    } catch (error) {
-      console.error('Error reading or encoding image:', error);
-    }
-  };
 
   const addData = async () =>{
     
     try{
-    // const uploadData = firestore().collection('PostData').doc().set({
-    //     Name:data.name,
-    //     Soil:data.soil,
-    //     Location:data.location,
-    //     image:form
-    // })
-    // setdata({
-    //     name:'',
-    //     soil:'',
-    //     location:'',
-    //     image:''
-    // })
-    // Alert.alert('','Upload Succesfully')
+      if (data.name && data.soil && data.location && data.img){
+    let upload =  firestore().collection('PostData').doc().set({
+        Name:data.name,
+        Soil:data.soil,
+        Location:data.location,
+        image:data.img
+    })
+    console.log(upload)
+  }
+
+    setdata({
+        name:'',
+        soil:'',
+        location:'',
+        image:''
+    })
+    Alert.alert('','Upload Succesfully')
 }
     
     catch(e){
@@ -160,7 +169,13 @@ export default function AddData() {
             <Text style={styles.ImageText}>Upload from Gallery</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.PostData} onPress={()=>addData()}>
+        <TouchableOpacity style={{...styles.PostData,backgroundColor: data.name && data.location && data.soil&& data.img ?'#3b5998':'#3b5910'}} onPress={()=>{
+          if (data.name && data.location && data.soil&& data.img){
+            addData()
+          }else{
+            Alert.alert('','All data is compulsory')
+          }
+        }}>
           <Text style={styles.ImageText}>POST</Text>
         </TouchableOpacity>
       </ScrollView>

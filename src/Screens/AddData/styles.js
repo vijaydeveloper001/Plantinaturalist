@@ -54,7 +54,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   PostData: {
-    backgroundColor: '#3b5998',
+    
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 15,

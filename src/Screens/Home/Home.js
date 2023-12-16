@@ -15,12 +15,34 @@ import {colors} from '../../Contants/Colors';
 import {DataofHomeScreen} from '../../Contants/Dummydata';
 import Indoor from './Indoor';
 import firestore from '@react-native-firebase/firestore';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+
+
+
+
+
 export default function Home() {
   const naivgation = useNavigation()
   const [data, setdata] = useState({
     indexofFlatlist: 0,
+    alldata:[]
   });
+
+  const fetchData = async () => {
+    try {
+      const collectionRef = firestore().collection('PostData');
+      const snapshot = await collectionRef.get();
+  
+      const newData = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+  
+      setdata({...data,alldata:newData})
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   // const addData = async () => {
   //   try {
@@ -34,6 +56,17 @@ export default function Home() {
   // useEffect(() => {
   //   addData();
   // }, []);
+
+ 
+
+  useFocusEffect(
+    React.useCallback(()=>{
+    fetchData()
+  },[]))  
+  // useEffect(()=>{
+  //   fetchData()
+  // },[])
+
 
   const ItemSelect = ({item, index}) => {
     return (
@@ -68,9 +101,9 @@ export default function Home() {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
         />
-        <Indoor />
+        <Indoor dataProps={data.alldata}  />
         <Text style={styles.RectenVieText}>Recent View</Text>
-        <Indoor />
+        <Indoor dataProps={data.alldata}  />
       </ScrollView>
       <BottomNavigation />
     </View>
