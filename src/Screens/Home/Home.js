@@ -15,58 +15,33 @@ import {colors} from '../../Contants/Colors';
 import {DataofHomeScreen} from '../../Contants/Dummydata';
 import Indoor from './Indoor';
 import firestore from '@react-native-firebase/firestore';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
-
-
-
-
-
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {fetchData} from '../../Contants/apiUrl';
+import {
+  LazyloadScrollView,
+  LazyloadView,
+  LazyloadImage
+} from 'react-native-lazyload';
 export default function Home() {
-  const naivgation = useNavigation()
+  const naivgation = useNavigation();
   const [data, setdata] = useState({
     indexofFlatlist: 0,
-    alldata:[]
+    alldata: [],
   });
 
-  const fetchData = async () => {
-    try {
-      const collectionRef = firestore().collection('PostData');
-      const snapshot = await collectionRef.get();
   
-      const newData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-  
-      setdata({...data,alldata:newData})
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
+
+  const fetchdata = async () => {
+    let apiData = await fetchData();
+   
+    setdata({...data, alldata: apiData});
   };
 
-  // const addData = async () => {
-  //   try {
-  //     let data = await firestore().collection('IPlantAdd').doc().set({name:'rose'});
-  //     console.log(data, 'sergfbvc');
-  //   } catch (error) {
-  //     console.error('Error fetching data:', error);
-  //   }
-  // };
-  
-  // useEffect(() => {
-  //   addData();
-  // }, []);
-
- 
-
   useFocusEffect(
-    React.useCallback(()=>{
-    fetchData()
-  },[]))  
-  // useEffect(()=>{
-  //   fetchData()
-  // },[])
-
+    React.useCallback(() => {
+      fetchdata();
+    }, []),
+  );
 
   const ItemSelect = ({item, index}) => {
     return (
@@ -77,7 +52,7 @@ export default function Home() {
             index == data.indexofFlatlist ? colors.lightgreen : colors.white,
           marginLeft: index == 0 ? 0 : 20,
         }}
-        onPress={() => setdata({indexofFlatlist: index})}>
+        onPress={() => setdata({...data,indexofFlatlist: index})}>
         <Text
           style={{
             ...styles.itemText,
@@ -89,6 +64,7 @@ export default function Home() {
       </TouchableOpacity>
     );
   };
+  console.log(data.alldata);
   return (
     <View style={styles.Main}>
       <Header />
@@ -101,7 +77,7 @@ export default function Home() {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
         />
-        <Indoor dataProps={data.alldata}  />
+        <Indoor dataProps={data.alldata} />
         <Text style={styles.RectenVieText}>Recent View</Text>
         <Indoor dataProps={data.alldata}  />
       </ScrollView>

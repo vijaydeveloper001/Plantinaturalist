@@ -30,11 +30,11 @@ export default function AddData() {
     
    
     try {
-       await launchCamera({mediaType: 'photo'},async image => {
+       await launchCamera({mediaType: 'photo',quality:0.1},async image => {
         console.log(image)
         // let upload = storage().ref('upload');
         const filename = image?.assets[0]?.uri.substring(image?.assets[0]?.uri.lastIndexOf('/') + 1);
-        const reference = storage().ref(`/images/${filename}`);
+        const reference = storage().ref(filename);
         try {
           await reference.putFile(image?.assets[0]?.uri);
           const downloadURL = await reference.getDownloadURL();
@@ -72,6 +72,7 @@ export default function AddData() {
 
 
   const addData = async () =>{
+   
     
     try{
       if (data.name && data.soil && data.location && data.img){

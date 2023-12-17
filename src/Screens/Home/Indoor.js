@@ -5,12 +5,13 @@ import {responsiveHeight,responsiveScreenWidth} from 'react-native-responsive-di
 import { colors } from '../../Contants/Colors'
 import { useNavigation } from '@react-navigation/native'
 import { Screens } from '../../Contants/NaivgationName'
+import FastImage from 'react-native-fast-image';
 export default function Indoor({dataProps}) { 
     const navigation = useNavigation()
     const renderItemIndoor = ({item,index}) =>{
         return (
             <TouchableOpacity style = {{...styles.RenderItem, marginLeft:index==0?0:20}} onPress={()=>navigation.navigate(Screens.ADDDATA)}>
-                <Image source={{uri:item.image}} style = {styles.ImageCon} />
+                <FastImage source={{uri:item.image}} style = {styles.ImageCon} />
                     <TouchableOpacity style = {styles.LikeCon}>
                         {AppIcon('heart',25,'red')}
                     </TouchableOpacity>
@@ -23,7 +24,7 @@ export default function Indoor({dataProps}) {
     }
   return (
     <View style = {styles.MainIndoor}>
-      <FlatList data={dataProps} renderItem={renderItemIndoor} horizontal = {true} showsHorizontalScrollIndicator = {false}/>
+      <FlatList data={dataProps} renderItem={renderItemIndoor} horizontal = {true} showsHorizontalScrollIndicator = {false} />
     </View>
   )
 }
@@ -31,7 +32,7 @@ export default function Indoor({dataProps}) {
 const styles = StyleSheet.create({
     MainIndoor:{
         paddingHorizontal:20,
-        marginTop:22
+        marginTop:22,
     },
     RenderItem:{
         height:320,

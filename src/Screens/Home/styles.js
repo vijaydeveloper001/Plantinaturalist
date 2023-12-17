@@ -37,5 +37,5 @@ export const styles = StyleSheet.create({
         color:colors.black,
         paddingLeft:20,
         marginTop:20
-    }
+    },
 })
