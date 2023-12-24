@@ -4,6 +4,8 @@ export const Images = {
     heart :<Icon name="heart" size={28}  />,
     search:<Icon name="search" size={20}  />,
     ImageBackground:require('./ImageBackground.jpg'),
+    Cart:require('./cart.png'),
+    sell:require('./sell.png'),
 }
 
 export const AppIcon = (name,size,color) =>{

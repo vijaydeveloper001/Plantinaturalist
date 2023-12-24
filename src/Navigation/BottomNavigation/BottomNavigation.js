@@ -25,7 +25,7 @@ const bottomdata = [
     color: colors.lightgreen,
   },
   {
-    img: 'buysellads',
+    img: 'sellsy',
     color: colors.lightgreen,
   },
 ];

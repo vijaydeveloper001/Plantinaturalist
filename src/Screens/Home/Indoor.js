@@ -25,7 +25,7 @@ export default function Indoor({dataProps}) {
         style={{...styles.RenderItem}}
         // onPress={()=>navigation.navigate(Screens.ADDDATA)}
       >
-        <FastImage source={{uri: item.image}} style={styles.ImageCon} />
+        <FastImage source={{uri: item.image}} style={styles.ImageCon} resizeMode = 'cover'/>
         <TouchableOpacity style={styles.LikeCon}>
           {AppIcon('heart', 25, 'red')}
         </TouchableOpacity>
@@ -42,6 +42,7 @@ export default function Indoor({dataProps}) {
         data={dataProps}
         renderItem={renderItemIndoor}
         showsHorizontalScrollIndicator={false}
+  
       />
     </View>
   );

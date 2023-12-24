@@ -1,28 +1,43 @@
 // SplashScreen.js
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Image, StyleSheet, StatusBar} from 'react-native';
 import {Images} from '../../assets/Images';
 import {Screens} from '../../Contants/NaivgationName';
-import { KeyLogin, getItem } from '../../Contants/LocalDB';
-
+import {KeyLogin, getItem} from '../../Contants/LocalDB';
 export const SplashScreen = ({navigation}) => {
-  useEffect(() => {
+  const [data, setdata] = useState({
+    userdata: '',
+  });
+  const userData = async () => {
+   let data =  await getItem(KeyLogin)
+  
+      setdata({
+        userdata:JSON.parse(data)
+      })
+  };
+  useEffect(()=>{
+    userData();
+  },[])
 
-    let userdata = getItem(KeyLogin)
+  useEffect(() => {
+   
+    console.log(data, 'userdatadata');
+
     const timeout = setTimeout(() => {
-    if (userdata){
+      if (data?.userdata?.user) {
         navigation.reset({
-            index: 0,
-            routes: [{name: Screens.HOMESCREENS}],
-          });
-    }else  navigation.reset({
-        index: 0,
-        routes: [{name: Screens.LOGIN}],
-      });
-    }, 2000);
+          index: 0,
+          routes: [{name: Screens.HOMESCREENS}],
+        });
+      } else
+        navigation.reset({
+          index: 0,
+          routes: [{name: Screens.LOGIN}],
+        });
+    }, 3000);
 
     return () => clearTimeout(timeout);
-  }, [navigation]);
+  }, [data?.userdata]);
 
   return (
     <View style={styles.container}>

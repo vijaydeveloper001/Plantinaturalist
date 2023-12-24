@@ -16,7 +16,8 @@ export const setItem = async (key,data) =>{
 export const getItem  = async (key) =>{
     try{
         let data = await AsyncStorage.getItem(key)
-        console.log(data,'get data')
+       
+        return data
     }
     catch(e){
         console.log(e,'not get data ')
