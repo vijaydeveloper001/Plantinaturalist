@@ -2,5 +2,7 @@ export const Screens= {
     // App Navigation
     HOMESCREENS:'HomeScreens',
     ADDDATA:'ADDDATA',
-    LOGIN:'LOGIN'
+    LOGIN:'LOGIN',
+    SIGNUP:'SIGNUP',
+    SPLASH:'SPLASH'
 }

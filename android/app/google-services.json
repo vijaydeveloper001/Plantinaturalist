@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "605322469789-oe26vmuspt7l4pg50lmfdvkgjkem01a1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.plantinaturalist",
+            "certificate_hash": "68eefbc92d3cb2e02a3a334cd1172ee910769c96"
+          }
+        },
+        {
           "client_id": "605322469789-l6377rp3oeo4u03u8tq89m23hgtmb7gq.apps.googleusercontent.com",
           "client_type": 3
         }

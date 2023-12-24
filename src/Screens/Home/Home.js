@@ -1,6 +1,7 @@
 import {
   FlatList,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -20,7 +21,7 @@ import {fetchData} from '../../Contants/apiUrl';
 import {
   LazyloadScrollView,
   LazyloadView,
-  LazyloadImage
+  LazyloadImage,
 } from 'react-native-lazyload';
 export default function Home() {
   const naivgation = useNavigation();
@@ -29,13 +30,13 @@ export default function Home() {
     alldata: [],
   });
 
-  
-
   const fetchdata = async () => {
     let apiData = await fetchData();
-   
+
     setdata({...data, alldata: apiData});
   };
+
+
 
   useFocusEffect(
     React.useCallback(() => {
@@ -52,7 +53,7 @@ export default function Home() {
             index == data.indexofFlatlist ? colors.lightgreen : colors.white,
           marginLeft: index == 0 ? 0 : 20,
         }}
-        onPress={() => setdata({...data,indexofFlatlist: index})}>
+        onPress={() => setdata({...data, indexofFlatlist: index})}>
         <Text
           style={{
             ...styles.itemText,
@@ -68,6 +69,7 @@ export default function Home() {
   return (
     <View style={styles.Main}>
       <Header />
+      <StatusBar translucent={false} backgroundColor={colors.lightgreen} />
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
         <Banner />
         <FlatList
@@ -78,8 +80,6 @@ export default function Home() {
           showsHorizontalScrollIndicator={false}
         />
         <Indoor dataProps={data.alldata} />
-        <Text style={styles.RectenVieText}>Recent View</Text>
-        <Indoor dataProps={data.alldata}  />
       </ScrollView>
       <BottomNavigation />
     </View>
