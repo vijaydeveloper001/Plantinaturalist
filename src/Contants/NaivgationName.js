@@ -4,5 +4,7 @@ export const Screens= {
     ADDDATA:'ADDDATA',
     LOGIN:'LOGIN',
     SIGNUP:'SIGNUP',
-    SPLASH:'SPLASH'
+    SPLASH:'SPLASH',
+    DETAILSCREEN:'DETAILSCREEN',
+    PROFILE:'PROFILE'
 }

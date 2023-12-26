@@ -23,3 +23,15 @@ export const getItem  = async (key) =>{
         console.log(e,'not get data ')
     }
 }
+
+
+export const LocalDBRemove  = async (key) =>{
+    try{
+        let data = await AsyncStorage.removeItem(key)
+       
+        return data
+    }
+    catch(e){
+        console.log(e,'not get data ')
+    }
+}

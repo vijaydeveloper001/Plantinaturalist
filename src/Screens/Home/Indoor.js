@@ -23,9 +23,9 @@ export default function Indoor({dataProps}) {
     return (
       <TouchableOpacity
         style={{...styles.RenderItem}}
-        // onPress={()=>navigation.navigate(Screens.ADDDATA)}
+        onPress={()=>navigation.navigate(Screens.DETAILSCREEN,{data:dataProps[index]})}
       >
-        <FastImage source={{uri: item.image}} style={styles.ImageCon} resizeMode = 'cover'/>
+        <FastImage source={{uri: item.image}} style={styles.ImageCon} resizeMode = 'contain'/>
         <TouchableOpacity style={styles.LikeCon}>
           {AppIcon('heart', 25, 'red')}
         </TouchableOpacity>
@@ -58,9 +58,10 @@ const styles = StyleSheet.create({
     // height:320,
     // width:250,
     backgroundColor: colors.white,
-    borderRadius: 5,
+    borderRadius: 30,
     marginTop: 20,
     paddingBottom: 5,
+    paddingTop:10
   },
   ImageCon: {
     width: '100%',

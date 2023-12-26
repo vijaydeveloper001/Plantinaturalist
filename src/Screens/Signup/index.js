@@ -7,20 +7,32 @@ import { colors } from '../../Contants/Colors';
 import  {firebase}  from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { Screens } from '../../Contants/NaivgationName';
+import { KeyLogin, setItem } from '../../Contants/LocalDB';
 
 const SignupScreen = () => {
   const navigation = useNavigation()
-  const [phoneNumber, setphoneNumber] = useState('');
+  // const [phoneNumber, setphoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setusername] = useState('');
 
   const handleSignup = async() => {
     try{
-      const createUser = await firebase.auth().createUserWithEmailAndPassword(email,password);
-      setEmail('')
-      setPassword('')
-      console.log(createUser?.user)
+      const createUser = await firebase.auth().createUserWithEmailAndPassword(email,password)
+      await createUser.user.updateProfile({
+        displayName: username,
+      }).then((dt)=>{
+        console.log(dt)
+      })
+      const updatedUser = firebase.auth().currentUser;
+      console.log(updatedUser)
+
+      setEmail('');
+      setPassword('');
+      // setphoneNumber('');
+      setusername('');
+      console.log(createUser)
+      await setItem(KeyLogin,updatedUser)
       navigation.navigate(Screens.HOMESCREENS)
       
     }catch(e){
@@ -32,12 +44,12 @@ const SignupScreen = () => {
   return (
     <ImageBackground source={Images.ImageBackground} style={styles.container}>
       <Text style={styles.title}>Sign Up</Text>
-      {/* <TextInput
+      <TextInput
         style={styles.input}
         placeholder="Username"
         onChangeText={(text) => setusername(text)}
         value={username}
-      /> */}
+      />
 
     
       <TextInput

@@ -24,7 +24,7 @@ export const SplashScreen = ({navigation}) => {
     console.log(data, 'userdatadata');
 
     const timeout = setTimeout(() => {
-      if (data?.userdata?.user) {
+      if (data?.userdata) {
         navigation.reset({
           index: 0,
           routes: [{name: Screens.HOMESCREENS}],

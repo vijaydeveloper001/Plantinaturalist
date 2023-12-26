@@ -25,8 +25,9 @@ const bottomdata = [
     color: colors.lightgreen,
   },
   {
-    img: 'sellsy',
+    img: 'user',
     color: colors.lightgreen,
+    onPress: Screens.PROFILE
   },
 ];
 

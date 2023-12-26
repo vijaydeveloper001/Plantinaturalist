@@ -76,7 +76,7 @@ export default function AddData() {
           } catch (error) {
             console.error('Error uploading image: ', error);
           }
-          setdata({...data, img: image?.assets[0]?.uri});
+          // setdata({...data, img: image?.assets[0]?.uri});
         },
       );
     } catch (e) {

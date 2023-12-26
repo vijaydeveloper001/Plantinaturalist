@@ -18,11 +18,13 @@ import Indoor from './Indoor';
 import firestore from '@react-native-firebase/firestore';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {fetchData} from '../../Contants/apiUrl';
+import  PushNotification  from 'react-native-push-notification';
 import {
   LazyloadScrollView,
   LazyloadView,
   LazyloadImage,
 } from 'react-native-lazyload';
+import { Secret } from '../../Contants/Secrets';
 export default function Home() {
   const naivgation = useNavigation();
   const [data, setdata] = useState({
@@ -43,6 +45,33 @@ export default function Home() {
       fetchdata();
     }, []),
   );
+
+  useEffect(()=>{
+
+    PushNotification.configure({
+      // (optional) Called when Token is generated (iOS and Android)
+      onRegister: function(token) {
+      console.log("TOKEN:", token);
+      },
+      // (required) Called when a remote or local notification is opened or received
+      onNotification: function(notification) {
+      console.log("NOTIFICATION:", notification);
+      // process the notification here
+      // required on iOS only
+      // notification.finish(PushNotificationIOS.FetchResult.NoData);
+      },
+      // Android only
+      senderID: Secret.senderID,
+      // iOS only
+      permissions: {
+      alert: true,
+      badge: true,
+      sound: true
+      },
+      popInitialNotification: true,
+      requestPermissions: true
+});
+  },[])
 
   const ItemSelect = ({item, index}) => {
     return (
