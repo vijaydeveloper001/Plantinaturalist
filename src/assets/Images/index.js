@@ -6,6 +6,12 @@ export const Images = {
     ImageBackground:require('./ImageBackground.jpg'),
     Cart:require('./cart.png'),
     sell:require('./sell.png'),
+    Flower:require('./Flower.jpg'),
+    Herbs:require('./Herbs.jpg'),
+    Indoor:require('./Indoor.jpg'),
+    Plant:require('./Plant.jpg'),
+    Vegitable:require('./Vegitables.jpg'),
+    PerfumeFlower:require('./perfumeFlower.jpg'),
 }
 
 export const AppIcon = (name,size,color) =>{

@@ -9,18 +9,17 @@ export const SplashScreen = ({navigation}) => {
     userdata: '',
   });
   const userData = async () => {
-   let data =  await getItem(KeyLogin)
-  
-      setdata({
-        userdata:JSON.parse(data)
-      })
+    let data = await getItem(KeyLogin);
+
+    setdata({
+      userdata: JSON.parse(data),
+    });
   };
-  useEffect(()=>{
+  useEffect(() => {
     userData();
-  },[])
+  }, []);
 
   useEffect(() => {
-   
     console.log(data, 'userdatadata');
 
     const timeout = setTimeout(() => {
@@ -42,7 +41,7 @@ export const SplashScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <StatusBar translucent backgroundColor="transparent" />
-      <Image source={Images.ImageBackground} style={styles.image} />
+      <Image source={Images.Indoor} style={styles.image}/>
     </View>
   );
 };

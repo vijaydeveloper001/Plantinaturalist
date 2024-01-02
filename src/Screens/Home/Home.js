@@ -18,13 +18,17 @@ import Indoor from './Indoor';
 import firestore from '@react-native-firebase/firestore';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {fetchData} from '../../Contants/apiUrl';
-import  PushNotification  from 'react-native-push-notification';
+import PushNotification from 'react-native-push-notification';
 import {
   LazyloadScrollView,
   LazyloadView,
   LazyloadImage,
 } from 'react-native-lazyload';
-import { Secret } from '../../Contants/Secrets';
+import {Secret} from '../../Contants/Secrets';
+import ShopItemScreen from '../ShopCategory';
+import TopPlants from '../TopPlantsItems';
+import ShopDelights from '../ShopDelights';
+import SellingItems from '../SellingItems';
 export default function Home() {
   const naivgation = useNavigation();
   const [data, setdata] = useState({
@@ -38,40 +42,37 @@ export default function Home() {
     setdata({...data, alldata: apiData});
   };
 
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     fetchdata();
+  //   }, []),
+  // );
 
-
-  useFocusEffect(
-    React.useCallback(() => {
-      fetchdata();
-    }, []),
-  );
-
-  useEffect(()=>{
-
+  useEffect(() => {
     PushNotification.configure({
       // (optional) Called when Token is generated (iOS and Android)
-      onRegister: function(token) {
-      console.log("TOKEN:", token);
+      onRegister: function (token) {
+        console.log('TOKEN:', token);
       },
       // (required) Called when a remote or local notification is opened or received
-      onNotification: function(notification) {
-      console.log("NOTIFICATION:", notification);
-      // process the notification here
-      // required on iOS only
-      // notification.finish(PushNotificationIOS.FetchResult.NoData);
+      onNotification: function (notification) {
+        console.log('NOTIFICATION:', notification);
+        // process the notification here
+        // required on iOS only
+        // notification.finish(PushNotificationIOS.FetchResult.NoData);
       },
       // Android only
       senderID: Secret.senderID,
       // iOS only
       permissions: {
-      alert: true,
-      badge: true,
-      sound: true
+        alert: true,
+        badge: true,
+        sound: true,
       },
       popInitialNotification: true,
-      requestPermissions: true
-});
-  },[])
+      requestPermissions: true,
+    });
+  }, []);
 
   const ItemSelect = ({item, index}) => {
     return (
@@ -100,7 +101,11 @@ export default function Home() {
       <Header />
       <StatusBar translucent={false} backgroundColor={colors.lightgreen} />
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
+        <TopPlants />
+
         <Banner />
+        <Text style={styles.ItemTypeText}>Shop by Category</Text>
+        <ShopDelights />
         <FlatList
           data={DataofHomeScreen}
           renderItem={ItemSelect}
@@ -108,7 +113,10 @@ export default function Home() {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
         />
-        <Indoor dataProps={data.alldata} />
+        <Text style={styles.ItemTypeText}>Shop by Category</Text>
+        <ShopItemScreen />
+        <Text style={styles.ItemTypeText}>Bestsellers </Text>
+        <SellingItems />
       </ScrollView>
       <BottomNavigation />
     </View>

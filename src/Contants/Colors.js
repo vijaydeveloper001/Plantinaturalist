@@ -29,5 +29,6 @@ export const colors = {
 	primaryDark: '#518DA8',
 	lightgreen:'#1db954',
 	lightblack:'#121212',
-	lightwheat:'#FBF1E0'
+	lightwheat:'#FBF1E0',
+	yellowDark:'#fcba03'
 };

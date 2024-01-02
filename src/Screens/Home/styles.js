@@ -5,7 +5,7 @@ import { colors } from "../../Contants/Colors"
 export const styles = StyleSheet.create({
     Main:{
         flex:1,
-        backgroundColor:'#edf5ed',
+        // backgroundColor:'#',
        
     },
     BtnCon:{
@@ -38,4 +38,11 @@ export const styles = StyleSheet.create({
         paddingLeft:20,
         marginTop:20
     },
+    ItemTypeText:{
+        fontSize:30,
+        color:colors.black,
+        fontWeight:'700',
+        textAlign:'center',
+        marginTop:20
+    }
 })
