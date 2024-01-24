@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React, {useEffect,useState} from 'react';
-import {AppIcon, Images} from '../../assets/Images';
+import {AppIcon, Images} from '../../assets/picture';
 import {colors} from '../../Contants/Colors';
 import {
   GoogleSignin,
@@ -41,13 +41,13 @@ export default function Login() {
       console.log('userinfo', userInfo);
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.log(error);
+         ;
       } else if (error.code === statusCodes.IN_PROGRESS) {
-        console.log(error);
+         ;
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        console.log(error);
+         ;
       } else {
-        console.log(error);
+         ;
       }
     }
   }

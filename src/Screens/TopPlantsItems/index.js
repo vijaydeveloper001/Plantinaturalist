@@ -5,7 +5,7 @@ import { styles } from './styles'
 export default function TopPlants() {
     const renderItemFunction = ({item,index}) =>{
         return (
-            <TouchableOpacity>
+            <TouchableOpacity key={index}>
                 <Image source={item.img} style = {styles.ImageStyle}/>
             </TouchableOpacity>
         )

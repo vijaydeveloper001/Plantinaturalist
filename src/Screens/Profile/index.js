@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import {AppIcon, Images} from '../../assets/Images';
+import {AppIcon, Images} from '../../assets/picture';
 import {responsiveScreenWidth} from 'react-native-responsive-dimensions';
 import {colors} from '../../Contants/Colors';
 import {

@@ -42,7 +42,8 @@ export const styles = StyleSheet.create({
         fontSize:30,
         color:colors.black,
         fontWeight:'700',
-        textAlign:'center',
-        marginTop:20
+        // textAlign:'center',
+        marginTop:20,
+        marginHorizontal:20
     }
 })

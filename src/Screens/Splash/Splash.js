@@ -1,7 +1,7 @@
 // SplashScreen.js
 import React, {useEffect, useState} from 'react';
 import {View, Image, StyleSheet, StatusBar} from 'react-native';
-import {Images} from '../../assets/Images';
+import {Images} from '../../assets/picture';
 import {Screens} from '../../Contants/NaivgationName';
 import {KeyLogin, getItem} from '../../Contants/LocalDB';
 export const SplashScreen = ({navigation}) => {

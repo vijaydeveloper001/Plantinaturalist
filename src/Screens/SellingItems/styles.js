@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
       
         width: '50%',
         marginTop:15,
-        paddingHorizontal:6,
+        paddingHorizontal:20,
        
            
     
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
         },
         contentContainerStyles:{
             justifyContent:'space-between',
-            marginHorizontal:20,  
+            // marginHorizontal:20,  
             marginTop:20
         },
 

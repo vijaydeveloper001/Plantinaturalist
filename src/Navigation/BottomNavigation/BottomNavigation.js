@@ -2,7 +2,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import {responsiveHeight} from 'react-native-responsive-dimensions';
 import {colors} from '../../Contants/Colors';
-import {AppIcon} from '../../assets/Images';
+import {AppIcon} from '../../assets/picture';
 import {Screens} from '../../Contants/NaivgationName';
 import {useNavigation} from '@react-navigation/native';
 

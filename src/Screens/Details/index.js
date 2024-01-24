@@ -1,18 +1,16 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {colors} from '../../Contants/Colors';
-
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { colors } from '../../Contants/Colors';
+import FastImage  from 'react-native-fast-image';
 export default function DetailPlants(props) {
-  console.log(props.route?.params?.data);
+  console.log(props.route?.params?.data, 'asfasf');
   return (
     <View style={styles.Main}>
-      <Image
-        source={{uri: props.route?.params?.data?.image}}
-        style={styles.ImageCon}
-      />
-      <Text style={styles.TextStyle}>{props.route?.params?.data.Name}</Text>
-      <Text style={styles.TextStyle}>{props.route?.params?.data.Soil}</Text>
-      <Text style={styles.TextStyle}>{props.route?.params?.data.Location}</Text>
+    <ScrollView >
+      <FastImage source={props.route?.params?.data.img} style={styles.ImageCons} />
+      <Text style={styles.TextStyle}>{props.route?.params?.data.title}</Text>
+      {/* <Text style={styles.TextStyle}>{props.route?.params?.data.Soil}</Text>
+      <Text style={styles.TextStyle}>{props.route?.params?.data.Location}</Text> */}
       <Text style={styles.discription}>
         Plants, Earth's quiet architects, paint the canvas of our world with
         hues of green and tales of survival. From the humble blades of grass to
@@ -25,7 +23,9 @@ export default function DetailPlants(props) {
         responding to environmental cues with chemical whispers. In their
         resilience lies a testament to the intertwined dance of life.
       </Text>
-      <View style={styles.OrderConParent}>
+    
+    </ScrollView>
+    <View style={styles.OrderConParent}>
         <TouchableOpacity style={styles.OrderCon}>
           <Text style={styles.PlaceOrderText}>Place order</Text>
         </TouchableOpacity>
@@ -37,12 +37,13 @@ export default function DetailPlants(props) {
 const styles = StyleSheet.create({
   Main: {
     flex: 1,
+    
   },
-  ImageCon: {
+  ImageCons: {
     height: 400,
-    marginHorizontal: 20,
+    marginHorizontal:20,
     marginTop: 20,
-    borderRadius: 5,
+  
   },
   TextStyle: {
     color: colors.black,
@@ -55,7 +56,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightgreen,
     marginHorizontal: 20,
     height: 40,
-    // paddingBottom:30,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,

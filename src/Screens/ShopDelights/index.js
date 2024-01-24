@@ -8,7 +8,7 @@ export default function ShopDelights() {
         console.log(item)
         return (
             // <View style ={{justifyContent:'center',alignItems:'center',width:'50%',height:200,borderWidth:2,borderColor:'pink',borderRadius:responsiveHeight(40),marginTop:20}}>
-                <TouchableOpacity style = {styles.MainCon}>
+                <TouchableOpacity style = {styles.MainCon} key={index}>
                 <Image source={item.img} style = {styles.ImageShopStyle} resizeMode = 'contain'/>
                </TouchableOpacity>
             // </View>

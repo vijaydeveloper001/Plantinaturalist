@@ -8,7 +8,7 @@ import {
   Image,
 } from 'react-native';
 import React from 'react';
-import {AppIcon, Images} from '../../assets/Images';
+import {AppIcon, Images} from '../../assets/picture';
 import {
   responsiveHeight,
   responsiveScreenWidth,

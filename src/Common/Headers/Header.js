@@ -1,7 +1,7 @@
 import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { styles } from './styles'
-import { AppIcon, Images } from '../../assets/Images'
+import { AppIcon, Images } from '../../assets/picture'
 import { useNavigation } from '@react-navigation/native'
 import { Screens } from '../../Contants/NaivgationName'
 export default function Header() {

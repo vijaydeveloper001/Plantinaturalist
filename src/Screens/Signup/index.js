@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet,ImageBackground } from 'react-native';
-import { Images } from '../../assets/Images';
+import { Images } from '../../assets/picture';
 import { colors } from '../../Contants/Colors';
 import  {firebase}  from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
