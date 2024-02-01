@@ -2,13 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { colors } from '../../Contants/Colors';
 import FastImage  from 'react-native-fast-image';
+import { Images } from '../../assets/picture';
 export default function DetailPlants(props) {
   console.log(props.route?.params?.data, 'asfasf');
   return (
     <View style={styles.Main}>
     <ScrollView >
-      <FastImage source={props.route?.params?.data.img} style={styles.ImageCons} />
-      <Text style={styles.TextStyle}>{props.route?.params?.data.title}</Text>
+      <FastImage source={Images.Herbs} style={styles.ImageCons} />
+      <Text style={styles.TextStyle}>{props.route?.params?.data.name?props.route?.params?.data.name:"Flower"}</Text>
       {/* <Text style={styles.TextStyle}>{props.route?.params?.data.Soil}</Text>
       <Text style={styles.TextStyle}>{props.route?.params?.data.Location}</Text> */}
       <Text style={styles.discription}>

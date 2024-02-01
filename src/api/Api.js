@@ -1,9 +1,8 @@
-import { LAYER1 } from "../Contants/apiUrl";
 import { getApiResponse } from "./ApiHit/apiHit";
 
 export const getResponse = async (url) =>{
     try{
-        let response = await getApiResponse(LAYER1)
+        let response = await getApiResponse(url)
         if (response.status == 200){
             return response
         }else{

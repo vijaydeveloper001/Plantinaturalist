@@ -6,22 +6,25 @@ import { PlantShop, dummydata } from '../../Contants/Dummydata';
 import FastImage from 'react-native-fast-image';
 import { useNavigation } from '@react-navigation/native';
 import { Screens } from '../../Contants/NaivgationName';
-export default function ShopItemScreen({dataofsellers}) {
+export default function ShopItemScreen({productData}) {
     const navigation = useNavigation()
-    console.log(dataofsellers?.data,'hello')
+    // console.log(dataofsellers?.data,'hello')
     const renderItemShop = ({item,index}) =>{
         console.log(item)
         return (
-            <TouchableOpacity style = {styles.MainCon} onPress={()=>navigation.navigate(Screens.DETAILSCREEN,{data:PlantShop[index]})} key={index}>
-                <ImageBackground source={item.img} style = {styles.ImageShopStyle} >
+            <TouchableOpacity style = {styles.MainCon} onPress={()=>navigation.navigate(Screens.DETAILSCREEN,{data:item})} key={index}>
+                <ImageBackground source={Images.Flower} style = {styles.ImageShopStyle} >
                     <Text style = {styles.discountText}>-25%</Text>
                 </ImageBackground>
-                <Text style = {styles.shopNameText}>{item.title}</Text>
+                <Text style = {styles.shopNameText}>{item?.name?item?.name:"Testing"}</Text>
+                <Text style = {styles.shopNameText}>Stock: {item?.countInStock?item?.countInStock:5}</Text>
+                
                 <View style = {styles.PriceCon}>
-                <Text style = {styles.cureentprice}>रु 3,000</Text>
-                <Text  style = {styles.discountPrice}>रु 2,000</Text>
+                {/* <Text style = {styles.cureentprice}>रु 3,000</Text> */}
+                <Text  style = {styles.discountPrice}>रु {item?.price?item?.price:100}</Text>
 
                 </View>
+                <Text style = {{...styles.shopNameText,fontSize:12,paddingBottom:10}}>Rating: {item?.rating?item?.rating:"Testing"}</Text>
                 <TouchableOpacity style = {styles.addToCart}>
                     <Text style = {styles.addToCartText}>ADD TO CART</Text>
                 </TouchableOpacity>
@@ -32,7 +35,7 @@ export default function ShopItemScreen({dataofsellers}) {
   return (
     // <View>
       <FlatList
-      data={PlantShop}
+      data={productData}
       renderItem={renderItemShop}
       numColumns={2}
       contentContainerStyle = {styles.contentContainerStyles}

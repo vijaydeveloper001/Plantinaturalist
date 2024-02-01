@@ -5,7 +5,7 @@ import { Images } from '../../assets/picture'
 import { PlantShop, dummydata } from '../../Contants/Dummydata'
 export default function ShopItemScreen({layer1}) {
     const renderItemShop = ({item,index}) =>{
-        console.log(item)
+        // console.log(item)
         return (
             <View style = {styles.MainCon} key={index}>
                 <Image source={Images.Herbs} style = {styles.ImageShopStyle} resizeMode = 'contain'/>

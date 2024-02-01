@@ -19,7 +19,7 @@ import {DataofHomeScreen} from '../../Contants/Dummydata';
 import Indoor from './Indoor';
 import firestore from '@react-native-firebase/firestore';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import {LAYER1, fetchData} from '../../Contants/apiUrl';
+import {LAYER1, PRODUCT, fetchData} from '../../Contants/apiUrl';
 import PushNotification from 'react-native-push-notification';
 import {
   LazyloadScrollView,
@@ -42,7 +42,8 @@ export default function Home() {
     indexofFlatlist: 0,
     alldata: [],
     layer1:[],
-    loader:false
+    loader:false,
+    productData:[],
   });
 
   const notication = async () =>{
@@ -196,7 +197,7 @@ export default function Home() {
 
   const apiLayer1 = async () =>{
     setdata({...data,loader:true})
-    let data =await getResponse(LAYER1);
+    let data = await getResponse(LAYER1);
     if (data.status == 200){
       setdata({...data,loader:false})
       setdata({...data,layer1:data.data})
@@ -205,7 +206,20 @@ export default function Home() {
     }
   }
 
+  const apiProduct = async () =>{
+    setdata({...data,loader:true})
+    let data = await getResponse(PRODUCT);
+    if (data.status == 200){
+      // console.log(data?.data,'productssss')
+      setdata({...data,loader:false})
+      setdata({...data,productData:data.data})
+    }else{
+      setdata({...data,loader:false})
+    }
+  }
+
   useEffect(()=>{
+    apiProduct()
     apiLayer1()
   },[])
   return (
@@ -229,7 +243,7 @@ export default function Home() {
         <Text style={styles.ItemTypeText}>Shop by Category</Text>
         <ShopItemScreen layer1 = {data.layer1}/>
         <Text style={styles.ItemTypeText}>Bestsellers</Text>
-        <SellingItems />
+        <SellingItems productData = {data?.productData}/>
       </ScrollView>
       <BottomNavigation />
     </View>
