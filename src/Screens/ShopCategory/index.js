@@ -7,7 +7,7 @@ export default function ShopItemScreen({layer1}) {
     const renderItemShop = ({item,index}) =>{
         // console.log(item)
         return (
-            <View style = {styles.MainCon} key={index}>
+            <View style = {styles.MainCon} key={item}>
                 <Image source={Images.Herbs} style = {styles.ImageShopStyle} resizeMode = 'contain'/>
                 <Text style = {styles.shopNameText}>{item.name}</Text>
             </View>

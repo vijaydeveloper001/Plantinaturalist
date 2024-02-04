@@ -23,6 +23,7 @@ export default function Indoor({dataProps}) {
     return (
       <TouchableOpacity
         style={{...styles.RenderItem}}
+        key={item}
         onPress={()=>navigation.navigate(Screens.DETAILSCREEN,{data:dataProps[index]})}
       >
         <FastImage source={{uri: item.image}} style={styles.ImageCon} resizeMode = 'contain'/>
@@ -42,6 +43,7 @@ export default function Indoor({dataProps}) {
         data={dataProps}
         renderItem={renderItemIndoor}
         showsHorizontalScrollIndicator={false}
+        keyExtractor={(key)=>key.id}
   
       />
     </View>

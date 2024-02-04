@@ -13,7 +13,7 @@ export default function Banner() {
   });
   const renderItems = ({item, index}) => {
     return (
-      <View style={styles.RenderBannerCon} key={index}>
+      <View style={styles.RenderBannerCon} key={item}>
         <Image source={item.img} style={styles.imageCon} />
       </View>
     );

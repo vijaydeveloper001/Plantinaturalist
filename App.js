@@ -28,6 +28,8 @@ import AppNavgigation from './src/Navigation/AppNavigation/AppNavgigation';
 import {initializeApp,getApps} from 'firebase/app'
 import { Secret } from './src/Contants/Secrets';
 import firebase from '@react-native-firebase/app';
+import { Provider } from 'react-redux'
+import  store  from './src/redux/store/store';
 function App(){
   const firebaseConfig = {
     apiKey: Secret.apiKey,
@@ -50,7 +52,9 @@ function App(){
 
   return (
     <NavigationContainer>
+      <Provider store={store}>
       <AppNavgigation/>
+      </Provider>
     </NavigationContainer>
   );
 }

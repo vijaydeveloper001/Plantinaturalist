@@ -1,9 +1,11 @@
 import { getApiResponse } from "./ApiHit/apiHit";
 
 export const getResponse = async (url) =>{
+    console.log(url,'sdfgh')
     try{
         let response = await getApiResponse(url)
         if (response.status == 200){
+           
             return response
         }else{
             return 'Api resonse error in apit.js files'

@@ -19,11 +19,10 @@ import {BaseUrl} from '../../Contants/apiUrl';
 //     }
 // }
 const timeout = 6000;
-
 export const getApiResponse = async url => {
   console.log(url,'axios method')
   return axios({
-    method: 'get',
+    method: 'GET',
     url: BaseUrl + url,
     timeout: timeout,
   });
