@@ -7,7 +7,7 @@ const initialState = {
   },
 };
 
-const Lay1Reducer = createSlice({
+const lay1Reducer = createSlice({
   name: 'lay1',
   initialState,
   reducers: {
@@ -16,7 +16,6 @@ const Lay1Reducer = createSlice({
       // It doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes.
-      state.data.onScuess = onScuess
       state.data.failure = ''; // Corrected variable name here
     },
     layer1Success: (state, action) => {
@@ -33,6 +32,6 @@ const Lay1Reducer = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {layer1Request, layer1Success, layer1Failure} =
-  Lay1Reducer.actions;
+  lay1Reducer.actions;
 
-export default Lay1Reducer.reducer;
+export default lay1Reducer.reducer;

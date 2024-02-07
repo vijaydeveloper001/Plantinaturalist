@@ -2,17 +2,15 @@ import { FlatList, Text, View,Image, TouchableOpacity, ImageBackground } from 'r
 import React from 'react'
 import { styles } from './styles'
 import { Images } from '../../assets/picture'
-import { PlantShop, dummydata } from '../../Contants/Dummydata';
-import FastImage from 'react-native-fast-image';
 import { useNavigation } from '@react-navigation/native';
 import { Screens } from '../../Contants/NaivgationName';
 export default function ShopItemScreen({productData}) {
     const navigation = useNavigation()
-    console.log(productData,'hello')
+
     const renderItemShop = ({item,index}) =>{
-        console.log(item)
+    
         return (
-            <TouchableOpacity style = {styles.MainCon} onPress={()=>navigation.navigate(Screens.DETAILSCREEN,{data:item})} key={item}>
+            <TouchableOpacity style = {styles.MainCon} onPress={()=>navigation.navigate(Screens.DETAILSCREEN,{data:item})} key={item.id}>
                 <ImageBackground source={Images.Flower} style = {styles.ImageShopStyle} >
                     <Text style = {styles.discountText}>-25%</Text>
                 </ImageBackground>
@@ -39,7 +37,7 @@ export default function ShopItemScreen({productData}) {
       renderItem={renderItemShop}
       numColumns={2}
       contentContainerStyle = {styles.contentContainerStyles}
-      keyExtractor={(key)=>key.id}
+      
       />
     // </View>
   )

@@ -18,12 +18,15 @@ import {BaseUrl} from '../../Contants/apiUrl';
 //         return 'App error'
 //     }
 // }
-const timeout = 6000;
+const timeout = 2000;
 export const getApiResponse = async url => {
   console.log(url,'axios method')
   return axios({
     method: 'GET',
     url: BaseUrl + url,
     timeout: timeout,
+    headers:{
+      "Content-Type" : "application/json"
+    }
   });
 };

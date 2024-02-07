@@ -17,15 +17,10 @@ import BottomNavigation from '../../Navigation/BottomNavigation/BottomNavigation
 import {colors} from '../../Contants/Colors';
 import {DataofHomeScreen} from '../../Contants/Dummydata';
 import Indoor from './Indoor';
-import firestore from '@react-native-firebase/firestore';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+
 import {LAYER1, PRODUCT, fetchData} from '../../Contants/apiUrl';
 import PushNotification from 'react-native-push-notification';
-import {
-  LazyloadScrollView,
-  LazyloadView,
-  LazyloadImage,
-} from 'react-native-lazyload';
+
 import {Secret} from '../../Contants/Secrets';
 import ShopItemScreen from '../ShopCategory';
 import TopPlants from '../TopPlantsItems';
@@ -33,22 +28,22 @@ import ShopDelights from '../ShopDelights';
 import SellingItems from '../SellingItems';
 import {apiResponse} from '../../api/ApiHit/apiHit';
 import messaging from '@react-native-firebase/messaging';
-import {getResponse} from '../../api/Api';
 import Loader from '../../Common/Loader';
 import {useDispatch, useSelector} from 'react-redux';
-import {layer1Request} from '../../redux/reducers/Layer1Reducers';
+import {layer1Request} from '../../redux/reducers/lay1Reducers';
+import {productRequest} from '../../redux/reducers/producReducers';
 let increment = 1;
 export default function Home() {
-  const naivgation = useNavigation();
   const [data, setdata] = useState({
     indexofFlatlist: 0,
     alldata: [],
-    layer1: [],
-    loader: false,
-    productData: [],
   });
 
+  const [prouctData, setprouctData] = useState([]);
+  const [layer1, setlayer1] = useState([]);
+  const [loader, setloader] = useState(false);
   const lay = useSelector(state => state);
+  console.log(lay.lay1.data.success.data, 'qwertyu');
   const dispatch = useDispatch();
 
   const notication = async () => {
@@ -192,75 +187,50 @@ export default function Home() {
     );
   };
 
-  const apiLayer1 = async () => {
-    setdata({...data, loader: true});
-    let data = await getResponse(LAYER1);
-    if (data.status == 200) {
-      setdata({...data, loader: false});
-      setdata({...data, layer1: data.data});
-    } else {
-      setdata({...data, loader: false});
-    }
-  };
-
-  const apiProduct = async () => {
-    setdata({...data, loader: true});
-    let data = await getResponse(PRODUCT);
-    if (data.status == 200) {
-      // console.log(data?.data,'productssss')
-      setdata({...data, loader: false});
-      setdata({...data, productData: data.data});
-    } else {
-      setdata({...data, loader: false});
-    }
-  };
-
-  const fetchApi = async () => {
-    let [response1, response2] = await Promise.all([
-      await getResponse(PRODUCT),
-      await getResponse(LAYER1),
-    ]);
-    if (response1.status == 200) {
-      setdata({...data, productData: response1.data});
-    } else {
-      console.log('api error');
-    }
-    if (response2.status == 200) {
-      setdata({...data, layer1: response2.data});
-    } else {
-      console.log('api error');
-    }
-  };
-
   useEffect(() => {
     // fetchApi();
-    setdata({...data,loader:true})
+    setloader(true);
     dispatch(
       layer1Request({
-        '': () => {},
+        payload: LAYER1,
         scuess: res => {
-          console.log(res)
-          setdata({...data,productData:res})
-          setdata({...data,loader:false})
+          setlayer1(res.data);
+          setloader(false);
         },
         onFail: () => {
-          setdata({...data,loader:false})
+          setloader(false);
         },
       }),
     );
+  
   }, []);
+  useEffect(()=>{
+    setloader(true)
+    dispatch(
+      productRequest({
+        payload: PRODUCT,
+        scuess: res => {
+          setprouctData(res.data);
+          setloader(false);
+        },
+        onFail: () => {
+          setloader(false);
+        },
+      }),
+    );
+  },[])
 
   return (
     <View style={styles.Main}>
-      <Loader Loading={data.loader} />
+      <Loader Loading={loader} />
       <Header />
       <StatusBar translucent={false} backgroundColor={colors.lightgreen} />
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
-        <TopPlants />
+        {/* <TopPlants /> */}
 
-        <Banner />
+        {/* <Banner /> */}
         <Text style={styles.ItemTypeText}>Shop by Delights</Text>
-        <ShopDelights />
+        {/* <ShopDelights /> */}
         <FlatList
           data={DataofHomeScreen}
           renderItem={ItemSelect}
@@ -270,9 +240,9 @@ export default function Home() {
           keyExtractor={key => key.id}
         />
         <Text style={styles.ItemTypeText}>Shop by Category</Text>
-        <ShopItemScreen layer1={data.layer1} />
+        <ShopItemScreen layer1={layer1} />
         <Text style={styles.ItemTypeText}>Bestsellers</Text>
-        <SellingItems productData={data?.productData} />
+        <SellingItems productData={prouctData} />
       </ScrollView>
       <BottomNavigation />
     </View>
