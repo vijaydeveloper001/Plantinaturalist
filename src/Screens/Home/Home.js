@@ -54,24 +54,6 @@ export default function Home() {
   useEffect(() => {
     notication();
   }, []);
-
-  const fetchdata = async () => {
-    // let apiData = await fetchData();
-    console.log('sddf');
-    let response = await apiResponse(increment);
-
-    console.log('response');
-    console.log(response);
-    setdata({...data, alldata: JSON.parse(response)});
-
-    // setdata({...data, alldata: apiData});
-  };
-
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     fetchdata()
-  //   }, [increment]),
-  // );
   // useEffect(()=>{
   //   PushNotification.createChannel(
   //     {
@@ -202,10 +184,9 @@ export default function Home() {
         },
       }),
     );
-  
   }, []);
-  useEffect(()=>{
-    setloader(true)
+  useEffect(() => {
+    setloader(true);
     dispatch(
       productRequest({
         payload: PRODUCT,
@@ -218,7 +199,7 @@ export default function Home() {
         },
       }),
     );
-  },[])
+  }, []);
 
   return (
     <View style={styles.Main}>
@@ -226,11 +207,11 @@ export default function Home() {
       <Header />
       <StatusBar translucent={false} backgroundColor={colors.lightgreen} />
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
-        {/* <TopPlants /> */}
+        <TopPlants />
 
-        {/* <Banner /> */}
+        <Banner />
         <Text style={styles.ItemTypeText}>Shop by Delights</Text>
-        {/* <ShopDelights /> */}
+        <ShopDelights />
         <FlatList
           data={DataofHomeScreen}
           renderItem={ItemSelect}
