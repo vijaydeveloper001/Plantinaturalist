@@ -13,7 +13,7 @@ function* fetchUserData(action) {
 
   } catch (error) {
     console.log(error,'awesdrfghj')
-    yield put(producFailure(error));
+    yield put(producFailure('Error'));
     action.payload.scuess(response)
    
   }

@@ -179,7 +179,7 @@ export default function Home() {
           setlayer1(res.data);
           setloader(false);
         },
-        onFail: () => {
+        onFail: error => {
           setloader(false);
         },
       }),
@@ -194,7 +194,8 @@ export default function Home() {
           setprouctData(res.data);
           setloader(false);
         },
-        onFail: () => {
+        onFail: error => {
+          console.log(error);
           setloader(false);
         },
       }),
@@ -208,7 +209,6 @@ export default function Home() {
       <StatusBar translucent={false} backgroundColor={colors.lightgreen} />
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
         <TopPlants />
-
         <Banner />
         <Text style={styles.ItemTypeText}>Shop by Delights</Text>
         <ShopDelights />

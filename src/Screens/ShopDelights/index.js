@@ -2,7 +2,6 @@ import { FlatList, Text, TouchableOpacity, View ,Image} from 'react-native'
 import React from 'react'
 import { styles } from './styles'
 import { PlantShop } from '../../Contants/Dummydata'
-import { responsiveHeight } from 'react-native-responsive-dimensions'
 export default function ShopDelights() {
     const renderItemShop = ({item,index}) =>{
         console.log(item)
@@ -21,6 +20,7 @@ export default function ShopDelights() {
     renderItem={renderItemShop}
     numColumns={2}
     contentContainerStyle = {styles.contentContainerStyles}
+    columnWrapperStyle = {{justifyContent:"space-between"}}
     />
    
   )
