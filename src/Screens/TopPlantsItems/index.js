@@ -1,21 +1,25 @@
-import { FlatList, Text, View ,Image, TouchableOpacity} from 'react-native'
+import { FlatList,Image, TouchableOpacity, SafeAreaView} from 'react-native'
 import React from 'react'
 import { PlantShop } from '../../Contants/Dummydata'
 import { styles } from './styles'
+
 export default function TopPlants() {
-    const renderItemFunction = ({item,index}) =>{
+    const renderItemFunction = ({ item }) => {
         return (
-            <TouchableOpacity key={item}>
-                <Image source={item.img} style = {styles.ImageStyle}/>
+            <TouchableOpacity>
+                <Image source={item.img} style={styles.ImageStyle} />
             </TouchableOpacity>
-        )
-    }
-  return (
-   <FlatList
-   data={PlantShop}
-   renderItem = {renderItemFunction}
-   contentContainerStyle = {styles.ContentContainerStyle}
-   keyExtractor={(key)=>key.id}
-   />
-  )
+        );
+    };
+
+    return (
+        <SafeAreaView>
+        <FlatList
+            data={PlantShop}
+            renderItem={renderItemFunction}
+            contentContainerStyle={styles.ContentContainerStyle}
+            keyExtractor={(item,index) => index}
+        />
+        </SafeAreaView>
+    );
 }

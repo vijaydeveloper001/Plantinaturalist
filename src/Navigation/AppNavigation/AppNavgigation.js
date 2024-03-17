@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet} from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Home from '../../Screens/Home/Home';
@@ -9,6 +9,7 @@ import SignupScreen from '../../Screens/Signup';
 import { SplashScreen } from '../../Screens/Splash/Splash';
 import DetailPlants from '../../Screens/Details';
 import { Profile } from '../../Screens/Profile';
+import Shipping from '../../Screens/Shipping/Shipping';
 const Stack = createNativeStackNavigator();
 
 const optionheaders = {
@@ -17,14 +18,15 @@ const optionheaders = {
 
 export default function AppNavgigation() {
   return (
-    <Stack.Navigator initialRouteName = {Screens.SPLASH}>
+    <Stack.Navigator initialRouteName = {Screens.HOMESCREENS}>
       <Stack.Screen name={Screens.LOGIN} component={Login} options={optionheaders}/>
         <Stack.Screen name={Screens.HOMESCREENS} component={Home} options={optionheaders}/>
         <Stack.Screen name={Screens.ADDDATA} component={AddData}/>
         <Stack.Screen name={Screens.SIGNUP} component={SignupScreen}  options={optionheaders}/>
         <Stack.Screen name={Screens.SPLASH} component={SplashScreen}  options={optionheaders}/>
         <Stack.Screen name={Screens.DETAILSCREEN} component={DetailPlants}  options={optionheaders}/>
-        <Stack.Screen name={Screens.PROFILE} component={Profile}  />
+        <Stack.Screen name={Screens.PROFILE} component={Profile}  options={optionheaders}  />
+        <Stack.Screen name={Screens.SHIPING} component={Shipping}  options={optionheaders}  />
     </Stack.Navigator>
   )
 }

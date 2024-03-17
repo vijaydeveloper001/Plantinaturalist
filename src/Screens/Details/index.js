@@ -13,11 +13,16 @@ import {Images} from '../../assets/picture';
 import DetailPageText from '../../Common/Headers/DetailPageText';
 import Button from '../../Common/Button';
 import TextFile from '../../Common/TextFile';
+import { useNavigation } from '@react-navigation/native';
+import { Screens } from '../../Contants/NaivgationName';
+import Headers from '../../Common/Headers/Headers';
 export default function DetailPlants(props) {
+  const navigation = useNavigation();
   const [IncrePlant, setIncrePlant] = useState(1)
   console.log(props.route?.params?.data, 'asfasf');
   return (
     <View style={styles.Main}>
+      <Headers text={'Detail'}/>
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
         <FastImage source={Images.Herbs} style={styles.ImageCons} />
         <Text style={styles.TextStyle}>
@@ -101,12 +106,11 @@ export default function DetailPlants(props) {
         </View>
       </ScrollView>
       <View style={styles.OrderConParent}>
-        <Button TextName={'Add to cart'} />
+        <Button TextName={'Add to cart'} press={()=>navigation.navigate(Screens.SHIPING)} />
       </View>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   Main: {
     flex: 1,

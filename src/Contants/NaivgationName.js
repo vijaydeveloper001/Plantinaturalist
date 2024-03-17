@@ -6,5 +6,6 @@ export const Screens= {
     SIGNUP:'SIGNUP',
     SPLASH:'SPLASH',
     DETAILSCREEN:'DETAILSCREEN',
-    PROFILE:'PROFILE'
+    PROFILE:'PROFILE',
+    SHIPING:'SHIPING'
 }

@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import {responsiveHeight} from 'react-native-responsive-dimensions';
 import {colors} from '../../Contants/Colors';
@@ -42,6 +42,7 @@ export default function BottomNavigation() {
       {bottomdata.map((item, index) => {
         return (
           <TouchableOpacity
+          key = {index}
             style={{
               ...styles.Btn,
               backgroundColor:
@@ -55,7 +56,7 @@ export default function BottomNavigation() {
                 navigation.navigate(item?.onPress);
               } else console.log('onPress>>>>>>>>>>>>');
             }}
-            key={index}>
+         >
             {index == data.indexofBottom
               ? AppIcon(item.img, 25, 'white')
               : AppIcon(item.img, 25, item.color)}

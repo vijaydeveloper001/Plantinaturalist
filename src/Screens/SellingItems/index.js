@@ -2,16 +2,15 @@ import {
   FlatList,
   Text,
   View,
-  Image,
   TouchableOpacity,
   ImageBackground,
+  SafeAreaView,
 } from 'react-native';
 import React from 'react';
 import {styles} from './styles';
 import {Images} from '../../assets/picture';
 import {useNavigation} from '@react-navigation/native';
 import {Screens} from '../../Contants/NaivgationName';
-import Button from '../../Common/Button';
 export default function ShopItemScreen({productData}) {
   const navigation = useNavigation();
 
@@ -20,7 +19,7 @@ export default function ShopItemScreen({productData}) {
       <TouchableOpacity
         style={styles.MainCon}
         onPress={() => navigation.navigate(Screens.DETAILSCREEN, {data: item})}
-        key={item.id}>
+        >
         <ImageBackground source={Images.Flower} style={styles.ImageShopStyle}>
           <Text style={styles.discountText}>-25%</Text>
         </ImageBackground>
@@ -48,13 +47,15 @@ export default function ShopItemScreen({productData}) {
   };
 
   return (
-    // <View>
+    <SafeAreaView>
     <FlatList
       data={productData}
       renderItem={renderItemShop}
       numColumns={2}
       contentContainerStyle={styles.contentContainerStyles}
+      keyExtractor={(item,index)=>index}
+      columnWrapperStyle = {{justifyContent:"space-between"}}
     />
-    // </View>
+   </SafeAreaView>
   );
 }

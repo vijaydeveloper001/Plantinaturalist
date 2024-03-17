@@ -1,11 +1,11 @@
-import {FlatList, StyleSheet, Text, View, Image} from 'react-native';
+import {FlatList, StyleSheet, View, Image, SafeAreaView} from 'react-native';
 import React, {useState} from 'react';
 import {
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import {colors} from '../../Contants/Colors';
-import {PlantShop, dummydata} from '../../Contants/Dummydata';
+import {PlantShop} from '../../Contants/Dummydata';
 
 export default function Banner() {
   const [data, setdata] = useState({
@@ -20,7 +20,7 @@ export default function Banner() {
   };
   console.log(data);
   return (
-    <View style={styles.MainBanner}>
+    <SafeAreaView style={styles.MainBanner}>
       <FlatList
         data={PlantShop}
         renderItem={renderItems}
@@ -29,7 +29,7 @@ export default function Banner() {
         onScroll={e =>
           setdata({indexofFlat: parseInt(e.nativeEvent.contentOffset.x / 360)})
         }
-        
+        keyExtractor={(item,index)=>index}
       />
 
       <View style={styles.ConIndex}>
@@ -48,7 +48,7 @@ export default function Banner() {
           );
         })}
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 

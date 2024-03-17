@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
         // marginRight:20,
         // marginVertical:5,
         // marginHorizontal:5,
-        borderRadius:10
+        borderRadius:10,
     },
     BtnConParent:{
         marginTop:20,

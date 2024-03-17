@@ -22,18 +22,23 @@ export const dummydata = [
 export const DataofHomeScreen = [
   {
     type: 'Top',
+    id:0
   },
   {
     type: 'Indoor',
+    id:1
   },
   {
     type: 'Outdoor',
+    id:2
   },
   {
     type: 'Gardan',
+    id:3
   },
   {
     type: 'Soil',
+    id:4
   },
 ];
 

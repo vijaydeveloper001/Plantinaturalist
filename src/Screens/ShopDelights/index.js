@@ -1,4 +1,4 @@
-import { FlatList, Text, TouchableOpacity, View ,Image} from 'react-native'
+import { FlatList, TouchableOpacity, View ,Image, SafeAreaView} from 'react-native'
 import React from 'react'
 import { styles } from './styles'
 import { PlantShop } from '../../Contants/Dummydata'
@@ -6,22 +6,25 @@ export default function ShopDelights() {
     const renderItemShop = ({item,index}) =>{
         console.log(item)
         return (
-            // <View style ={{justifyContent:'center',alignItems:'center',width:'50%',height:200,borderWidth:2,borderColor:'pink',borderRadius:responsiveHeight(40),marginTop:20}}>
-                <TouchableOpacity style = {styles.MainCon} key={index}>
+          
+                <TouchableOpacity style = {styles.MainCon}>
                 <Image source={item.img} style = {styles.ImageShopStyle} resizeMode = 'contain'/>
                </TouchableOpacity>
-            // </View>
+          
  
         )
     }
   return (
+    <SafeAreaView>
     <FlatList
     data={PlantShop}
     renderItem={renderItemShop}
     numColumns={2}
     contentContainerStyle = {styles.contentContainerStyles}
     columnWrapperStyle = {{justifyContent:"space-between"}}
+    keyExtractor={(item,index)=>index}
     />
+    </SafeAreaView>
    
   )
 }
