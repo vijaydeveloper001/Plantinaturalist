@@ -8,17 +8,16 @@ import {colors} from '../../Contants/Colors';
 import {PlantShop} from '../../Contants/Dummydata';
 
 export default function Banner() {
-  const [data, setdata] = useState({
-    indexofFlat: 0,
-  });
+  // const [data, setdata] = useState({
+  //   indexofFlat: 0,
+  // });
   const renderItems = ({item, index}) => {
     return (
       <View style={styles.RenderBannerCon} key={item}>
         <Image source={item.img} style={styles.imageCon} />
       </View>
     );
-  };
-  console.log(data);
+    };
   return (
     <SafeAreaView style={styles.MainBanner}>
       <FlatList
@@ -26,13 +25,13 @@ export default function Banner() {
         renderItem={renderItems}
         contentContainerStyle={styles.ContentCon}
         horizontal={true}
-        onScroll={e =>
-          setdata({indexofFlat: parseInt(e.nativeEvent.contentOffset.x / 360)})
-        }
+        // onScroll={e =>
+        //   setdata({indexofFlat: parseInt(e.nativeEvent.contentOffset.x / 360)})
+        // }
         keyExtractor={(item,index)=>index}
       />
 
-      <View style={styles.ConIndex}>
+      {/* <View style={styles.ConIndex}>
         {PlantShop.map((item, index) => {
           return (
             <View
@@ -47,7 +46,7 @@ export default function Banner() {
             />
           );
         })}
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 }

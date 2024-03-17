@@ -3,13 +3,9 @@ import { colors } from '../../Contants/Colors'
 
 export const styles = StyleSheet.create({
     MainCon:{
-      
     width: '50%',
     marginTop:10,
     paddingHorizontal:20,
-   
-       
-
     },
     ImageShopStyle:{
         width:'100%',

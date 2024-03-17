@@ -19,6 +19,7 @@ export default function TopPlants() {
             renderItem={renderItemFunction}
             contentContainerStyle={styles.ContentContainerStyle}
             keyExtractor={(item,index) => index}
+            horizontal={true}
         />
         </SafeAreaView>
     );
