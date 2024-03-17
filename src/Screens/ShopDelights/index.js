@@ -6,12 +6,9 @@ export default function ShopDelights() {
     const renderItemShop = ({item,index}) =>{
         console.log(item)
         return (
-          
                 <TouchableOpacity style = {styles.MainCon}>
                 <Image source={item.img} style = {styles.ImageShopStyle} resizeMode = 'contain'/>
                </TouchableOpacity>
-          
- 
         )
     }
   return (

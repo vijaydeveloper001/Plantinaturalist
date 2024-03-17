@@ -13,6 +13,9 @@ export const Images = {
     Vegitable:require('./Vegitables.jpg'),
     PerfumeFlower:require('./perfumeFlower.jpg'),
     back:require('./back.png'),
+    Home:require('./Home.jpg'),
+    notification:require('./notification.png'),
+    wallet:require('./wallet.png'),
 }
 
 export const AppIcon = (name,size,color) =>{

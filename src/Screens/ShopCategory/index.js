@@ -18,12 +18,15 @@ export default function ShopItemScreen({layer1}) {
   };
   return (
     <SafeAreaView>
-    <FlatList
+     <FlatList
       data={layer1}
       renderItem={renderItemShop}
       numColumns={2}
       contentContainerStyle={styles.contentContainerStyles}
       keyExtractor={(item,index) => index}
+      columnWrapperStyle = {{
+          justifyContent:"space-between"
+      }}
     />
     </SafeAreaView>
   );

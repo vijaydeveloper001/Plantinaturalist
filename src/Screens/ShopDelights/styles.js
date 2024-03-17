@@ -4,9 +4,12 @@ import { responsiveHeight } from "react-native-responsive-dimensions"
 export const styles = StyleSheet.create({
     MainCon:{
       
-        width: '45%',
+        width: 190,
         marginTop:10,
-        height:responsiveHeight(19),
+        height:responsiveHeight(21),
+        backgroundColor:colors.white,
+        elevation:10,
+        borderRadius:responsiveHeight(40)
         },
         ImageShopStyle:{
             width:'100%',
@@ -26,6 +29,7 @@ export const styles = StyleSheet.create({
           
             // marginHorizontal:20,  
             marginTop:20,
-            paddingHorizontal:20
+            paddingHorizontal:20,
+            paddingVertical:10
         },
 })

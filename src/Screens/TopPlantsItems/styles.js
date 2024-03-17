@@ -1,16 +1,25 @@
 import {StyleSheet} from 'react-native';
 import {responsiveWidth} from 'react-native-responsive-dimensions';
+import { colors } from '../../Contants/Colors';
 
 export const styles = StyleSheet.create({
   ImageStyle: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     borderRadius: responsiveWidth(20),
-    margin: 5,
   },
   ContentContainerStyle: {
     justifyContent: 'center',
     flexDirection: 'row',
-    paddingHorizontal: 20,
+    paddingVertical:25
   },
+  BorderLine:{
+    borderWidth:2,
+    borderColor:colors.lightgreen,
+    justifyContent:"center",
+    alignItems:"center",
+    marginRight:20,
+    borderRadius: responsiveWidth(20),
+    padding:5
+  }
 });

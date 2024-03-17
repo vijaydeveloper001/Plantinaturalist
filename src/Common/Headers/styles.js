@@ -8,22 +8,23 @@ export const styles = StyleSheet.create({
         // backgroundColor:colors.lightblack,
         // height:responsiveHeight(8),
         // flex:0.08,
-        height:responsiveHeight(8),
+        height:responsiveHeight(15),
         justifyContent:'space-between',
         alignItems:'center',
         flexDirection:'row',
         paddingHorizontal:20,
+    
       
     },
     MainHeaderLeftSideCon:{
         flexDirection:'row',
         alignItems:'center',
-        justifyContent:'space-between',
-        backgroundColor:colors.white,
+       
         borderRadius:responsiveScreenWidth(1),
         paddingHorizontal:5,
-        borderWidth:1,
-        borderColor:colors.grey
+        width:300
+     
+      
     },
     TextInputStyle:{
         width:responsiveScreenWidth(55),
@@ -33,8 +34,9 @@ export const styles = StyleSheet.create({
         
     },
     IconHeartCon:{
-        backgroundColor:colors.white,
-        padding:10,
-        borderRadius:10
+        backgroundColor:colors.lightgreen,
+        elevation:5,
+        borderRadius:5,
+        padding:5
     }
 })

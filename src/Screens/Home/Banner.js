@@ -54,6 +54,7 @@ export default function Banner() {
 const styles = StyleSheet.create({
   MainBanner: {
     paddingHorizontal: 20,
+    marginTop:5
     // backgroundColor:colors.lightblack
   },
   ContentCon: {

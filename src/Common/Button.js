@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightgreen,
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal:20
+    marginHorizontal:20,
+    borderRadius:5,
   },
   addToCartText: {
     color: colors.white,

@@ -2,11 +2,11 @@ import {StyleSheet, Text, TextInput, View} from 'react-native';
 import React from 'react';
 import {colors} from '../Contants/Colors';
 import CheckBox from 'react-native-check-box';
-export default function TextInputCon({text,gettext,check,TopText,checktext,Last}) {
+export default function TextInputCon({text,gettext,check,TopText,checktext,Last,topheading,margin}) {
   return (
-    <View style={styles.Main}>
+    <View style={{...styles.Main,marginTop:margin?margin:20}}>
      {TopText && <Text style={{...styles.FieldsText, fontSize: 30,paddingVertical:20}}>{TopText}</Text>}
-      <Text style={styles.FieldsText}>{text}</Text>
+      {topheading && <Text style={styles.FieldsText}>{text}</Text>}
       <TextInput
         style={styles.TextInputStyle}
         placeholder={text}

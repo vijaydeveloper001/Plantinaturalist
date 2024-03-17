@@ -70,7 +70,7 @@ export default function BottomNavigation() {
 const styles = StyleSheet.create({
   BottomCon: {
     height: responsiveHeight(8),
-    backgroundColor: colors.white,
+    backgroundColor: colors.lightgreen,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

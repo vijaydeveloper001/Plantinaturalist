@@ -23,6 +23,7 @@ import Loader from '../../Common/Loader';
 import {useDispatch} from 'react-redux';
 import {layer1Request} from '../../redux/reducers/lay1Reducers';
 import {productRequest} from '../../redux/reducers/producReducers';
+import TextInputCon from '../../Common/TextInputCon';
 export default function Home() {
   const [data, setdata] = useState({
     indexofFlatlist: 0,
@@ -89,9 +90,10 @@ export default function Home() {
   return (
     <View style={styles.Main}>
       <Loader Loading={loader} />
-      <Header />
-      <StatusBar translucent={false} backgroundColor={colors.lightgreen} />
+      <Header/>
+      <StatusBar  backgroundColor={colors.lightgreen}/>
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
+      <TextInputCon text = {'SEARCH ITEM.........'} margin = {1}/>
         {/* <SafeAreaView> */}
           <TopPlants />
           <Banner />
