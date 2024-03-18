@@ -45,10 +45,11 @@ export default function BottomNavigation() {
           key = {index}
             style={{
               ...styles.Btn,
-              backgroundColor:
-                data.indexofBottom == index
-                  ? colors.lightgreen
-                  : colors.lightwheat,
+              // backgroundColor:colors.lightwheat
+              // backgroundColor:
+                // data.indexofBottom == index
+                //   ? colors.lightgreen
+                //   : colors.lightwheat,
             }}
             onPress={() => {
               setdata({indexofBottom: index});
@@ -57,9 +58,13 @@ export default function BottomNavigation() {
               } else console.log('onPress>>>>>>>>>>>>');
             }}
          >
-            {index == data.indexofBottom
+            {/* {index == data.indexofBottom
               ? AppIcon(item.img, 25, 'white')
-              : AppIcon(item.img, 25, item.color)}
+              : AppIcon(item.img, 25, item.color
+              )} */}
+              {
+                AppIcon(item.img, 25, item.color)
+              }
           </TouchableOpacity>
         );
       })}
@@ -77,8 +82,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   Btn: {
-    padding: 8,
+    padding: 2,
     backgroundColor: colors.white,
     borderRadius: 5,
+    
   },
 });

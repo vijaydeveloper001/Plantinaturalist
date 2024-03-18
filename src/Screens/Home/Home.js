@@ -90,15 +90,16 @@ export default function Home() {
   return (
     <View style={styles.Main}>
       <Loader Loading={loader} />
-      <Header/>
-      <StatusBar  backgroundColor={colors.lightgreen}/>
+    
+      <StatusBar   backgroundColor={colors.lightgreen}/>
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
+      <Header/>
       <TextInputCon text = {'SEARCH ITEM.........'} margin = {1}/>
-        {/* <SafeAreaView> */}
+        <SafeAreaView>
           <TopPlants />
           <Banner />
-          <Text style={styles.ItemTypeText}>Shop by Delights</Text>
-          <ShopDelights />
+          {/* <Text style={styles.ItemTypeText}>Shop by Delights</Text>
+          <ShopDelights /> */}
           <FlatList
             data={DataofHomeScreen}
             renderItem={ItemSelect}
@@ -111,7 +112,7 @@ export default function Home() {
           <ShopItemScreen layer1={layer1} />
           <Text style={styles.ItemTypeText}>Bestsellers</Text>
           <SellingItems productData={prouctData} />
-        {/* </SafeAreaView> */}
+        </SafeAreaView>
       </ScrollView>
       <BottomNavigation />
     </View>

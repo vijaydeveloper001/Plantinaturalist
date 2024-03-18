@@ -13,7 +13,7 @@ export default function Banner() {
   // });
   const renderItems = ({item, index}) => {
     return (
-      <View style={styles.RenderBannerCon} key={item}>
+      <View style={{...styles.RenderBannerCon,marginLeft:index==0?0:10}} key={item}>
         <Image source={item.img} style={styles.imageCon} />
       </View>
     );
@@ -62,7 +62,10 @@ const styles = StyleSheet.create({
   },
   imageCon: {
     height: responsiveHeight(20),
-    width: responsiveWidth(100),
+    width: responsiveWidth(80),
+    resizeMode:"contain",
+    
+    borderRadius:10
   },
   ConIndex: {
     alignItems: 'center',

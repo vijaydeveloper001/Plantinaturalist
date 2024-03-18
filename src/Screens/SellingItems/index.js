@@ -3,7 +3,7 @@ import {
   Text,
   View,
   TouchableOpacity,
-  ImageBackground,
+  Image,
   SafeAreaView,
 } from 'react-native';
 import React from 'react';
@@ -20,9 +20,8 @@ export default function ShopItemScreen({productData}) {
         style={styles.MainCon}
         onPress={() => navigation.navigate(Screens.DETAILSCREEN, {data: item})}
         >
-        <ImageBackground source={Images.Flower} style={styles.ImageShopStyle}>
-          <Text style={styles.discountText}>-25%</Text>
-        </ImageBackground>
+        <Image source={Images.Flower} style={styles.ImageShopStyle}/>
+        <Text style={styles.discountText}>-25%</Text>
         <Text style={styles.shopNameText}>
           {item?.name ? item?.name : 'Testing'}
         </Text>

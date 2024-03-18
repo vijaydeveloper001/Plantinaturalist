@@ -46,7 +46,6 @@ export const PlantShop = [
   {
     id: 0,
     img:Images.Plant,
-
     title: 'Plant',
   },
   {

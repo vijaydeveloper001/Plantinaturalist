@@ -18,8 +18,16 @@ export const styles = StyleSheet.create({
     borderColor:colors.lightgreen,
     justifyContent:"center",
     alignItems:"center",
-    marginRight:20,
+    // marginRight:20,
     borderRadius: responsiveWidth(20),
-    padding:5
+    padding:5,
+    alignSelf:"center",
+  },
+  TextColor:{
+    color:colors.black,
+   
+    marginTop:10,textAlign:"center",
+    
+
   }
 });

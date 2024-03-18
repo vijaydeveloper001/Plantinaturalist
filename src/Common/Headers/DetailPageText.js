@@ -6,7 +6,7 @@ import {colors} from '../../Contants/Colors';
 export default function DetailPageText({text}) {
   return (
     <View style={styles.MainCon}>
-      <Image source={Images.Flower} style={{width: 20, height: 20}} />
+      <Image source={Images.Flower} style={{width: 20, height: 20,borderRadius:2}} />
       <Text style={styles.TextDetail}>{text}</Text>
     </View>
   );

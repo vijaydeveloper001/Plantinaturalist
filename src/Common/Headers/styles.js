@@ -5,7 +5,7 @@ import { responsiveFontSize,responsiveHeight,responsiveScreenWidth, } from "reac
 
 export const styles = StyleSheet.create({
     MainHeader:{
-        // backgroundColor:colors.lightblack,
+        backgroundColor:colors.white,
         // height:responsiveHeight(8),
         // flex:0.08,
         height:responsiveHeight(15),

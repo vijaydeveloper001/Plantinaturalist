@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  Pressable,
 } from 'react-native';
 import {colors} from '../../Contants/Colors';
 import FastImage from 'react-native-fast-image';
@@ -24,31 +25,37 @@ export default function DetailPlants(props) {
     <View style={styles.Main}>
       <Headers text={'Detail'}/>
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
-        <FastImage source={Images.Herbs} style={styles.ImageCons} />
+        <Image source={Images.Home} style={styles.ImageCons} />
         <Text style={styles.TextStyle}>
           {props.route?.params?.data.name
             ? props.route?.params?.data.name
             : 'Flower'}
         </Text>
+        <View style = {styles.InsideCon}>
         <View
           style={{
             flexDirection: 'row',
             alignItems: 'center',
             paddingHorizontal: 20,
           }}>
-          <Text style={{...styles.discountPrice, fontSize: 30}}>रु 200</Text>
+          <Text style={{...styles.discountPrice}}>रु 200</Text>
           <Text
             style={{
               ...styles.discountPrice,
-              fontSize: 18,
+              fontSize: 13,
               textDecorationLine: 'line-through',
+              color:colors.black
             }}>
             600
           </Text>
           <Text
-            style={{...styles.discountPrice, fontSize: 18, color: colors.red}}>
+            style={{...styles.discountPrice,fontSize:13, color: colors.red}}>
             (40% off)
           </Text>
+        </View>
+        <Pressable>
+          <Image source={Images.fav} style = {{width:30,height:30}}/>
+        </Pressable>
         </View>
         <DetailPageText text={'Keep In Indirect Sunlight'} />
         <DetailPageText text={'Water Twice Per Week'} />
@@ -114,16 +121,23 @@ export default function DetailPlants(props) {
 const styles = StyleSheet.create({
   Main: {
     flex: 1,
+    backgroundColor:colors.white
   },
   ImageCons: {
-    height: 400,
-    marginHorizontal: 20,
-    marginTop: 20,
+    height: 320,
+    marginHorizontal:20,
+    width:"70%",
+    alignSelf:"center",
+    marginVertical:50,
+    resizeMode:"cover"
+    
+   
+    
   },
   TextStyle: {
     color: colors.black,
     fontSize: 30,
-    fontWeight: '600',
+    // fontWeight: '500',
     textAlign: 'left',
     marginTop: 20,
     marginHorizontal: 20,
@@ -151,9 +165,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   discountPrice: {
-    fontSize: 17,
-    fontWeight: '600',
-    color: colors.black,
+    fontSize: 20,
+    // fontWeight: '5',
+    color: colors.lightgreen,
     marginRight: 10,
     marginTop: 20,
   },
@@ -178,10 +192,10 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   ColorCon: {
-    width: 20,
-    height: 20,
-    borderColor: colors.gray,
-    borderWidth: 0.2,
+    width: 25,
+    height: 25,
+    borderColor: colors.lightgreen,
+    borderWidth: 1,
     borderRadius: 30,
     marginRight: 5,
     padding: 3,
@@ -203,4 +217,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
   },
+  InsideCon:{
+    flexDirection:"row",
+    justifyContent:"space-between",
+    alignItems:"center",
+    paddingRight:20
+  }
 });

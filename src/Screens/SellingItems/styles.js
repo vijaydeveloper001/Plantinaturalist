@@ -6,17 +6,20 @@ export const styles = StyleSheet.create({
     marginTop: 15,
     backgroundColor: 'white',
     elevation: 10,
+    borderRadius:5
   },
   ImageShopStyle: {
     width: '100%',
-    height: 200,
-    borderRadius: 5,
+    height: 150,
+    borderTopRightRadius:5,
+    borderTopLeftRadius:5,
+    resizeMode:"cover"
   },
   shopNameText: {
     fontSize: 15,
     fontWeight: '500',
     color: colors.black,
-    marginTop: 10,
+    marginTop: 3,
     paddingHorizontal: 20,
   },
   contentContainerStyles: {
@@ -29,13 +32,15 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.lightgreen,
     justifyContent: 'center',
     alignItems: 'center',
+    borderBottomEndRadius:5,
+    borderBottomLeftRadius:5
   },
   PriceCon: {
     flexDirection: 'row',
     // paddingVertical: 10,
     alignItems: 'center',
     paddingHorizontal: 20,
-    marginTop:10
+    marginTop:3
   },
   cureentprice: {
     textDecorationLine: 'line-through',
@@ -53,12 +58,12 @@ export const styles = StyleSheet.create({
   },
   discountText: {
     fontSize: 18,
-    backgroundColor: colors.yellowDark,
+    backgroundColor: colors.lightgreen,
     position: 'absolute',
     paddingVertical: 1,
     paddingHorizontal: 12,
     margin: 5,
-    borderRadius: 5,
-    color: 'black',
+    borderRadius: 3,
+    color: colors.white,
   },
 });
