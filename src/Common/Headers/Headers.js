@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   HeaderText: {
     fontSize: 20,
-    fontWeight: '600',
+    fontWeight: '500',
     color: colors.white,
   },
 });

@@ -14,11 +14,7 @@ const bottomdata = [
   {
     img: 'address-book',
     color: colors.lightgreen,
-  },
-  {
-    img: 'plus',
-    color: colors.lightgreen,
-    onPress: Screens.ADDDATA,
+    onPress: Screens.ORDER,
   },
   {
     img: 'inbox',
@@ -74,7 +70,7 @@ export default function BottomNavigation() {
 
 const styles = StyleSheet.create({
   BottomCon: {
-    height: responsiveHeight(8),
+    height: responsiveHeight(7),
     backgroundColor: colors.lightgreen,
     flexDirection: 'row',
     justifyContent: 'space-between',

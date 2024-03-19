@@ -92,9 +92,10 @@ export default function Home() {
       <Loader Loading={loader} />
       <StatusBar backgroundColor={colors.lightgreen} />
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
+      <SafeAreaView>
         <Header />
-        <TextInputCon text={'SEARCH ITEM.........'} margin={1} />
-        <SafeAreaView>
+        <TextInputCon text={'SEARCH ITEM.........'} margin={1} search={true} />
+    
           <TopPlants />
           <Banner />
           {/* <Text style={styles.ItemTypeText}>Shop by Delights</Text>

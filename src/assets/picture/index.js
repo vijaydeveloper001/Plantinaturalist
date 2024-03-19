@@ -18,7 +18,11 @@ export const Images = {
     wallet:require('./wallet.png'),
     fav :require('./favourite.png'),
     notification:require('./Notificationwithtext.png'),
-    notificationWithoutText:require('./notificationSimpile.png')
+    notificationWithoutText:require('./notificationSimpile.png'),
+    rightArrow:require('./right-arrow.png'),
+    star:require('./star.png'),
+    search:require('./search.png')
+
 }
 
 export const AppIcon = (name,size,color) =>{

@@ -1,41 +1,67 @@
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {StyleSheet, Text, TextInput, View, Image} from 'react-native';
 import React from 'react';
 import {colors} from '../Contants/Colors';
 import CheckBox from 'react-native-check-box';
-export default function TextInputCon({text,gettext,check,TopText,checktext,Last,topheading,margin}) {
+import {Images} from '../assets/picture';
+export default function TextInputCon({
+  text,
+  gettext,
+  check,
+  TopText,
+  checktext,
+  Last,
+  topheading,
+  margin,
+  search,
+}) {
   return (
-    <View style={{...styles.Main,marginTop:margin?margin:20}}>
-     {TopText && <Text style={{...styles.FieldsText, fontSize: 30,paddingVertical:20}}>{TopText}</Text>}
+    <View style={{...styles.Main, marginTop: margin ? margin : 20}}>
+      {TopText && (
+        <Text style={{...styles.FieldsText, fontSize: 30, paddingVertical: 20}}>
+          {TopText}
+        </Text>
+      )}
       {topheading && <Text style={styles.FieldsText}>{text}</Text>}
-      <TextInput
-        style={styles.TextInputStyle}
-        placeholder={text}
-        placeholderTextColor={colors.black}
-      />
-    {check && <View style={{marginTop: 10, flexDirection: 'row', alignItems: 'center'}}>
-        <CheckBox
-          style={{height: 20}}
-          onClick={() => {
-            console.log(true);
-          }}
-          isChecked={true}
-          leftText={'CheckBox'}
-          checkedCheckBoxColor={colors.lightgreen}
+      <View style={styles.TextInputStyle}>
+        {search && (
+          <Image source={Images.search} style={{width: 20, height: 20}} />
+        )}
+        <TextInput
+          placeholder={text}
+          placeholderTextColor={colors.black}
+          style={{color: colors.black, flex: 1}}
         />
-        <Text style={styles.offers}>Email me with news and offers</Text>
-      </View>}
-      {Last && <View style={{marginTop: 10, flexDirection: 'row', alignItems: 'center'}}>
-        <CheckBox
-          style={{height: 20}}
-          onClick={() => {
-            console.log(true);
-          }}
-          isChecked={true}
-          leftText={'CheckBox'}
-          checkedCheckBoxColor={colors.lightgreen}
-        />
-        <Text style={styles.offers}>Email me with news and offers</Text>
-      </View>}
+      </View>
+      {check && (
+        <View
+          style={{marginTop: 10, flexDirection: 'row', alignItems: 'center'}}>
+          <CheckBox
+            style={{height: 20}}
+            onClick={() => {
+              console.log(true);
+            }}
+            isChecked={true}
+            leftText={'CheckBox'}
+            checkedCheckBoxColor={colors.lightgreen}
+          />
+          <Text style={styles.offers}>Email me with news and offers</Text>
+        </View>
+      )}
+      {Last && (
+        <View
+          style={{marginTop: 10, flexDirection: 'row', alignItems: 'center'}}>
+          <CheckBox
+            style={{height: 20}}
+            onClick={() => {
+              console.log(true);
+            }}
+            isChecked={true}
+            leftText={'CheckBox'}
+            checkedCheckBoxColor={colors.lightgreen}
+          />
+          <Text style={styles.offers}>Email me with news and offers</Text>
+        </View>
+      )}
     </View>
   );
 }
@@ -58,8 +84,10 @@ const styles = StyleSheet.create({
     elevation: 1,
     paddingHorizontal: 10,
     height: 45,
-    color: colors.black,
+
     marginTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   offers: {
     color: colors.black,

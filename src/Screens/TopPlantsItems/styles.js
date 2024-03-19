@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {responsiveWidth} from 'react-native-responsive-dimensions';
-import { colors } from '../../Contants/Colors';
+import {colors} from '../../Contants/Colors';
 
 export const styles = StyleSheet.create({
   ImageStyle: {
@@ -11,23 +11,22 @@ export const styles = StyleSheet.create({
   ContentContainerStyle: {
     justifyContent: 'center',
     flexDirection: 'row',
-    paddingVertical:25
+    paddingVertical: 25,
   },
-  BorderLine:{
-    borderWidth:2,
-    borderColor:colors.lightgreen,
-    justifyContent:"center",
-    alignItems:"center",
+  BorderLine: {
+    borderWidth: 2,
+    borderColor: colors.lightgreen,
+    justifyContent: 'center',
+    alignItems: 'center',
     // marginRight:20,
     borderRadius: responsiveWidth(20),
-    padding:5,
-    alignSelf:"center",
+    padding: 5,
+    alignSelf: 'center',
   },
-  TextColor:{
-    color:colors.black,
-   
-    marginTop:10,textAlign:"center",
-    
-
-  }
+  TextColor: {
+    color: colors.black,
+    fontSize:13,
+    marginTop: 10,
+    textAlign: 'center',
+  },
 });
