@@ -39,7 +39,7 @@ export default function Home() {
         style={{
           ...styles.BtnCon,
           backgroundColor:
-          index == data.indexofFlatlist ? colors.lightgreen : colors.white,
+            index == data.indexofFlatlist ? colors.lightgreen : colors.white,
           marginRight: index == DataofHomeScreen.length - 1 ? 0 : 20,
         }}
         onPress={() => setdata({...data, indexofFlatlist: index})}>
@@ -90,11 +90,11 @@ export default function Home() {
   return (
     <View style={styles.Main}>
       <Loader Loading={loader} />
-    
-      <StatusBar   backgroundColor={colors.lightgreen}/>
+
+      <StatusBar backgroundColor={colors.lightgreen} />
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
-      <Header/>
-      <TextInputCon text = {'SEARCH ITEM.........'} margin = {1}/>
+        <Header />
+        <TextInputCon text={'SEARCH ITEM.........'} margin={1} />
         <SafeAreaView>
           <TopPlants />
           <Banner />

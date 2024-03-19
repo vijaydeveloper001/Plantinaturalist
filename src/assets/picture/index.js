@@ -16,7 +16,9 @@ export const Images = {
     Home:require('./PlantHome.jpg'),
     notification:require('./notification.png'),
     wallet:require('./wallet.png'),
-    fav :require('./favourite.png')
+    fav :require('./favourite.png'),
+    notification:require('./Notificationwithtext.png'),
+    notificationWithoutText:require('./notificationSimpile.png')
 }
 
 export const AppIcon = (name,size,color) =>{
