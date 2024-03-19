@@ -21,8 +21,11 @@ export const Images = {
     notificationWithoutText:require('./notificationSimpile.png'),
     rightArrow:require('./right-arrow.png'),
     star:require('./star.png'),
-    search:require('./search.png')
-
+    search:require('./search.png'),
+    bell:require('./bell.png'),
+    order:require('./order.png'),
+    user:require('./user.png'),
+    HomeIcon:require('./home.png'),
 }
 
 export const AppIcon = (name,size,color) =>{

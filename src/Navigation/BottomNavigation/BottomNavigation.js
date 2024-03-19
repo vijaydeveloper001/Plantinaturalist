@@ -1,27 +1,28 @@
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View,Image} from 'react-native';
 import React, {useState} from 'react';
 import {responsiveHeight} from 'react-native-responsive-dimensions';
 import {colors} from '../../Contants/Colors';
-import {AppIcon} from '../../assets/picture';
+import {AppIcon, Images} from '../../assets/picture';
 import {Screens} from '../../Contants/NaivgationName';
 import {useNavigation} from '@react-navigation/native';
 
 const bottomdata = [
   {
-    img: 'home',
+    img: Images.HomeIcon,
     color: colors.lightgreen,
   },
   {
-    img: 'address-book',
+    img: Images.order,
     color: colors.lightgreen,
     onPress: Screens.ORDER,
   },
   {
-    img: 'inbox',
+    img: Images.bell,
     color: colors.lightgreen,
+    onPress: Screens.NOTIFICATION
   },
   {
-    img: 'user',
+    img: Images.user,
     color: colors.lightgreen,
     onPress: Screens.PROFILE
   },
@@ -54,13 +55,14 @@ export default function BottomNavigation() {
               } else console.log('onPress>>>>>>>>>>>>');
             }}
          >
+          <Image source={item.img} style = {{width:25,height:25,tintColor:colors.white}}/>
             {/* {index == data.indexofBottom
               ? AppIcon(item.img, 25, 'white')
               : AppIcon(item.img, 25, item.color
               )} */}
-              {
+              {/* {
                 AppIcon(item.img, 25, item.color)
-              }
+              } */}
           </TouchableOpacity>
         );
       })}
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
   },
   Btn: {
     padding: 2,
-    backgroundColor: colors.white,
+    
     borderRadius: 5,
     
   },
