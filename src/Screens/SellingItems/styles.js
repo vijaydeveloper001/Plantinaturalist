@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 import {colors} from '../../Contants/Colors';
 export const styles = StyleSheet.create({
   MainCon: {
-    width: 190,
+    width: '48%',
     marginTop: 15,
     backgroundColor: 'white',
     elevation: 10,

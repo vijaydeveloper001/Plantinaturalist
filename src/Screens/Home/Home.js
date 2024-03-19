@@ -90,7 +90,6 @@ export default function Home() {
   return (
     <View style={styles.Main}>
       <Loader Loading={loader} />
-
       <StatusBar backgroundColor={colors.lightgreen} />
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
         <Header />

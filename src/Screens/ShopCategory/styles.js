@@ -1,9 +1,9 @@
 import {StyleSheet} from 'react-native';
 import {colors} from '../../Contants/Colors';
-
+import { responsiveWidth } from 'react-native-responsive-dimensions';
 export const styles = StyleSheet.create({
   MainCon: {
-    width: 190,
+    width: '48%',
     marginTop: 10,
     // paddingHorizontal: 20,
     // backgroundColor:'white',
