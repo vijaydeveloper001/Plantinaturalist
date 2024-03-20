@@ -1,119 +1,48 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import {AppIcon, Images} from '../../assets/picture';
-import {responsiveScreenWidth} from 'react-native-responsive-dimensions';
-import {colors} from '../../Contants/Colors';
-import {
-  KeyLogin,
-  LocalDBClear,
-  LocalDBRemove,
-  getItem,
-} from '../../Contants/LocalDB';
-import {firebase} from '@react-native-firebase/auth';
-import {Screens} from '../../Contants/NaivgationName';
-export const Profile = ({navigation}) => {
-  // Replace 'JohnDoe' with the actual username from your data
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React from 'react'
+import ProfileCon from '../../Common/ProfileCon'
+import { colors } from '../../Contants/Colors'
+import Headers from '../../Common/Headers/Headers'
+import { Images } from '../../assets/picture'
+import { responsiveScreenWidth } from 'react-native-responsive-dimensions'
 
-  const [data, setdata] = useState({
-    userdata: '',
-  });
-
-  useEffect(() => {
-    const userData = async () => {
-      let user = await getItem(KeyLogin);
-      setdata({
-        userdata: JSON.parse(user),
-      });
-    };
-    userData();
-  }, []);
-
-  console.log(data)
-  const handleLogout = async () => {
-    try {
-      let logout = await firebase.auth().signOut();
-      console.log(logout, 'logout>>>>>>>>>>><<<<<<<<<<,');
-      await LocalDBRemove(KeyLogin);
-
-      navigation.navigate(Screens.LOGIN);
-    } catch (error) {
-      console.error('Error logging out:', error);
-    }
-  };
-
+export function Profile() {
   return (
-    <View style={styles.container}>
-      <View style={styles.profileContainer}>
-        {/* <Image
-          style={styles.avatar}
-          source={Images.ImageBackground}
-
-        /> */}
-        {AppIcon('user', 200)}
+    <View style = {{backgroundColor:colors.white,flex:1}}>
+      
+      <Headers text={'Profile'}/>
+      <ScrollView>
+      <View style={styles.MainHeaderLeftSideCon}>
+        <TouchableOpacity style = {{width:100,height:100,borderRadius:10000}}>
+          <Image source={Images.Home} style={{width: '100%', height: '100%',borderRadius:1000}} resizeMode='contain' />
+        </TouchableOpacity>
+        <View>
+        <Text style = {{color:colors.lightgreen,marginLeft:7}} numberOfLines={1}>Vijay kumar</Text>
+        <Text style = {{color:'grey',marginLeft:7}} numberOfLines={1}>Mohali,Chandigarh</Text>
+        </View>
       </View>
-      <Text style={styles.username}>{data?.userdata?.user?.displayName}</Text>
-      <Text style={styles.username}>{data?.userdata?.user?.email}</Text>
-
-      <View style={styles.AccountButton}>
-        <TouchableOpacity style={styles.logoutButton}  >
-          <Text style={styles.logoutText}>Update Account</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.logoutButton}  >
-          <Text style={styles.logoutText}>Delete Account</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-          <Text style={styles.logoutText}>Logout</Text>
-        </TouchableOpacity>
-      </View>
+      <View/>
+      <ProfileCon text={'Profile'}/>
+      <ProfileCon text={'Refer A Friend'}/>
+      <ProfileCon text={'Manage Address'}/>
+      <ProfileCon text={'Contact'}/>
+      <ProfileCon text={'Feedback'}/>
+      <ProfileCon text={'Favourites'}/>
+      <ProfileCon text={'Delete Account'}/>
+      <ProfileCon text={'Logout'}/>
+      </ScrollView>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  profileContainer: {
-    width: 300,
-    height: 300,
-    borderRadius: responsiveScreenWidth(200),
-    marginBottom: 10,
-    alignSelf: 'center',
-    elevation: 10,
-    marginTop: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  avatar: {
-    width: '100%',
-    height: '100%',
-    borderRadius: responsiveScreenWidth(200),
-    // marginBottom: 10,
-  },
-  username: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 60,
-  },
-  logoutButton: {
-    marginTop: 20,
-    backgroundColor: colors.lightgreen,
-    marginHorizontal: 20,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 5,
-  },
-  logoutText: {
-    color: '#fff',
-    marginLeft: 10,
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  AccountButton: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
+  MainHeaderLeftSideCon:{
+    flexDirection:'row',
+    alignItems:'center',
+   
+    borderRadius:responsiveScreenWidth(1),
+    marginHorizontal:20,
+    width:300,
+    paddingVertical:50
+},
+})
