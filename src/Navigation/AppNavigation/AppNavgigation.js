@@ -12,6 +12,7 @@ import { Profile } from '../../Screens/Profile';
 import Shipping from '../../Screens/Shipping/Shipping';
 import Notification from '../../Screens/Notification/Notification';
 import Order from '../../Screens/Order/Order';
+import Cart from '../../Screens/Cart/Cart';
 const Stack = createNativeStackNavigator();
 
 const optionheaders = {
@@ -31,6 +32,7 @@ export default function AppNavgigation() {
         <Stack.Screen name={Screens.SHIPING} component={Shipping}  options={optionheaders}  />
         <Stack.Screen name={Screens.NOTIFICATION} component={Notification}  options={optionheaders}  />
         <Stack.Screen name={Screens.ORDER} component={Order}  options={optionheaders}  />
+        <Stack.Screen name={Screens.CART} component={Cart}  options={optionheaders}  />
     </Stack.Navigator>
   )
 }

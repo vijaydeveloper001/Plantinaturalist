@@ -9,5 +9,6 @@ export const Screens= {
     PROFILE:'PROFILE',
     SHIPING:'SHIPING',
     NOTIFICATION:"NOTIFICATION",
-    ORDER:'ORDER'
+    ORDER:'ORDER',
+    CART:'CART'
 }

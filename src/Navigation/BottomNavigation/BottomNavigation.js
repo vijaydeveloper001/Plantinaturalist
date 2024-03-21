@@ -17,9 +17,9 @@ const bottomdata = [
     onPress: Screens.ORDER,
   },
   {
-    img: Images.bell,
+    img: Images.shopingIcon,
     color: colors.lightgreen,
-    onPress: Screens.NOTIFICATION
+    onPress: Screens.CART
   },
   {
     img: Images.user,
