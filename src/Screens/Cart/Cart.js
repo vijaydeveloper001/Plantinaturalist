@@ -14,6 +14,7 @@ import Headers from '../../Common/Headers/Headers';
 import Button from '../../Common/Button';
 import {useNavigation} from '@react-navigation/native';
 import {Screens} from '../../Contants/NaivgationName';
+import LinearGradient from 'react-native-linear-gradient';
 const data = [
   {
     order: 'Your order has been deliverd',
@@ -74,8 +75,12 @@ export default function Cart() {
           </Text>
           <Text style={{color: colors.black, fontSize: 8}}>6 Item</Text>
         </View>
-        <View style = {{height:'100%',justifyContent:"space-between",
-      paddingVertical:8}}>
+        <View
+          style={{
+            height: '100%',
+            justifyContent: 'space-between',
+            paddingVertical: 8,
+          }}>
           <TouchableOpacity
             style={{alignSelf: 'flex-end', paddingVertical: 10}}>
             <Image source={Images.close} style={{width: 15, height: 15}} />
@@ -188,14 +193,14 @@ export default function Cart() {
           <Text style={styles.Price}>
             15% off on minimum purchase of Rs.999
           </Text>
-          <TouchableOpacity
+          <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}}  colors={['#A2D240', '#166D3B',]}
             style={{
               ...styles.changeAddress,
               alignSelf: 'flex-end',
               marginTop: 10,
             }}>
             <Text style={{color: colors.white}}>APPLY COUPON</Text>
-          </TouchableOpacity>
+          </LinearGradient>
         </View>
 
         <View style={styles.columnwraper}>
