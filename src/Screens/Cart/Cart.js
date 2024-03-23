@@ -103,9 +103,30 @@ export default function Cart() {
     );
   };
   return (
-    <View style = {{flex:1}}>
+    <View style={{flex: 1}}>
       <Headers text={'Cart'} />
-      <ScrollView >
+      <ScrollView>
+        <View
+          style={{
+            ...styles.columnwraper,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
+          <View>
+            <Text style={styles.Price}>
+              Delivery to,{' '}
+              <Text style={{fontWeight: '600'}} numberOfLines={1}>
+                152116
+              </Text>
+            </Text>
+            <Text style={styles.Price} numberOfLines={1}>
+              Mohali,Chandigarh
+            </Text>
+          </View>
+          <TouchableOpacity style={styles.changeAddress} onPress={()=>navigation.navigate(Screens.SHIPING)}>
+            <Text style={{color: colors.white}}>Change</Text>
+          </TouchableOpacity>
+        </View>
         <FlatList
           data={data}
           renderItem={renderitem}
@@ -124,6 +145,33 @@ export default function Cart() {
         return <Text style = {styles.footerStyle}>Total रु 400</Text>
       }}
       /> */}
+        <View style={styles.columnwraper}>
+          <View style={styles.ForYouCoupon}>
+            <Text style={{...styles.Price, fontWeight: '600'}}>
+              Best Coupon For You
+            </Text>
+            <Text
+              style={{
+                ...styles.Price,
+                fontWeight: '600',
+                color: colors.lightgreen,
+              }}>
+              All Counpons{' '}
+            </Text>
+          </View>
+          <Text style={styles.Price}>Extra 204 OFF</Text>
+          <Text style={styles.Price}>
+            15% off on minimum purchase of Rs.999
+          </Text>
+          <TouchableOpacity
+            style={{
+              ...styles.changeAddress,
+              alignSelf: 'flex-end',
+              marginTop: 10,
+            }}>
+            <Text style={{color: colors.white}}>APPLY COUPON</Text>
+          </TouchableOpacity>
+        </View>
 
         <View style={styles.columnwraper}>
           <Text
@@ -135,7 +183,6 @@ export default function Cart() {
             }}>
             PRICE DETAILS (2 items){' '}
           </Text>
-
           <ViewCon text={'Total MRP'} price={200} />
           <ViewCon
             text={'Discount on MRP'}
@@ -164,11 +211,11 @@ export default function Cart() {
         </View>
       </ScrollView>
       <Button
-          TextName="Proceed to pay"
-          stle={25}
-          press={() => navigation.navigate(Screens.SHIPING)}
-          padding={20}
-        />
+        TextName="Proceed to pay"
+        stle={25}
+        press={() => navigation.navigate(Screens.SHIPING)}
+        padding={20}
+      />
     </View>
   );
 }
@@ -228,5 +275,16 @@ const styles = StyleSheet.create({
     color: '#fc0377',
     fontWeight: '500',
     fontSize: 15,
+  },
+  changeAddress: {
+    backgroundColor: colors.lightgreen,
+    borderRadius: 10,
+    justifyContent: 'center',
+    padding: 10,
+  },
+  ForYouCoupon: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
   },
 });
