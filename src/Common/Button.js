@@ -2,9 +2,9 @@ import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import { colors } from '../Contants/Colors';
 
-export default function Button({TextName,press,stle}) {
+export default function Button({TextName,press,stle,padding}) {
   return (
-    <TouchableOpacity style={{...styles.addToCart,marginTop:stle?stle:0}} onPress={press?press:null}>
+    <TouchableOpacity style={{...styles.addToCart,marginTop:stle?stle:0,marginBottom:padding?padding:null}} onPress={press?press:null}>
       <Text style={styles.addToCartText}>{TextName}</Text>
     </TouchableOpacity>
   );

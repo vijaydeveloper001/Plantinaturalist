@@ -12,8 +12,8 @@ import {Images} from '../../assets/picture';
 import {colors} from '../../Contants/Colors';
 import Headers from '../../Common/Headers/Headers';
 import Button from '../../Common/Button';
-import { useNavigation } from '@react-navigation/native';
-import { Screens } from '../../Contants/NaivgationName';
+import {useNavigation} from '@react-navigation/native';
+import {Screens} from '../../Contants/NaivgationName';
 const data = [
   {
     order: 'Your order has been deliverd',
@@ -37,19 +37,21 @@ const data = [
   },
 ];
 
-const ViewCon = ({text, price, know,color,platfrom}) => {
+const ViewCon = ({text, price, know, color, platfrom}) => {
   return (
     <View style={styles.PriceCon}>
       <Text style={styles.Price}>
         {text} {know && <Text style={styles.PriceKnowMore}> Know more</Text>}
       </Text>
-      <Text style={{...styles.Price,color:color?color:colors.black}}>{platfrom?'Free':'रु ' + price}</Text>
+      <Text style={{...styles.Price, color: color ? color : colors.black}}>
+        {platfrom ? 'Free' : 'रु ' + price}
+      </Text>
     </View>
   );
 };
 
 export default function Cart() {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
   const renderitem = ({item}) => {
     return (
       <View style={styles.MainRender}>
@@ -101,9 +103,9 @@ export default function Cart() {
     );
   };
   return (
-    <View>
+    <View style = {{flex:1}}>
       <Headers text={'Cart'} />
-      <ScrollView contentContainerStyle={{paddingBottom: 70}}>
+      <ScrollView >
         <FlatList
           data={data}
           renderItem={renderitem}
@@ -124,46 +126,49 @@ export default function Cart() {
       /> */}
 
         <View style={styles.columnwraper}>
-     
-            <Text style={{...styles.footerStyle,textAlign:'left',paddingTop:0,paddingBottom:10}}>PRICE DETAILS (2 items) </Text>
-        
+          <Text
+            style={{
+              ...styles.footerStyle,
+              textAlign: 'left',
+              paddingTop: 0,
+              paddingBottom: 10,
+            }}>
+            PRICE DETAILS (2 items){' '}
+          </Text>
+
           <ViewCon text={'Total MRP'} price={200} />
-          <ViewCon text={'Discount on MRP'} price={200} know={true}  color = {colors.lightgreen}/>
-          <ViewCon text={'Coupon Discount'} price={200} know={true} color = {colors.lightgreen} />
-          <ViewCon text={'Platform Fe'} price={200} platfrom={true}/>
-          <ViewCon text={'Shipping Fee'} price={200}  platfrom={true} color = {colors.lightgreen}/>
+          <ViewCon
+            text={'Discount on MRP'}
+            price={200}
+            know={true}
+            color={colors.lightgreen}
+          />
+          <ViewCon
+            text={'Coupon Discount'}
+            price={200}
+            know={true}
+            color={colors.lightgreen}
+          />
+          <ViewCon text={'Platform Fe'} price={200} platfrom={true} />
+          <ViewCon
+            text={'Shipping Fee'}
+            price={200}
+            platfrom={true}
+            color={colors.lightgreen}
+          />
           <ViewCon text={'Plant Credit'} price={200} />
           <View style={styles.PriceCon}>
             <Text style={[styles.footerStyle]}>TOTAL AMOUNT</Text>
             <Text style={[styles.footerStyle]}>रु 832</Text>
           </View>
-          {/* <View style={styles.PriceCon}>
-            <Text style={styles.Price}>Total MRP </Text>
-            <Text style={styles.Price}>रु 832</Text>
-          </View>
-          <View style={styles.PriceCon}>
-            <Text style={styles.Price}>Discount on MRP <Text style = {styles.PriceKnowMore}> Know more</Text></Text>
-            <Text style={styles.Price}>रु 832</Text>
-          </View>
-          <View style={styles.PriceCon}>
-            <Text style={styles.Price}>Coupon Discount <Text style = {styles.PriceKnowMore}> Know more</Text></Text>
-            <Text style={styles.Price}>रु 832</Text>
-          </View>
-          <View style={styles.PriceCon}>
-            <Text style={styles.Price}>Platform Fe</Text>
-            <Text style={styles.Price}>रु 832</Text>
-          </View>
-          <View style={styles.PriceCon}>
-            <Text style={styles.Price}>Shipping Fee</Text>
-            <Text style={styles.Price}>रु 832</Text>
-          </View>
-          <View style={styles.PriceCon}>
-            <Text style={styles.Price}>Pant Credit const [state, dispatch] </Text>
-            <Text style={styles.Price}>रु 832</Text>
-          </View> */}
         </View>
-        <Button TextName="Proceed to pay" stle={25} press={()=>navigation.navigate(Screens.SHIPING)} />
       </ScrollView>
+      <Button
+          TextName="Proceed to pay"
+          stle={25}
+          press={() => navigation.navigate(Screens.SHIPING)}
+          padding={20}
+        />
     </View>
   );
 }

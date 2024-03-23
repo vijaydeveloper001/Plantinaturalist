@@ -9,10 +9,10 @@ export default function ProfileCon({text}) {
       <Image source={Images.user} style={{width: 20, height: 20}} />
       <Text
         style={{
-          width: 300,
+          flex:1,
           color: colors.black,
           fontSize: 17,
-          marginLeft:10
+          marginLeft:20
          
         }}>
         {text}

@@ -20,7 +20,14 @@ export function Profile() {
       <ScrollView>
         <View style={styles.MainHeaderLeftSideCon}>
           <TouchableOpacity
-            style={{width: 100, height: 100, borderRadius: 10000,padding:2,backgroundColor:colors.white,elevation:5}}>
+            style={{
+              width: 100,
+              height: 100,
+              borderRadius: 10000,
+              padding: 2,
+              backgroundColor: colors.white,
+              elevation: 5,
+            }}>
             <Image
               source={Images.Home}
               style={{width: '100%', height: '100%', borderRadius: 1000}}
@@ -29,11 +36,18 @@ export function Profile() {
           </TouchableOpacity>
           <View>
             <Text
-              style={{color: colors.lightgreen, marginLeft: 7,fontSize:20}}
+              style={{color: colors.lightgreen, marginLeft: 7, fontSize: 20}}
               numberOfLines={1}>
               Vijay kumar
             </Text>
-            <Text style={{color: 'grey', marginLeft: 7,marginVertical:10,fontSize:16}} numberOfLines={1}>
+            <Text
+              style={{
+                color: 'grey',
+                marginLeft: 7,
+                marginVertical: 10,
+                fontSize: 16,
+              }}
+              numberOfLines={1}>
               8558071204
             </Text>
           </View>
