@@ -27,6 +27,7 @@ export const Images = {
     user:require('./user.png'),
     HomeIcon:require('./home.png'),
     shopingIcon:require('./shopping-cart.png'),
+    close:require('./close.png')
 }
 
 export const AppIcon = (name,size,color) =>{

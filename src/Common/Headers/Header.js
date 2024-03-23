@@ -25,8 +25,8 @@ export default function Header() {
         onPress={() => navigation.navigate(Screens.ADDDATA)}>
         <Image source={Images.wallet} style = {{width:20,height:20,tintColor:colors.white}}/>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.IconHeartCon} onPress={()=>navigation.navigate(Screens.NOTIFICATION)}>
-      <Image source={Images.notification} style = {{width:20,height:20,tintColor:colors.white}}/>
+      <TouchableOpacity style={styles.IconHeartCon} onPress={()=>navigation.navigate(Screens.FAV)}>
+      <Image source={Images.fav} style = {{width:20,height:20,tintColor:colors.white}}/>
       </TouchableOpacity>
     </View>
   );
