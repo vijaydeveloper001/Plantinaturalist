@@ -59,36 +59,59 @@ export default function Cart() {
         <View style={styles.TextCon}>
           <Text
             style={{color: colors.lightgreen, fontSize: 18, fontWeight: '600'}}>
-            रु 832
+            रु 832{' '}
+            <Text
+              style={{
+                textDecorationLine: 'line-through',
+                color: colors.lightgreen2,
+              }}>
+              {' '}
+              रु 1000
+            </Text>
           </Text>
           <Text style={{color: colors.black, fontSize: 12}} numberOfLines={1}>
             Flower item
           </Text>
           <Text style={{color: colors.black, fontSize: 8}}>6 Item</Text>
         </View>
-        <View style={styles.ProductIncres}>
-          <TouchableOpacity style={styles.btn}>
-            <Text
-              style={{fontSize: 20, textAlign: 'center', color: colors.white}}>
-              -
-            </Text>
+        <View style = {{height:'100%',justifyContent:"space-between",
+      paddingVertical:8}}>
+          <TouchableOpacity
+            style={{alignSelf: 'flex-end', paddingVertical: 10}}>
+            <Image source={Images.close} style={{width: 15, height: 15}} />
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Text
-              style={{
-                fontSize: 15,
-                color: colors.black,
-                paddingHorizontal: 10,
-              }}>
-              1
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.btn}>
-            <Text
-              style={{fontSize: 20, textAlign: 'center', color: colors.white}}>
-              +
-            </Text>
-          </TouchableOpacity>
+          <View style={styles.ProductIncres}>
+            <TouchableOpacity style={styles.btn}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  textAlign: 'center',
+                  color: colors.white,
+                }}>
+                -
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text
+                style={{
+                  fontSize: 15,
+                  color: colors.black,
+                  paddingHorizontal: 10,
+                }}>
+                1
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.btn}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  textAlign: 'center',
+                  color: colors.white,
+                }}>
+                +
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -123,7 +146,9 @@ export default function Cart() {
               Mohali,Chandigarh
             </Text>
           </View>
-          <TouchableOpacity style={styles.changeAddress} onPress={()=>navigation.navigate(Screens.SHIPING)}>
+          <TouchableOpacity
+            style={styles.changeAddress}
+            onPress={() => navigation.navigate(Screens.SHIPING)}>
             <Text style={{color: colors.white}}>Change</Text>
           </TouchableOpacity>
         </View>

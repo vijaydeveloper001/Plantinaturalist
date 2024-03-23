@@ -30,5 +30,6 @@ export const colors = {
 	lightgreen:'#1d8038',
 	lightblack:'#121212',
 	lightwheat:'#FBF1E0',
-	yellowDark:'#fcba03'
+	yellowDark:'#fcba03',
+	lightgreen2:'#ADBC9F'
 };
