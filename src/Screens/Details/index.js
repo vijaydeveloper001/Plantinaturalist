@@ -113,7 +113,7 @@ export default function DetailPlants(props) {
         </View>
       </ScrollView>
       <View style={styles.OrderConParent}>
-        <Button TextName={'Add to cart'} press={()=>navigation.navigate(Screens.SHIPING)} />
+        <Button TextName={'Add to cart'} />
       </View>
     </View>
   );

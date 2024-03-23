@@ -5,40 +5,60 @@ import {
   View,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import React from 'react';
 import {Images} from '../../assets/picture';
 import {colors} from '../../Contants/Colors';
 import Headers from '../../Common/Headers/Headers';
+import Button from '../../Common/Button';
+import { useNavigation } from '@react-navigation/native';
+import { Screens } from '../../Contants/NaivgationName';
 const data = [
-    {
-        order: 'Your order has been deliverd',
-        rating: true,
-        img: Images.Flower,
-      },
-      {
-        order: 'Your order has been canceled',
-        rating: false,
-        img: Images.Herbs,
-      },
-      {
-        order: 'Your order has been deliverd',
-        rating: true,
-        img: Images.Indoor,
-      },
-      {
-        order: 'Your order has been canceled',
-        rating: false,
-        img: Images.Vegitable,
-      },
-]
+  {
+    order: 'Your order has been deliverd',
+    rating: true,
+    img: Images.Flower,
+  },
+  {
+    order: 'Your order has been canceled',
+    rating: false,
+    img: Images.Herbs,
+  },
+  {
+    order: 'Your order has been deliverd',
+    rating: true,
+    img: Images.Indoor,
+  },
+  {
+    order: 'Your order has been canceled',
+    rating: false,
+    img: Images.Vegitable,
+  },
+];
+
+const ViewCon = ({text, price, know,color,platfrom}) => {
+  return (
+    <View style={styles.PriceCon}>
+      <Text style={styles.Price}>
+        {text} {know && <Text style={styles.PriceKnowMore}> Know more</Text>}
+      </Text>
+      <Text style={{...styles.Price,color:color?color:colors.black}}>{platfrom?'Free':'रु ' + price}</Text>
+    </View>
+  );
+};
+
 export default function Cart() {
+    const navigation = useNavigation();
   const renderitem = ({item}) => {
     return (
       <View style={styles.MainRender}>
-        <Image source={item.img} style={{width: '20%', height: '80%',}}/>
+        <Image source={item.img} style={{width: '20%', height: '80%'}} />
         <View style={styles.TextCon}>
-          <Text style={{color: colors.lightgreen, fontSize: 18,fontWeight:"600"}}>रु 832</Text>
+          <Text
+            style={{color: colors.lightgreen, fontSize: 18, fontWeight: '600'}}>
+            रु 832
+          </Text>
           <Text style={{color: colors.black, fontSize: 12}} numberOfLines={1}>
             Flower item
           </Text>
@@ -46,26 +66,104 @@ export default function Cart() {
         </View>
         <View style={styles.ProductIncres}>
           <TouchableOpacity style={styles.btn}>
-            <Text style = {{fontSize:20,textAlign:'center',color:colors.white}}>-</Text>
+            <Text
+              style={{fontSize: 20, textAlign: 'center', color: colors.white}}>
+              -
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Text style = {{fontSize:15,color:colors.black,paddingHorizontal:10}}>1</Text>
+            <Text
+              style={{
+                fontSize: 15,
+                color: colors.black,
+                paddingHorizontal: 10,
+              }}>
+              1
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>
-            <Text style = {{fontSize:20,textAlign:'center',color:colors.white}}>+</Text>
+            <Text
+              style={{fontSize: 20, textAlign: 'center', color: colors.white}}>
+              +
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
     );
   };
+
+  const billItem = () => {
+    return (
+      <View style={styles.PriceCon}>
+        <Text style={styles.Price}>1 x River item</Text>
+        <Text style={styles.Price}>रु 832</Text>
+      </View>
+    );
+  };
   return (
     <View>
-      <Headers text={'Cart'}/>
-      <FlatList
-        data={data}
-        renderItem={renderitem}
-        keyExtractor={(item, index) => index}
-      />
+      <Headers text={'Cart'} />
+      <ScrollView contentContainerStyle={{paddingBottom: 70}}>
+        <FlatList
+          data={data}
+          renderItem={renderitem}
+          keyExtractor={(item, index) => index}
+          contentContainerStyle={{paddingBottom: 20}}
+        />
+        {/* <FlatList
+      data={[1,2,3,4,5,6,7,1,100]}
+      renderItem={billItem}
+      keyExtractor={(item, index) => index}
+      contentContainerStyle = {styles.columnwraper}
+      ListHeaderComponent={()=>{
+        return <Text style = {styles.footerStyle}>Bill Details</Text>
+      }}
+      ListFooterComponent={()=>{
+        return <Text style = {styles.footerStyle}>Total रु 400</Text>
+      }}
+      /> */}
+
+        <View style={styles.columnwraper}>
+     
+            <Text style={{...styles.footerStyle,textAlign:'left',paddingTop:0,paddingBottom:10}}>PRICE DETAILS (2 items) </Text>
+        
+          <ViewCon text={'Total MRP'} price={200} />
+          <ViewCon text={'Discount on MRP'} price={200} know={true}  color = {colors.lightgreen}/>
+          <ViewCon text={'Coupon Discount'} price={200} know={true} color = {colors.lightgreen} />
+          <ViewCon text={'Platform Fe'} price={200} platfrom={true}/>
+          <ViewCon text={'Shipping Fee'} price={200}  platfrom={true} color = {colors.lightgreen}/>
+          <ViewCon text={'Plant Credit'} price={200} />
+          <View style={styles.PriceCon}>
+            <Text style={[styles.footerStyle]}>TOTAL AMOUNT</Text>
+            <Text style={[styles.footerStyle]}>रु 832</Text>
+          </View>
+          {/* <View style={styles.PriceCon}>
+            <Text style={styles.Price}>Total MRP </Text>
+            <Text style={styles.Price}>रु 832</Text>
+          </View>
+          <View style={styles.PriceCon}>
+            <Text style={styles.Price}>Discount on MRP <Text style = {styles.PriceKnowMore}> Know more</Text></Text>
+            <Text style={styles.Price}>रु 832</Text>
+          </View>
+          <View style={styles.PriceCon}>
+            <Text style={styles.Price}>Coupon Discount <Text style = {styles.PriceKnowMore}> Know more</Text></Text>
+            <Text style={styles.Price}>रु 832</Text>
+          </View>
+          <View style={styles.PriceCon}>
+            <Text style={styles.Price}>Platform Fe</Text>
+            <Text style={styles.Price}>रु 832</Text>
+          </View>
+          <View style={styles.PriceCon}>
+            <Text style={styles.Price}>Shipping Fee</Text>
+            <Text style={styles.Price}>रु 832</Text>
+          </View>
+          <View style={styles.PriceCon}>
+            <Text style={styles.Price}>Pant Credit const [state, dispatch] </Text>
+            <Text style={styles.Price}>रु 832</Text>
+          </View> */}
+        </View>
+        <Button TextName="Proceed to pay" stle={25} press={()=>navigation.navigate(Screens.SHIPING)} />
+      </ScrollView>
     </View>
   );
 }
@@ -80,14 +178,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal:20,
-    borderRadius:10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
   },
   TextCon: {
     width: '50%',
-    height:'100%'
-    ,justifyContent:'space-between',
-    paddingVertical:20
+    height: '100%',
+    justifyContent: 'space-between',
+    paddingVertical: 20,
   },
   ProductIncres: {
     flexDirection: 'row',
@@ -97,11 +195,33 @@ const styles = StyleSheet.create({
   btn: {
     backgroundColor: colors.lightgreen,
     borderRadius: 2,
-    width:25,
-    
-    
-    
-    
-  
+    width: 25,
+  },
+  columnwraper: {
+    backgroundColor: colors.white,
+    marginHorizontal: 20,
+    marginTop: 20,
+    borderRadius: 15,
+    padding: 20,
+    elevation: 5,
+    marginVertical: 20,
+  },
+  PriceCon: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 5,
+  },
+  footerStyle: {
+    color: colors.lightgreen,
+    paddingTop: 10,
+    textAlign: 'right',
+    fontSize: 15,
+  },
+  Price: {color: 'black', fontSize: 13},
+  PriceKnowMore: {
+    color: '#fc0377',
+    fontWeight: '500',
+    fontSize: 15,
   },
 });
