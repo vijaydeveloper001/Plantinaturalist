@@ -11,6 +11,7 @@ import {styles} from './styles';
 import {Images} from '../../assets/picture';
 import {useNavigation} from '@react-navigation/native';
 import {Screens} from '../../Contants/NaivgationName';
+import LinearGradient from 'react-native-linear-gradient';
 export default function ShopItemScreen({productData}) {
   const navigation = useNavigation();
 
@@ -38,9 +39,9 @@ export default function ShopItemScreen({productData}) {
         <Text style={{...styles.shopNameText, fontSize: 12, paddingBottom: 10}}>
           Rating: {item?.rating ? item?.rating : 'Testing'}
         </Text>
-        <TouchableOpacity style={styles.addToCart}>
+        <LinearGradient colors={['#A2D240', '#166D3B']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} style={styles.addToCart}>
           <Text style={styles.addToCartText}>Add to cart</Text>
-        </TouchableOpacity>
+        </LinearGradient>
       </TouchableOpacity>
     );
   };

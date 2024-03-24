@@ -1,5 +1,5 @@
 import {StyleSheet, Text, TextInput, View, Image} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {colors} from '../Contants/Colors';
 import CheckBox from 'react-native-check-box';
 import {Images} from '../assets/picture';
@@ -14,6 +14,7 @@ export default function TextInputCon({
   margin,
   search,
 }) {
+  const [checkbox, setcheckbox] = useState(false);
   return (
     <View style={{...styles.Main, marginTop: margin ? margin : 20}}>
       {TopText && (
@@ -39,8 +40,9 @@ export default function TextInputCon({
             style={{height: 20}}
             onClick={() => {
               console.log(true);
+              setcheckbox(!checkbox);
             }}
-            isChecked={true}
+            isChecked={checkbox}
             leftText={'CheckBox'}
             checkedCheckBoxColor={colors.lightgreen}
           />
@@ -53,9 +55,9 @@ export default function TextInputCon({
           <CheckBox
             style={{height: 20}}
             onClick={() => {
-              console.log(true);
+              setcheckbox(!checkbox);
             }}
-            isChecked={true}
+            isChecked={checkbox}
             leftText={'CheckBox'}
             checkedCheckBoxColor={colors.lightgreen}
           />
@@ -74,7 +76,6 @@ const styles = StyleSheet.create({
   FieldsText: {
     fontSize: 15,
     color: colors.black,
-    fontWeight: '500',
   },
   TextInputStyle: {
     borderColor: colors.grey,

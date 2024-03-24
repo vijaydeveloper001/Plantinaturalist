@@ -154,7 +154,7 @@ export default function Cart() {
           <TouchableOpacity
             style={styles.changeAddress}
             onPress={() => navigation.navigate(Screens.SHIPING)}>
-            <Text style={{color: colors.white}}>Change</Text>
+            <Text style={{color: colors.lightgreen3}}>Change</Text>
           </TouchableOpacity>
         </View>
         <FlatList
@@ -193,7 +193,10 @@ export default function Cart() {
           <Text style={styles.Price}>
             15% off on minimum purchase of Rs.999
           </Text>
-          <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}}  colors={['#A2D240', '#166D3B',]}
+          <LinearGradient
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}
+            colors={['#A2D240', '#166D3B']}
             style={{
               ...styles.changeAddress,
               alignSelf: 'flex-end',
@@ -241,10 +244,12 @@ export default function Cart() {
         </View>
       </ScrollView>
       <Button
-        TextName="Proceed to pay"
+        TextName="PLACE ORDER"
         stle={25}
         press={() => navigation.navigate(Screens.SHIPING)}
         padding={20}
+        height = {50}
+        
       />
     </View>
   );
@@ -307,7 +312,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   changeAddress: {
-    backgroundColor: colors.lightgreen,
+    // backgroundColor: colors.lightgreen,
     borderRadius: 10,
     justifyContent: 'center',
     padding: 10,

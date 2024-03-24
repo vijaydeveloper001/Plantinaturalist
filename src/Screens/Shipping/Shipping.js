@@ -5,6 +5,7 @@ import TextInputCon from '../../Common/TextInputCon';
 import Button from '../../Common/Button';
 import Headers from '../../Common/Headers/Headers';
 export default function Shipping() {
+
   return (
     <View style={styles.Main}>
       <Headers text={'Shipping order'} />
@@ -21,13 +22,13 @@ export default function Shipping() {
           checktext={'Receive shipping updates on whatsapp'}
           topheading={true}
         />
-        <TextInputCon
+        {/* <TextInputCon
           text={'Country/region'}
           TopText={'Shipping address'}
           check={false}
           topheading={true}
-        />
-        <TextInputCon text={'First name'} check={false} topheading={true} />
+        /> */}
+        <TextInputCon  TopText={'Shipping address'} text={'First name'} check={false} topheading={true} />
         <TextInputCon text={'Last name'} check={false} topheading={true} />
         <TextInputCon text={'Address'} check={false} topheading={true} />
         <TextInputCon
@@ -43,7 +44,7 @@ export default function Shipping() {
           Last={true}
           topheading={true}
         />
-        <Button TextName={'CONTINUE TO PAYMENT'} stle={20} topheading={true} />
+        <Button TextName={'SAVE ADDRESS'} stle={20} topheading={true} />
       </ScrollView>
     </View>
   );

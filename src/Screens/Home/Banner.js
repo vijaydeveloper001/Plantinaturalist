@@ -14,7 +14,7 @@ export default function Banner() {
   const renderItems = ({item, index}) => {
     return (
       <View style={{...styles.RenderBannerCon,marginLeft:index==0?0:10}} key={item}>
-        <Image source={item.img} style={styles.imageCon} />
+        <Image source={item.img} style={styles.imageCon} resizeMode='cover' />
       </View>
     );
     };

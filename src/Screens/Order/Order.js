@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   DateText: {
     color: colors.black,
     marginTop: 10,
-    fontSize: 16,
+    fontSize: 14,
   },
   inMain: {
     borderRadius: 5,

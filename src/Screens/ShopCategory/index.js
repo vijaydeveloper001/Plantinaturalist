@@ -8,9 +8,9 @@ export default function ShopItemScreen({layer1}) {
     return (
       <View style={styles.MainCon} >
         <Image
-          source={Images.Herbs}
+          source={Images.Home}
           style={styles.ImageShopStyle}
-          resizeMode="contain"
+          resizeMode="cover"
         />
         <Text style={styles.shopNameText}>{item.name}</Text>
       </View>
