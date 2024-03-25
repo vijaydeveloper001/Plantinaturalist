@@ -201,8 +201,10 @@ export default function Cart() {
               ...styles.changeAddress,
               alignSelf: 'flex-end',
               marginTop: 10,
-            }}>
-            <Text style={{color: colors.white}}>APPLY COUPON</Text>
+            }}
+           
+            >
+            <Text style={{color: colors.white}}  onPress={()=>navigation.navigate(Screens.COUPONS)}>APPLY COUPON</Text>
           </LinearGradient>
         </View>
 

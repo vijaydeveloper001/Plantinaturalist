@@ -14,6 +14,7 @@ import Notification from '../../Screens/Notification/Notification';
 import Order from '../../Screens/Order/Order';
 import Cart from '../../Screens/Cart/Cart';
 import Favourite from '../../Screens/Favourite/Favourite';
+import Coupons from '../../Screens/Coupons/Coupons';
 const Stack = createNativeStackNavigator();
 
 const optionheaders = {
@@ -35,6 +36,7 @@ export default function AppNavgigation() {
         <Stack.Screen name={Screens.ORDER} component={Order}  options={optionheaders}  />
         <Stack.Screen name={Screens.CART} component={Cart}  options={optionheaders}  />
         <Stack.Screen name={Screens.FAV} component={Favourite}  options={optionheaders}  />
+        <Stack.Screen name={Screens.COUPONS} component={Coupons}  options={optionheaders}  />
     </Stack.Navigator>
   )
 }
