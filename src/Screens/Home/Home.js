@@ -25,6 +25,7 @@ import {layer1Request} from '../../redux/reducers/lay1Reducers';
 import {productRequest} from '../../redux/reducers/producReducers';
 import TextInputCon from '../../Common/TextInputCon';
 import ItemSelectby from '../ItemSelect/ItemSelectby';
+import Shimmer from '../../Common/Shimmer';
 export default function Home() {
   const [data, setdata] = useState({
     indexofFlatlist: 0,
@@ -56,32 +57,32 @@ export default function Home() {
   };
 
   useEffect(() => {
-    setloader(true);
+    // setloader(true);
     dispatch(
       layer1Request({
         payload: LAYER1,
         scuess: res => {
           setlayer1(res.data);
-          setloader(false);
+          // setloader(false);
         },
         onFail: error => {
-          setloader(false);
+          // setloader(false);
         },
       }),
     );
   }, []);
   useEffect(() => {
-    setloader(true);
+    // setloader(true);
     dispatch(
       productRequest({
         payload: PRODUCT,
         scuess: res => {
           setprouctData(res.data);
-          setloader(false);
+          // setloader(false);
         },
         onFail: error => {
           console.log(error);
-          setloader(false);
+          // setloader(false);
         },
       }),
     );
@@ -89,11 +90,12 @@ export default function Home() {
 
   return (
     <View style={styles.Main}>
-      <Loader Loading={loader} />
+      {/* <Loader Loading={loader} /> */}
       <StatusBar backgroundColor={colors.lightgreen} />
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
         <SafeAreaView>
           <Header />
+         
           <TextInputCon
             text={'SEARCH ITEM.........'}
             margin={1}
@@ -114,9 +116,9 @@ export default function Home() {
           />
           <ItemSelectby />
           <Text style={styles.ItemTypeText}>Shop by Category</Text>
-          <ShopItemScreen layer1={layer1} />
+          {layer1.length<=0?<Shimmer/>:<ShopItemScreen layer1={layer1} />}
           <Text style={styles.ItemTypeText}>Bestsellers</Text>
-          <SellingItems productData={prouctData} />
+          {prouctData.length<=0?<Shimmer/>:<SellingItems productData={prouctData} />}
         </SafeAreaView>
       </ScrollView>
       <BottomNavigation />
