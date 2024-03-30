@@ -11,11 +11,11 @@ export const styles = StyleSheet.create({
     BtnCon:{
         // paddingHorizontal:29,
         // paddingVertical:15,
-        width:responsiveScreenWidth(28),
-        height:responsiveHeight(5),
+        // width:responsiveScreenWidth(28),
+        // height:responsiveHeight(5),
         justifyContent:'center',
         alignItems:'center',       
-        backgroundColor:colors.lightgreen,
+        // backgroundColor:colors.lightgreen,
         // elevation:5,
         // marginRight:20,
         // marginVertical:5,
@@ -23,13 +23,13 @@ export const styles = StyleSheet.create({
         borderRadius:10,
     },
     BtnConParent:{
-        marginTop:20,
+        marginTop:30,
         flexDirection:'row',
         paddingHorizontal:20
     },
     itemText:{
         fontSize:responsiveFontSize(2),
-        fontWeight:'700',
+        fontWeight:'500',
         color:colors.white
     },
     RectenVieText:{

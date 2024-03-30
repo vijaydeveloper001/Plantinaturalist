@@ -7,15 +7,15 @@ export const dummydata = [
   },
   {
     id: 1,
-    img: Images.nature,
+    img: Images.Flower,
   },
   {
     id: 2,
-    img: Images.nature,
+    img: Images.Herbs,
   },
   {
     id: 3,
-    img: Images.nature,
+    img: Images.PerfumeFlower,
   },
 ];
 

@@ -24,6 +24,7 @@ import {useDispatch} from 'react-redux';
 import {layer1Request} from '../../redux/reducers/lay1Reducers';
 import {productRequest} from '../../redux/reducers/producReducers';
 import TextInputCon from '../../Common/TextInputCon';
+import ItemSelectby from '../ItemSelect/ItemSelectby';
 export default function Home() {
   const [data, setdata] = useState({
     indexofFlatlist: 0,
@@ -38,16 +39,15 @@ export default function Home() {
       <TouchableOpacity
         style={{
           ...styles.BtnCon,
-          backgroundColor:
-            index == data.indexofFlatlist ? colors.lightgreen : colors.white,
-          marginRight: index == DataofHomeScreen.length - 1 ? 0 : 20,
+          // backgroundColor:
+          //   index == data.indexofFlatlist ? colors.lightgreen : colors.white,
+          marginRight: index == DataofHomeScreen.length - 1 ? 0 : 40,
         }}
         onPress={() => setdata({...data, indexofFlatlist: index})}>
         <Text
           style={{
             ...styles.itemText,
-            color:
-              index == data.indexofFlatlist ? colors.white : colors.lightgreen,
+            color: index == data.indexofFlatlist ? colors.lightgreen3 : 'grey',
           }}>
           {item?.type}
         </Text>
@@ -90,12 +90,16 @@ export default function Home() {
   return (
     <View style={styles.Main}>
       <Loader Loading={loader} />
-      <StatusBar backgroundColor={colors.lightgreen}  />
+      <StatusBar backgroundColor={colors.lightgreen} />
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
-      <SafeAreaView>
-        <Header />
-        <TextInputCon text={'SEARCH ITEM.........'} margin={1} search={true} />
-    
+        <SafeAreaView>
+          <Header />
+          <TextInputCon
+            text={'SEARCH ITEM.........'}
+            margin={1}
+            search={true}
+          />
+
           <TopPlants />
           <Banner />
           {/* <Text style={styles.ItemTypeText}>Shop by Delights</Text>
@@ -108,6 +112,7 @@ export default function Home() {
             showsHorizontalScrollIndicator={false}
             keyExtractor={(item, index) => index}
           />
+          <ItemSelectby />
           <Text style={styles.ItemTypeText}>Shop by Category</Text>
           <ShopItemScreen layer1={layer1} />
           <Text style={styles.ItemTypeText}>Bestsellers</Text>

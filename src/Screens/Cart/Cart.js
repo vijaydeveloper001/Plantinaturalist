@@ -254,7 +254,6 @@ export default function Cart() {
         press={() => navigation.navigate(Screens.SHIPING)}
         padding={20}
         height = {50}
-        
       />
     </View>
   );
