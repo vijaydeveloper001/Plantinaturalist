@@ -12,5 +12,6 @@ export const Screens= {
     ORDER:'ORDER',
     CART:'CART',
     FAV:'FAV',
-    COUPONS:'COUPONS'
+    COUPONS:'COUPONS',
+    PRODUCT:'PRODUCT'
 }

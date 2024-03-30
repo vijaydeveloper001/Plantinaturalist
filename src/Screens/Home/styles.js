@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native"
-import { responsiveFontSize,responsiveHeight,responsiveScreenWidth } from "react-native-responsive-dimensions"
+import { responsiveFontSize } from "react-native-responsive-dimensions"
 import { colors } from "../../Contants/Colors"
 
 export const styles = StyleSheet.create({

@@ -19,7 +19,7 @@ export default function ShopItemScreen({productData}) {
     return (
       <TouchableOpacity
         style={styles.MainCon}
-        onPress={() => navigation.navigate(Screens.DETAILSCREEN, {data: item})}
+        onPress={() => navigation.navigate(Screens.PRODUCT, {data: item})}
         >
         <Image source={Images.Flower} style={styles.ImageShopStyle}/>
         <Text style={styles.discountText}>-25%</Text>
