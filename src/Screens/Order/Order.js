@@ -62,7 +62,7 @@ export default function Order() {
       <Pressable style={styles.MainConItem} key={index}>
         <View style={styles.inMain}>
           <Image source={item.img} style={{width: 80, height: '100%'}} />
-          <View style={{width: 200}}>
+          <View style={{flex:1,paddingLeft:12}}>
             <Text style={styles.DateText} numberOfLines={1}>
               20 / 07 / 2023
             </Text>

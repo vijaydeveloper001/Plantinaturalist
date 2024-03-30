@@ -4,8 +4,9 @@ import {styles} from './styles';
 import TextInputCon from '../../Common/TextInputCon';
 import Button from '../../Common/Button';
 import Headers from '../../Common/Headers/Headers';
+import { useNavigation } from '@react-navigation/native';
 export default function Shipping() {
-
+  const navigation = useNavigation()
   return (
     <View style={styles.Main}>
       <Headers text={'Shipping order'} />
@@ -44,7 +45,7 @@ export default function Shipping() {
           Last={true}
           topheading={true}
         />
-        <Button TextName={'SAVE ADDRESS'} stle={20} topheading={true} />
+        <Button TextName={'SAVE ADDRESS'} stle={20} topheading={true} press = {()=>navigation.goBack()} />
       </ScrollView>
     </View>
   );

@@ -23,7 +23,7 @@ export function Profile() {
             style={{
               width: 100,
               height: 100,
-              borderRadius: 10000,
+              borderRadius: 999,
               padding: 2,
               backgroundColor: colors.white,
               elevation: 5,

@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import React from 'react';
+import React,{useState} from 'react';
 import {Images} from '../../assets/picture';
 import {colors} from '../../Contants/Colors';
 import Headers from '../../Common/Headers/Headers';
@@ -15,6 +15,7 @@ import Button from '../../Common/Button';
 import {useNavigation} from '@react-navigation/native';
 import {Screens} from '../../Contants/NaivgationName';
 import LinearGradient from 'react-native-linear-gradient';
+import ModalItem from '../../Common/ModalItem';
 const data = [
   {
     order: 'Your order has been deliverd',
@@ -53,6 +54,7 @@ const ViewCon = ({text, price, know, color, platfrom}) => {
 
 export default function Cart() {
   const navigation = useNavigation();
+  const [modal, setmodal] = useState(false)
   const renderitem = ({item}) => {
     return (
       <View style={styles.MainRender}>
@@ -81,7 +83,7 @@ export default function Cart() {
             justifyContent: 'space-between',
             paddingVertical: 8,
           }}>
-          <TouchableOpacity
+          <TouchableOpacity onPress={()=>setmodal(true)}
             style={{alignSelf: 'flex-end', paddingVertical: 10}}>
             <Image source={Images.close} style={{width: 15, height: 15}} />
           </TouchableOpacity>
@@ -202,9 +204,9 @@ export default function Cart() {
               alignSelf: 'flex-end',
               marginTop: 10,
             }}
-           
+           onTouchStart={()=>navigation.navigate(Screens.COUPONS)}
             >
-            <Text style={{color: colors.white}}  onPress={()=>navigation.navigate(Screens.COUPONS)}>APPLY COUPON</Text>
+            <Text style={{color: colors.white}} >APPLY COUPON</Text>
           </LinearGradient>
         </View>
 
@@ -244,6 +246,7 @@ export default function Cart() {
             <Text style={[styles.footerStyle]}>रु 832</Text>
           </View>
         </View>
+        <ModalItem value={modal} onyes={()=>setmodal(false)} oncancel={()=>setmodal(false)}/>
       </ScrollView>
       <Button
         TextName="PLACE ORDER"
