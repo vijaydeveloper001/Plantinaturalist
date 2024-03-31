@@ -36,4 +36,6 @@ export const colors = {
 	color1:"#9eb0a3",
 	color2:"#aea69f",
 	color3:"#a8a8b0",
+	color4:'#afa2a3',
+    color5: '#9ab0af',
 };

@@ -8,6 +8,7 @@ import {
   ScrollView,
   Pressable,
   FlatList,
+  TextInput,
 } from 'react-native';
 import {colors} from '../../Contants/Colors';
 import {Images} from '../../assets/picture';
@@ -16,19 +17,32 @@ import TextFile from '../../Common/TextFile';
 import {useNavigation} from '@react-navigation/native';
 import Headers from '../../Common/Headers/Headers';
 import DetailPageText from '../../Common/Headers/DetailPageText';
+import TextInputCon from '../../Common/TextInputCon';
 export default function DetailPlants(props) {
   const navigation = useNavigation();
   const [IncrePlant, setIncrePlant] = useState(1);
-  let color = [colors.color1,colors.color2,colors.color3,'#afa2a3','#9ab0af']
+  let color = [
+    colors.color1,
+    colors.color2,
+    colors.color3,
+    colors.color4,
+    colors.color5,
+  ];
 
-  const renderItem = ({}) =>{
+  const renderItem = ({}) => {
     return (
-      <View style = {[styles.container,{backgroundColor:color[Math.floor(Math.random() * color.length)]}]}>
+      <View
+        style={[
+          styles.container,
+          {backgroundColor: color[Math.floor(Math.random() * color.length)]},
+        ]}>
         <DetailPageText text={'Water'} />
-        <Text style = {{fontSize:60,color:colors.white}}>25<Text style = {{fontSize:14}}>%</Text></Text>
+        <Text style={{fontSize: 60, color: colors.white}}>
+          25<Text style={{fontSize: 14}}>%</Text>
+        </Text>
       </View>
-    )
-  }
+    );
+  };
   return (
     <View style={styles.Main}>
       <Headers text={'Product Info'} icon={true} />
@@ -87,11 +101,11 @@ export default function DetailPlants(props) {
             />
           </Pressable>
         </View>
-        <FlatList 
-        data={[0,1,2,3,4,5,6]}
-        renderItem={renderItem}
-        horizontal = {true}
-        contentContainerStyle = {{paddingHorizontal:20,paddingVertical:10}}
+        <FlatList
+          data={[0, 1, 2, 3, 4, 5, 6]}
+          renderItem={renderItem}
+          horizontal={true}
+          contentContainerStyle={{paddingHorizontal: 20, paddingVertical: 10}}
         />
         {/* <DetailPageText text={'Keep In Indirect Sunlight'} />
         <DetailPageText text={'Water Twice Per Week'} />
@@ -124,37 +138,71 @@ export default function DetailPlants(props) {
             marginHorizontal: 20,
           }}
         />
-        <View style={styles.WaterParCon}>
-          {['red', 'white', 'blue', 'green', 'yellow', 'black', 'orange'].map(
-            item => {
-              return (
-                <TouchableOpacity style={styles.ColorCon}>
-                  <View
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      backgroundColor: item,
-                      borderRadius: 30,
-                    }}
-                  />
-                </TouchableOpacity>
-              );
-            },
-          )}
+        <View style={styles.colorIncCons}>
+          <View style={styles.WaterParCon}>
+            {['red', 'white', 'blue', 'green', 'yellow', 'black', 'orange'].map(
+              item => {
+                return (
+                  <TouchableOpacity style={styles.ColorCon}>
+                    <View
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: item,
+                        borderRadius: 30,
+                      }}
+                    />
+                  </TouchableOpacity>
+                );
+              },
+            )}
+          </View>
+          <View style={styles.IncreCon}>
+            <Text
+              onPress={() =>
+                IncrePlant >= 1 ? setIncrePlant(IncrePlant - 1) : ''
+              }
+              style={styles.IncreText}>
+              -
+            </Text>
+            <Text style={styles.IncreText}>{IncrePlant}</Text>
+            <Text
+              onPress={() => setIncrePlant(IncrePlant + 1)}
+              style={styles.IncreText}>
+              +
+            </Text>
+          </View>
         </View>
-        <View style={styles.IncreCon}>
-          <Text
-            onPress={() =>
-              IncrePlant >= 1 ? setIncrePlant(IncrePlant - 1) : ''
-            }
-            style={styles.IncreText}>
-            -
+        <View style={styles.inputFieldCon}>
+          <TextInput
+            keyboardType="numeric"
+            style={[styles.inputStyle]}
+            placeholder="Check Places"
+            placeholderTextColor={colors.lightgreen3}
+          />
+          <Pressable>
+            <Text style={styles.colorInput}>Check</Text>
+          </Pressable>
+        </View>
+        <View style={styles.termsCon}>
+          <Image source={Images.HomeIcon} style={{width: 20, height: 20}} />
+          <Text style={styles.free}>
+            Free <Text style={styles.free2}>Shipping</Text>
           </Text>
-          <Text style={styles.IncreText}>{IncrePlant}</Text>
-          <Text
-            onPress={() => setIncrePlant(IncrePlant + 1)}
-            style={styles.IncreText}>
-            +
+        </View>
+        <View style={styles.termsCon}>
+          <Image source={Images.HomeIcon} style={{width: 20, height: 20}} />
+          <Text style={styles.free}>
+            Cash <Text style={styles.free2}>on delivery available</Text>
+          </Text>
+        </View>
+        <View style={styles.termsCon}>
+          <Image source={Images.HomeIcon} style={{width: 20, height: 20}} />
+          <Text style={styles.free}>
+            Replacement Guarantee <Text style={[styles.free2,{
+              color:colors.yellowDark,
+              textDecorationLine:"underline"
+            }]}>terms & Conditions</Text> <Text style={styles.free2}>Apply</Text>
           </Text>
         </View>
       </ScrollView>
@@ -263,13 +311,45 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingRight: 20,
   },
-  container:{
-    marginRight:20,
-    height:140,
-    width:150,
-    borderRadius:20,
-    justifyContent:"space-between",
-    alignItems:"center",
-    paddingVertical:10
-  }
+  container: {
+    marginRight: 20,
+    height: 140,
+    width: 150,
+    borderRadius: 20,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 10,
+  },
+  colorIncCons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  inputFieldCon: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+  },
+  colorInput: {
+    color: colors.lightgreen3,
+  },
+  inputStyle: {
+    color: colors.black,
+    borderBottomColor: colors.lightgreen3,
+    borderTopColor: 'transparent',
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderWidth: 0.3,
+    width: '70%',
+  },
+  free: {fontWeight: '600', color: colors.black, marginLeft: 10},
+  free2: {color: colors.black, fontWeight: '400'},
+  termsCon: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    marginVertical:2
+  },
 });
