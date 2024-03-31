@@ -26,6 +26,8 @@ import {productRequest} from '../../redux/reducers/producReducers';
 import TextInputCon from '../../Common/TextInputCon';
 import ItemSelectby from '../ItemSelect/ItemSelectby';
 import Shimmer from '../../Common/Shimmer';
+import { useNavigation } from '@react-navigation/native';
+import { Screens } from '../../Contants/NaivgationName';
 export default function Home() {
   const [data, setdata] = useState({
     indexofFlatlist: 0,
@@ -35,6 +37,7 @@ export default function Home() {
   const [layer1, setlayer1] = useState([]);
   const [loader, setloader] = useState(false);
   const dispatch = useDispatch();
+  const navigation = useNavigation()
   const ItemSelect = ({item, index}) => {
     return (
       <TouchableOpacity
@@ -100,6 +103,9 @@ export default function Home() {
             text={'SEARCH ITEM.........'}
             margin={1}
             search={true}
+            edit = {true}
+            press = {()=>navigation.navigate(Screens.SEARCH)}
+
           />
 
           <TopPlants />

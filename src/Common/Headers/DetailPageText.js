@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
     marginTop:20
   },
   TextDetail: {
-    color: colors.black,
+    color: colors.white,
     fontWeight: '600',
-    marginLeft: 20,
+    marginLeft: 10,
   },
 });

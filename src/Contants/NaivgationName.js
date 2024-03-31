@@ -13,5 +13,6 @@ export const Screens= {
     CART:'CART',
     FAV:'FAV',
     COUPONS:'COUPONS',
-    PRODUCT:'PRODUCT'
+    PRODUCT:'PRODUCT',
+    SEARCH:'SEARCH'
 }
