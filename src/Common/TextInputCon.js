@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TextInput, View, Image} from 'react-native';
+import {StyleSheet, Text, TextInput, View, Image, Pressable} from 'react-native';
 import React, {useState} from 'react';
 import {colors} from '../Contants/Colors';
 import CheckBox from 'react-native-check-box';
@@ -13,6 +13,8 @@ export default function TextInputCon({
   topheading,
   margin,
   search,
+  edit,
+  press
 }) {
   const [checkbox, setcheckbox] = useState(false);
   return (
@@ -23,7 +25,7 @@ export default function TextInputCon({
         </Text>
       )}
       {topheading && <Text style={styles.FieldsText}>{text}</Text>}
-      <View style={styles.TextInputStyle}>
+      <Pressable style={styles.TextInputStyle} onPress = {press}>
         {search && (
           <Image source={Images.search} style={{width: 20, height: 20}} />
         )}
@@ -31,8 +33,9 @@ export default function TextInputCon({
           placeholder={text}
           placeholderTextColor={colors.black}
           style={{color: colors.black, flex: 1}}
+          editable = {!edit}
         />
-      </View>
+      </Pressable>
       {check && (
         <View
           style={{marginTop: 10, flexDirection: 'row', alignItems: 'center'}}>

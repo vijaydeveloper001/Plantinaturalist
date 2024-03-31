@@ -33,4 +33,9 @@ export const colors = {
 	yellowDark:'#fcba03',
 	lightgreen2:'#ADBC9F',
 	lightgreen3:'#9BCF53',
+	color1:"#9eb0a3",
+	color2:"#aea69f",
+	color3:"#a8a8b0",
+	color4:'#afa2a3',
+    color5: '#9ab0af',
 };
