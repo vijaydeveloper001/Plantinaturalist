@@ -9,11 +9,10 @@ export default function ProfileCon({text}) {
       <Image source={Images.user} style={{width: 20, height: 20}} />
       <Text
         style={{
-          flex:1,
+          flex: 1,
           color: colors.black,
           fontSize: 17,
-          marginLeft:20
-         
+          marginLeft: 20,
         }}>
         {text}
       </Text>
@@ -28,9 +27,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginHorizontal: 20,
     paddingVertical: 20,
-    // elevation:5,
-    
   },
 });

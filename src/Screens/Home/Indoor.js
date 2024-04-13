@@ -8,7 +8,7 @@ import {
   Image,
 } from 'react-native';
 import React from 'react';
-import {AppIcon, Images} from '../../assets/picture';
+import { Images} from '../../assets/picture';
 import {
   responsiveHeight,
   responsiveScreenWidth,
@@ -27,9 +27,10 @@ export default function Indoor({dataProps}) {
         onPress={()=>navigation.navigate(Screens.DETAILSCREEN,{data:dataProps[index]})}
       >
         <FastImage source={{uri: item.image}} style={styles.ImageCon} resizeMode = 'contain'/>
-        <TouchableOpacity style={styles.LikeCon}>
-          {AppIcon('heart', 25, 'red')}
-        </TouchableOpacity>
+        {/* <TouchableOpacity style={styles.LikeCon}>
+         
+          
+        </TouchableOpacity> */}
 
         <Text style={styles.TypeText}>{item.Name}</Text>
         <Text style={styles.TypeTextRoseName}>{item.Soil}</Text>

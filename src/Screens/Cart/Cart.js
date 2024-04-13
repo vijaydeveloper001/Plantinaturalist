@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import {Images} from '../../assets/picture';
 import {colors} from '../../Contants/Colors';
 import Headers from '../../Common/Headers/Headers';
@@ -54,7 +54,7 @@ const ViewCon = ({text, price, know, color, platfrom}) => {
 
 export default function Cart() {
   const navigation = useNavigation();
-  const [modal, setmodal] = useState(false)
+  const [modal, setmodal] = useState(false);
   const renderitem = ({item}) => {
     return (
       <View style={styles.MainRender}>
@@ -83,7 +83,8 @@ export default function Cart() {
             justifyContent: 'space-between',
             paddingVertical: 8,
           }}>
-          <TouchableOpacity onPress={()=>setmodal(true)}
+          <TouchableOpacity
+            onPress={() => setmodal(true)}
             style={{alignSelf: 'flex-end', paddingVertical: 10}}>
             <Image source={Images.close} style={{width: 15, height: 15}} />
           </TouchableOpacity>
@@ -124,14 +125,6 @@ export default function Cart() {
     );
   };
 
-  const billItem = () => {
-    return (
-      <View style={styles.PriceCon}>
-        <Text style={styles.Price}>1 x River item</Text>
-        <Text style={styles.Price}>रु 832</Text>
-      </View>
-    );
-  };
   return (
     <View style={{flex: 1}}>
       <Headers text={'Cart'} />
@@ -165,18 +158,6 @@ export default function Cart() {
           keyExtractor={(item, index) => index}
           contentContainerStyle={{paddingBottom: 20}}
         />
-        {/* <FlatList
-      data={[1,2,3,4,5,6,7,1,100]}
-      renderItem={billItem}
-      keyExtractor={(item, index) => index}
-      contentContainerStyle = {styles.columnwraper}
-      ListHeaderComponent={()=>{
-        return <Text style = {styles.footerStyle}>Bill Details</Text>
-      }}
-      ListFooterComponent={()=>{
-        return <Text style = {styles.footerStyle}>Total रु 400</Text>
-      }}
-      /> */}
         <View style={styles.columnwraper}>
           <View style={styles.ForYouCoupon}>
             <Text style={{...styles.Price, fontWeight: '600'}}>
@@ -204,9 +185,8 @@ export default function Cart() {
               alignSelf: 'flex-end',
               marginTop: 10,
             }}
-           onTouchStart={()=>navigation.navigate(Screens.COUPONS)}
-            >
-            <Text style={{color: colors.white}} >APPLY COUPON</Text>
+            onTouchStart={() => navigation.navigate(Screens.COUPONS)}>
+            <Text style={{color: colors.white}}>APPLY COUPON</Text>
           </LinearGradient>
         </View>
 
@@ -246,14 +226,18 @@ export default function Cart() {
             <Text style={[styles.footerStyle]}>रु 832</Text>
           </View>
         </View>
-        <ModalItem value={modal} onyes={()=>setmodal(false)} oncancel={()=>setmodal(false)}/>
+        <ModalItem
+          value={modal}
+          onyes={() => setmodal(false)}
+          oncancel={() => setmodal(false)}
+        />
       </ScrollView>
       <Button
         TextName="PLACE ORDER"
         stle={25}
         press={() => navigation.navigate(Screens.SHIPING)}
         padding={20}
-        height = {50}
+        height={50}
       />
     </View>
   );
@@ -270,7 +254,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    borderRadius: 10,
+    borderRadius: 5,
   },
   TextCon: {
     width: '50%',
@@ -292,7 +276,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     marginHorizontal: 20,
     marginTop: 20,
-    borderRadius: 15,
+    borderRadius: 5,
     padding: 20,
     elevation: 5,
     marginVertical: 20,

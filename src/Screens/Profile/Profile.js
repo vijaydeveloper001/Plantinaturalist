@@ -12,12 +12,11 @@ import {colors} from '../../Contants/Colors';
 import Headers from '../../Common/Headers/Headers';
 import {Images} from '../../assets/picture';
 import {responsiveScreenWidth} from 'react-native-responsive-dimensions';
-
 export function Profile() {
   return (
     <View style={{backgroundColor: colors.white, flex: 1}}>
       <Headers text={'Profile'} />
-      <ScrollView>
+      <ScrollView contentContainerStyle={{marginHorizontal: 20}}>
         <View style={styles.MainHeaderLeftSideCon}>
           <TouchableOpacity
             style={{
@@ -70,9 +69,7 @@ const styles = StyleSheet.create({
   MainHeaderLeftSideCon: {
     flexDirection: 'row',
     alignItems: 'center',
-
     borderRadius: responsiveScreenWidth(1),
-    marginHorizontal: 20,
     width: 300,
     paddingVertical: 50,
   },

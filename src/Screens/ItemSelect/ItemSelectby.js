@@ -1,17 +1,14 @@
 import {
   FlatList,
   Text,
-  View,
   TouchableOpacity,
   Image,
   StyleSheet,
 } from 'react-native';
 import React from 'react';
-import LinearGradient from 'react-native-linear-gradient';
-import {Images} from '../../assets/picture';
 import {useNavigation} from '@react-navigation/native';
 import {colors} from '../../Contants/Colors';
-import { dummydata } from '../../Contants/Dummydata';
+import {dummydata} from '../../Contants/Dummydata';
 export default function ItemSelectby() {
   const navigation = useNavigation();
   const renderItem = ({item}) => {
@@ -20,26 +17,24 @@ export default function ItemSelectby() {
         style={styles.MainCon}
         onPress={() => navigation.navigate(Screens.DETAILSCREEN, {data: item})}>
         <Image source={item.img} style={styles.ImageShopStyle} />
-       
+
         <Text style={styles.shopNameText} numberOfLines={1}>
           {item?.name ? item?.name : 'Testing'}
         </Text>
-        <Text style={[styles.shopNameText,{color:'grey'}]} numberOfLines={1}>
+        <Text style={[styles.shopNameText, {color: 'grey'}]} numberOfLines={1}>
           {item?.name ? item?.name : '$ Testing'}
         </Text>
       </TouchableOpacity>
     );
   };
   return (
-   
-      <FlatList
-        data={dummydata}
-        renderItem={renderItem}
-        horizontal={true}
-        showsVerticalScrollIndicator = {false}
-        contentContainerStyle={{paddingHorizontal:20,paddingVertical:20}}
-      />
-
+    <FlatList
+      data={dummydata}
+      renderItem={renderItem}
+      horizontal={true}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{paddingHorizontal: 20, paddingVertical: 20}}
+    />
   );
 }
 
@@ -53,7 +48,7 @@ const styles = StyleSheet.create({
   ImageShopStyle: {
     width: '100%',
     height: 200,
-    borderRadius:8,
+    borderRadius: 5,
     resizeMode: 'cover',
   },
   shopNameText: {

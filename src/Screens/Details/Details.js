@@ -14,12 +14,9 @@ import {colors} from '../../Contants/Colors';
 import {Images} from '../../assets/picture';
 import Button from '../../Common/Button';
 import TextFile from '../../Common/TextFile';
-import {useNavigation} from '@react-navigation/native';
 import Headers from '../../Common/Headers/Headers';
 import DetailPageText from '../../Common/Headers/DetailPageText';
-import TextInputCon from '../../Common/TextInputCon';
 export default function DetailPlants(props) {
-  const navigation = useNavigation();
   const [IncrePlant, setIncrePlant] = useState(1);
   let color = [
     colors.color1,
@@ -107,28 +104,6 @@ export default function DetailPlants(props) {
           horizontal={true}
           contentContainerStyle={{paddingHorizontal: 20, paddingVertical: 10}}
         />
-        {/* <DetailPageText text={'Keep In Indirect Sunlight'} />
-        <DetailPageText text={'Water Twice Per Week'} />
-        <DetailPageText text={'Not Child Friendly'} />
-        <DetailPageText text={'Puriflies Air'} />
-        <DetailPageText text={'Comes With Self-Watering Pot'} /> */}
-        {/* <TextFile
-          text={'Select Planter: Poetic'}
-          styles={{
-            color: colors.black,
-            fontWeight: '600',
-            marginTop: 20,
-            marginHorizontal: 20,
-          }}
-        /> */}
-        {/* <View style={styles.WaterParCon}>
-          <TouchableOpacity style={styles.WaterCon}>
-            <Image source={Images.Flower} style={styles.ImageStyle} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.WaterCon}>
-            <Image source={Images.Flower} style={styles.ImageStyle} />
-          </TouchableOpacity>
-        </View> */}
         <TextFile
           text={'Select Color: White'}
           styles={{
@@ -199,10 +174,18 @@ export default function DetailPlants(props) {
         <View style={styles.termsCon}>
           <Image source={Images.HomeIcon} style={{width: 20, height: 20}} />
           <Text style={styles.free}>
-            Replacement Guarantee <Text style={[styles.free2,{
-              color:colors.yellowDark,
-              textDecorationLine:"underline"
-            }]}>terms & Conditions</Text> <Text style={styles.free2}>Apply</Text>
+            Replacement Guarantee{' '}
+            <Text
+              style={[
+                styles.free2,
+                {
+                  color: colors.yellowDark,
+                  textDecorationLine: 'underline',
+                },
+              ]}>
+              terms & Conditions
+            </Text>{' '}
+            <Text style={styles.free2}>Apply</Text>
           </Text>
         </View>
       </ScrollView>
@@ -223,7 +206,7 @@ const styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
     marginVertical: 20,
-    borderRadius: 20,
+    borderRadius: 10,
   },
   TextStyle: {
     color: colors.black,
@@ -350,6 +333,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 20,
-    marginVertical:2
+    marginVertical: 2,
   },
 });

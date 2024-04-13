@@ -8,12 +8,11 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React, {useEffect,useState} from 'react';
-import {AppIcon, Images} from '../../assets/picture';
+import {Images} from '../../assets/picture';
 import {colors} from '../../Contants/Colors';
 import {
   GoogleSignin,
   statusCodes,
-  GoogleSigninButton,
 } from '@react-native-google-signin/google-signin';
 import { responsiveHeight } from 'react-native-responsive-dimensions';
 import { useNavigation } from '@react-navigation/native';
@@ -83,7 +82,7 @@ export default function Login() {
       <TouchableOpacity style={styles.loginButton} onPress={()=>login()}>
         <Text style={styles.buttonText}> Login</Text>
       </TouchableOpacity>
-      <View style={styles.SocialBtn}>
+      {/* <View style={styles.SocialBtn}>
         <TouchableOpacity style={styles.facebookButton}>
           {AppIcon('facebook', 25, 'white')}
           <Text style={styles.buttonText}>Facebook</Text>
@@ -94,7 +93,7 @@ export default function Login() {
           {AppIcon('google', 25, 'white')}
           <Text style={styles.buttonText}> Google</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
       <View style = {styles.BottomCreateAccount} >
         <TouchableOpacity onPress={()=>navigation.navigate(Screens.SIGNUP)}>
             <Text style = {styles.CreateAccount}>Create account</Text>
