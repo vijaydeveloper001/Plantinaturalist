@@ -4,9 +4,8 @@ import {styles} from './styles';
 import {Images} from '../../assets/picture';
 export default function ShopItemScreen({layer1}) {
   const renderItemShop = ({item, index}) => {
-   
     return (
-      <View style={styles.MainCon} >
+      <View style={styles.MainCon}>
         <Image
           source={Images.Home}
           style={styles.ImageShopStyle}
@@ -18,16 +17,16 @@ export default function ShopItemScreen({layer1}) {
   };
   return (
     <SafeAreaView>
-     <FlatList
-      data={layer1}
-      renderItem={renderItemShop}
-      numColumns={2}
-      contentContainerStyle={styles.contentContainerStyles}
-      keyExtractor={(item,index) => index}
-      columnWrapperStyle = {{
-          justifyContent:"space-between"
-      }}
-    />
+      <FlatList
+        data={layer1}
+        renderItem={renderItemShop}
+        numColumns={2}
+        contentContainerStyle={styles.contentContainerStyles}
+        keyExtractor={(item, index) => index}
+        columnWrapperStyle={{
+          justifyContent: 'space-between',
+        }}
+      />
     </SafeAreaView>
   );
 }

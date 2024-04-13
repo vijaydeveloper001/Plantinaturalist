@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.lightgreen,
     justifyContent: 'center',
     alignItems: 'center',
-    borderBottomEndRadius:5,
+    borderBottomRightRadius:5,
     borderBottomLeftRadius:5
   },
   PriceCon: {

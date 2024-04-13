@@ -19,9 +19,8 @@ export default function ShopItemScreen({productData}) {
     return (
       <TouchableOpacity
         style={styles.MainCon}
-        onPress={() => navigation.navigate(Screens.DETAILSCREEN, {data: item})}
-        >
-        <Image source={Images.Flower} style={styles.ImageShopStyle}/>
+        onPress={() => navigation.navigate(Screens.DETAILSCREEN, {data: item})}>
+        <Image source={Images.Flower} style={styles.ImageShopStyle} />
         <Text style={styles.discountText}>-25%</Text>
         <Text style={styles.shopNameText}>
           {item?.name ? item?.name : 'Testing'}
@@ -39,7 +38,11 @@ export default function ShopItemScreen({productData}) {
         <Text style={{...styles.shopNameText, fontSize: 12, paddingBottom: 10}}>
           Rating: {item?.rating ? item?.rating : 'Testing'}
         </Text>
-        <LinearGradient colors={['#A2D240', '#166D3B']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} style={styles.addToCart}>
+        <LinearGradient
+          colors={['#A2D240', '#166D3B']}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}
+          style={styles.addToCart}>
           <Text style={styles.addToCartText}>Add to cart</Text>
         </LinearGradient>
       </TouchableOpacity>
@@ -48,14 +51,14 @@ export default function ShopItemScreen({productData}) {
 
   return (
     <SafeAreaView>
-    <FlatList
-      data={productData}
-      renderItem={renderItemShop}
-      numColumns={2}
-      contentContainerStyle={styles.contentContainerStyles}
-      keyExtractor={(item,index)=>index}
-      columnWrapperStyle = {{justifyContent:"space-between"}}
-    />
-   </SafeAreaView>
+      <FlatList
+        data={productData}
+        renderItem={renderItemShop}
+        numColumns={2}
+        contentContainerStyle={styles.contentContainerStyles}
+        keyExtractor={(item, index) => index}
+        columnWrapperStyle={{justifyContent: 'space-between'}}
+      />
+    </SafeAreaView>
   );
 }

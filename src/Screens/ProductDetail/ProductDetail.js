@@ -1,9 +1,16 @@
-import { FlatList, StyleSheet, Text, TouchableOpacity, View ,Image} from 'react-native'
-import React from 'react'
-import { dummydata } from '../../Contants/Dummydata'
-import { colors } from '../../Contants/Colors';
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Image,
+} from 'react-native';
+import React from 'react';
+import {dummydata} from '../../Contants/Dummydata';
+import {colors} from '../../Contants/Colors';
 import Headers from '../../Common/Headers/Headers';
-import { Images } from '../../assets/picture';
+import {Images} from '../../assets/picture';
 
 export default function ProductDetail() {
   const renderItem = ({item}) => {
@@ -12,19 +19,36 @@ export default function ProductDetail() {
         style={styles.MainCon}
         onPress={() => navigation.navigate(Screens.DETAILSCREEN, {data: item})}>
         <Image source={item.img} style={styles.ImageShopStyle} />
-        
-       <View>
-       <TouchableOpacity>
-          <Image source={Images.fav} style = {{width:20,height:20,position:'absolute',right:0,bottom:0,top:5}}/>
-        </TouchableOpacity>
-        <Text style={styles.shopNameText} numberOfLines={1}>
-          Indoor
-        </Text>
-        <Text style={[styles.shopNameText,{color:'grey',fontWeight:'400'}]} numberOfLines={1}>
-         Plant indoor without water
-        </Text>
-        <Text
-            style={{color: colors.lightgreen, fontSize: 18, fontWeight: '600',...styles.shopNameText}}>
+
+        <View>
+          <TouchableOpacity>
+            <Image
+              source={Images.fav}
+              style={{
+                width: 20,
+                height: 20,
+                position: 'absolute',
+                right: 0,
+                bottom: 0,
+                top: 5,
+              }}
+            />
+          </TouchableOpacity>
+          <Text style={styles.shopNameText} numberOfLines={1}>
+            Indoor
+          </Text>
+          <Text
+            style={[styles.shopNameText, {color: 'grey', fontWeight: '400'}]}
+            numberOfLines={1}>
+            Plant indoor without water
+          </Text>
+          <Text
+            style={{
+              color: colors.lightgreen,
+              fontSize: 18,
+              fontWeight: '600',
+              ...styles.shopNameText,
+            }}>
             रु 832{' '}
             <Text
               style={{
@@ -34,29 +58,32 @@ export default function ProductDetail() {
               {' '}
               रु 1000
             </Text>
-            <Text style = {{fontWeight:'400',color:colors.red}}> 50% off </Text>
+            <Text style={{fontWeight: '400', color: colors.red}}>
+              {' '}
+              50% off{' '}
+            </Text>
           </Text>
         </View>
       </TouchableOpacity>
     );
   };
   return (
-    <View style = {styles.Main}>
-      <Headers text={'Product'}/>
+    <View style={styles.Main}>
+      <Headers text={'Product'} />
       <FlatList
-      data={[...dummydata,...dummydata]}
-      renderItem={renderItem}
-      numColumns={2}
-      columnWrapperStyle = {{justifyContent:"space-between"}}
-      contentContainerStyle = {{paddingHorizontal:20,paddingBottom:40}}
+        data={[...dummydata, ...dummydata]}
+        renderItem={renderItem}
+        numColumns={2}
+        columnWrapperStyle={{justifyContent: 'space-between'}}
+        contentContainerStyle={{paddingHorizontal: 20, paddingBottom: 40}}
       />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
-  Main :{
-    flex:1,
+  Main: {
+    flex: 1,
   },
   MainCon: {
     width: '48%',
@@ -67,7 +94,7 @@ const styles = StyleSheet.create({
   ImageShopStyle: {
     width: '100%',
     height: 200,
-    borderRadius:8,
+    borderRadius: 8,
     resizeMode: 'cover',
   },
   shopNameText: {
@@ -120,4 +147,4 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     color: colors.white,
   },
-})
+});

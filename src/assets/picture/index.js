@@ -29,7 +29,3 @@ export const Images = {
     shopingIcon:require('./shopping-cart.png'),
     close:require('./close.png')
 }
-
-export const AppIcon = (name,size,color) =>{
-    return <Icon name={name} size={size} color = {color}  />
-}
