@@ -16,8 +16,13 @@ import {useNavigation} from '@react-navigation/native';
 import {Screens} from '../../Contants/NaivgationName';
 import TextInputCon from '../../Common/TextInputCon';
 import {getResponseonly} from '../../api/Api';
-import {setItem} from '../../Contants/LocalDB';
+import {LocalDB} from '../../Contants/LocalDB';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../../redux/reducers/login';
+;
 export default function Login() {
+  const dispatch = useDispatch()
+  const {setItem}  = LocalDB()
   const [data, setdata] = useState('');
   const navigation = useNavigation();
   const [input, setinput] = useState('')
@@ -25,6 +30,7 @@ export default function Login() {
     let response = await getResponseonly(
       'https://plants-backend-1.onrender.com/user',
     );
+    console.log(response)
     if (response?.status == 200) {
       setdata(response?.data);
     }
@@ -34,6 +40,7 @@ export default function Login() {
   };
   useEffect(() => {
     loginapi();
+  
   }, []);
 
   const checkLogin = async () => {
@@ -41,7 +48,8 @@ export default function Login() {
       item?.email?.toLowerCase()?.includes(input?.toLowerCase()),
     );
     if (filter?.length > 0) {
-     await setItem('login',JSON.stringify(filter[0]))
+      dispatch(loginSuccess(filter[0]))
+    //  await setItem('login',JSON.stringify(filter[0]))
     }
   };
 
