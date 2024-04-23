@@ -30,3 +30,14 @@ export const getApiResponse = async url => {
     }
   });
 };
+export const getApiResponseOnly = async url => {
+  console.log(url,'axios method')
+  return axios({
+    method: 'GET',
+    url: url,
+    timeout: timeout,
+    headers:{
+      "Content-Type" : "application/json"
+    }
+  });
+};

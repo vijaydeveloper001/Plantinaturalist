@@ -8,7 +8,6 @@ function* fetchUserData(action) {
     const response = yield call(getResponse,action.payload.payload);
     yield put(producSuccess(response));
     action.payload.scuess(response)
-      // yield onScuess(response);
     
 
   } catch (error) {
@@ -22,4 +21,3 @@ function* fetchUserData(action) {
 export function* productDataSaga() {
   yield takeLatest(productRequest, fetchUserData);
 }
-//fetchUse

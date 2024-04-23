@@ -35,3 +35,15 @@ export const LocalDBRemove  = async (key) =>{
         console.log(e,'not get data ')
     }
 }
+export const localClear  = async () =>{
+    console.log('clear')
+    try{
+        let data = await AsyncStorage.clear()
+        console.log(data)
+       
+        
+    }
+    catch(e){
+        console.log(e,'not get data ')
+    }
+}

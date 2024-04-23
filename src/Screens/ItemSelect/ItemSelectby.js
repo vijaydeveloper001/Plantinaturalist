@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  View
 } from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -28,26 +29,27 @@ export default function ItemSelectby() {
     );
   };
   return (
+    <View style = {{paddingHorizontal:20}}>
     <FlatList
       data={dummydata}
       renderItem={renderItem}
       horizontal={true}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{paddingHorizontal: 20, paddingVertical: 20}}
     />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   MainCon: {
     width: 170,
-    marginTop: 15,
+    // marginTop: 15,
     borderRadius: 5,
     marginRight: 15,
   },
   ImageShopStyle: {
-    width: '100%',
-    height: 200,
+    width: '90%',
+    height: 170,
     borderRadius: 5,
     resizeMode: 'cover',
   },

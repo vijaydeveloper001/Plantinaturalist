@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
         borderRadius:10,
     },
     BtnConParent:{
-        marginTop:30,
+        marginVertical:20,
         flexDirection:'row',
         paddingHorizontal:20
     },

@@ -13,7 +13,7 @@ import {styles} from './styles';
 export default function TopPlants() {
   const renderItemFunction = ({item}) => {
     return (
-      <View style={{padding: 10}}>
+      <View style={{marginRight: 10}}>
         <View style={styles.BorderLine}>
           <TouchableOpacity>
             <Image source={item.img} style={styles.ImageStyle} />
