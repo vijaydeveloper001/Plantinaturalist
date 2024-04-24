@@ -33,7 +33,6 @@ export default function Login() {
     }
     setloading(false)
   };
- 
   useEffect(() => {
     setloading(true)
     loginapi(); 
@@ -51,7 +50,6 @@ export default function Login() {
         dispatch(loginSuccess(filter[0]))
         setinput('')
         setdata('')
-      //  await setItem('login',JSON.stringify(filter[0]))
       }
     }
     setloading(false)
