@@ -16,7 +16,6 @@ import {useNavigation} from '@react-navigation/native';
 import {Screens} from '../../Contants/NaivgationName';
 import LinearGradient from 'react-native-linear-gradient';
 import ModalItem from '../../Common/ModalItem';
-import { LocalDB } from '../../Contants/LocalDB';
 const data = [
   {
     order: 'Your order has been deliverd',
@@ -56,7 +55,6 @@ const ViewCon = ({text, price, know, color, platfrom}) => {
 export default function Cart() {
   const navigation = useNavigation();
   const [modal, setmodal] = useState(false);
-  const {localClear} = LocalDB()
   const renderitem = ({item}) => {
     return (
       <View style={styles.MainRender}>
@@ -237,7 +235,7 @@ export default function Cart() {
       <Button
         TextName="PLACE ORDER"
         stle={25}
-        press={() => localClear()}
+        press={() => {}}
         padding={20}
         height={50}
       />

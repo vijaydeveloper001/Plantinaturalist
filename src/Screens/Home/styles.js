@@ -5,27 +5,18 @@ import { colors } from "../../Contants/Colors"
 export const styles = StyleSheet.create({
     Main:{
         flex:1,
-        // backgroundColor:'#',
-       
+        paddingHorizontal:10
     },
     BtnCon:{
-        // paddingHorizontal:29,
-        // paddingVertical:15,
-        // width:responsiveScreenWidth(28),
-        // height:responsiveHeight(5),
+        
         justifyContent:'center',
         alignItems:'center',       
-        // backgroundColor:colors.lightgreen,
-        // elevation:5,
-        // marginRight:20,
-        // marginVertical:5,
-        // marginHorizontal:5,
+        
         borderRadius:10,
     },
     BtnConParent:{
         marginVertical:20,
         flexDirection:'row',
-        paddingHorizontal:20
     },
     itemText:{
         fontSize:responsiveFontSize(2),
@@ -45,6 +36,5 @@ export const styles = StyleSheet.create({
         fontWeight:'700',
         // textAlign:'center',
         marginTop:20,
-        marginHorizontal:20
     }
 })

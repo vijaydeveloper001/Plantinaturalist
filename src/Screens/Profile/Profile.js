@@ -12,7 +12,11 @@ import {colors} from '../../Contants/Colors';
 import Headers from '../../Common/Headers/Headers';
 import {Images} from '../../assets/picture';
 import {responsiveScreenWidth} from 'react-native-responsive-dimensions';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginSuccess } from '../../redux/reducers/login';
 export function Profile() {
+  const userdata = useSelector(state=>state?.login?.data?.success)
+  const dispatch = useDispatch()
   return (
     <View style={{backgroundColor: colors.white, flex: 1}}>
       <Headers text={'Profile'} />
@@ -37,7 +41,7 @@ export function Profile() {
             <Text
               style={{color: colors.lightgreen, marginLeft: 7, fontSize: 20}}
               numberOfLines={1}>
-              Vijay kumar
+              {userdata?.name}
             </Text>
             <Text
               style={{
@@ -47,7 +51,7 @@ export function Profile() {
                 fontSize: 16,
               }}
               numberOfLines={1}>
-              8558071204
+              {userdata?.mobileNo}
             </Text>
           </View>
         </View>
@@ -59,7 +63,7 @@ export function Profile() {
         <ProfileCon text={'Feedback'} />
         <ProfileCon text={'Favourites'} />
         <ProfileCon text={'Delete Account'} />
-        <ProfileCon text={'Logout'} />
+        <ProfileCon text={'Logout'}  press={()=>dispatch(loginSuccess(''))}/>
       </ScrollView>
     </View>
   );

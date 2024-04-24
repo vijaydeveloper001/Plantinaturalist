@@ -22,7 +22,7 @@ export default function ProductDetail({isVisible}) {
         renderItem={renderItem}
         numColumns={2}
         columnWrapperStyle={{justifyContent: 'space-between'}}
-        contentContainerStyle={{paddingHorizontal: 20, paddingBottom: 40}}
+        contentContainerStyle={{ paddingBottom: 40}}
       />
     </View>
   );

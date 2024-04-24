@@ -75,7 +75,6 @@ export default function TextInputCon({
 
 const styles = StyleSheet.create({
   Main: {
-    paddingHorizontal: 20,
     marginTop: 20,
   },
   FieldsText: {

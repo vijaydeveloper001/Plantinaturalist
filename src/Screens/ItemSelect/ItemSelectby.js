@@ -29,7 +29,7 @@ export default function ItemSelectby() {
     );
   };
   return (
-    <View style = {{paddingHorizontal:20}}>
+    <View >
     <FlatList
       data={dummydata}
       renderItem={renderItem}
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     width: 170,
     // marginTop: 15,
     borderRadius: 5,
-    marginRight: 15,
+   
   },
   ImageShopStyle: {
     width: '90%',

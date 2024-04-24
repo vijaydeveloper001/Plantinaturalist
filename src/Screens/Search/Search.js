@@ -9,12 +9,14 @@ export default function Search() {
   return (
     <View>
       <Headers text='Search' icon={true}/>
+      <View style = {{paddingHorizontal:10}}>
       <TextInputCon search={true} text='Search...' /> 
       <View style = {styles.viewCon}>
         <Text style = {styles.title}>Best Deals For Your</Text>
         <Text style =  {styles.viewAll}>View all</Text>
       </View>
       <ItemSelectby />
+      </View>
     </View>
   )
 }

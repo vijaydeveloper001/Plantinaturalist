@@ -25,7 +25,7 @@ export default function TopPlants() {
   };
 
   return (
-    <SafeAreaView style={{marginHorizontal: 20}}>
+    <SafeAreaView >
       <FlatList
         data={PlantShop}
         renderItem={renderItemFunction}
