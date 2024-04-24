@@ -14,7 +14,8 @@ export default function TextInputCon({
   margin,
   search,
   edit,
-  press
+  press,
+  ...rest
 }) {
   const [checkbox, setcheckbox] = useState(false);
   return (
@@ -34,6 +35,7 @@ export default function TextInputCon({
           placeholderTextColor={colors.black}
           style={{color: colors.black, flex: 1}}
           editable = {!edit}
+          {...rest}
         />
       </Pressable>
       {check && (
@@ -73,7 +75,6 @@ export default function TextInputCon({
 
 const styles = StyleSheet.create({
   Main: {
-    paddingHorizontal: 20,
     marginTop: 20,
   },
   FieldsText: {

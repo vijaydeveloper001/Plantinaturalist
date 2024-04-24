@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../Contants/Colors";
-import { responsiveFontSize,responsiveHeight,responsiveScreenWidth, } from "react-native-responsive-dimensions"
+import {responsiveHeight,responsiveScreenWidth, } from "react-native-responsive-dimensions"
 
 
 export const styles = StyleSheet.create({
@@ -12,7 +12,6 @@ export const styles = StyleSheet.create({
         justifyContent:'space-between',
         alignItems:'center',
         flexDirection:'row',
-        paddingHorizontal:20,
     
       
     },
@@ -21,7 +20,6 @@ export const styles = StyleSheet.create({
         alignItems:'center',
        
         borderRadius:responsiveScreenWidth(1),
-        paddingHorizontal:5,
         width:300
      
       

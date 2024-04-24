@@ -1,11 +1,11 @@
-import {StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, Image, Pressable} from 'react-native';
 import React from 'react';
 import {Images} from '../assets/picture';
 import {colors} from '../Contants/Colors';
 
-export default function ProfileCon({text}) {
+export default function ProfileCon({text,press}) {
   return (
-    <TouchableOpacity style={styles.Main}>
+    <Pressable style={styles.Main} onPress={press}>
       <Image source={Images.user} style={{width: 20, height: 20}} />
       <Text
         style={{
@@ -17,7 +17,7 @@ export default function ProfileCon({text}) {
         {text}
       </Text>
       <Image source={Images.rightArrow} style={{width: 15, height: 15}} />
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 

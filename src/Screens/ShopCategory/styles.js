@@ -25,6 +25,5 @@ export const styles = StyleSheet.create({
     // justifyContent: 'space-between',
     // marginHorizontal:20,
     marginTop: 20,
-    paddingHorizontal:20
   },
 });

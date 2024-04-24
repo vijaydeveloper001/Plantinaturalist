@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
     marginVertical: 20,
-    borderRadius: 10,
+    borderRadius: 1,
   },
   TextStyle: {
     color: colors.black,
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
     height: 140,
     width: 150,
-    borderRadius: 20,
+    borderRadius: 10,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 10,

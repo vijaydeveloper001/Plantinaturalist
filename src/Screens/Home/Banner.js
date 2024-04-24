@@ -37,7 +37,6 @@ export default function Banner() {
 
 const styles = StyleSheet.create({
   MainBanner: {
-    paddingHorizontal: 20,
     marginTop: 5,
   },
   ContentCon: {
