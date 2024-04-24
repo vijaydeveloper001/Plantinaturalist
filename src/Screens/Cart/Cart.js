@@ -235,7 +235,7 @@ export default function Cart() {
       <Button
         TextName="PLACE ORDER"
         stle={25}
-        press={() => navigation.navigate(Screens.SHIPING)}
+        press={() => {}}
         padding={20}
         height={50}
       />

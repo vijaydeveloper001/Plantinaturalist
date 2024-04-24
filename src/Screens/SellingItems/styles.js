@@ -24,7 +24,6 @@ export const styles = StyleSheet.create({
   },
   contentContainerStyles: {
     marginTop: 20,
-    paddingHorizontal: 20,
   },
 
   addToCart: {
