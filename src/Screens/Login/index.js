@@ -34,13 +34,9 @@ export default function Login() {
     if (response?.status == 200) {
       setdata(response?.data);
     }
-    // if (response?.status==200){
-    //  await  setItem('login',JSON.stringify(response?.data))
-    // }
   };
   useEffect(() => {
-    loginapi();
-  
+    loginapi(); 
   }, []);
 
   const checkLogin = async () => {
@@ -54,7 +50,7 @@ export default function Login() {
   };
 
   return (
-    <View style={styles.mainCons}>
+    <View style={styles.mainCons} >
       <StatusBar translucent backgroundColor="transparent" />
       <Text style={styles.headerText}>Login</Text>
       <TextInputCon text="Email" onChangeText={text => setinput(text)} />
