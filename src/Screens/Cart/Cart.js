@@ -12,11 +12,14 @@ import {Images} from '../../assets/picture';
 import {colors} from '../../Contants/Colors';
 import Headers from '../../Common/Headers/Headers';
 import Button from '../../Common/Button';
-import {useNavigation} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {Screens} from '../../Contants/NaivgationName';
 import LinearGradient from 'react-native-linear-gradient';
 import ModalItem from '../../Common/ModalItem';
-import {getResponsePost} from '../../api/Api';
+import {getResponseonly} from '../../api/Api';
+import { useIsFocused } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import Loader from '../../Common/Loader';
 // const data = [
 //   {
 //     order: 'Your order has been deliverd',
@@ -57,22 +60,27 @@ export default function Cart() {
   const navigation = useNavigation();
   const [modal, setmodal] = useState(false);
   const [data, setdata] = useState([]);
+  const foucs = useIsFocused()
+  const [loading, setloading] = useState(false)
+  const userdata = useSelector((state)=>state)
   const addToCart = async () => {
     try {
-      let response = await getResponsePost(
-        'https://plants-backend-1.onrender.com/cart/661f5c16b7b61317ef5069f7',
-        {
-          productId: '662266c62546df053c977c6a',
-        },
+      let response = await getResponseonly(
+        `https://plants-backend-1.onrender.com/cart/${userdata?.login?.data?.success?._id}`,
       );
-      setdata(response?.data?.updatedCart?.products);
+      setloading(false)
+      // console.log(response?.data?.cart?.products)
+      setdata(response?.data?.cart?.products);
     } catch (e) {
+      setloading(false)
       console.log(e, 'errror');
     }
+    setloading(false)
   };
   useEffect(() => {
+    setloading(true)
     addToCart();
-  }, []);
+  }, [foucs]);
   const renderitem = ({item}) => {
     return (
       <View style={styles.MainRender}>
@@ -93,7 +101,9 @@ export default function Cart() {
           <Text style={{color: colors.black, fontSize: 12}} numberOfLines={1}>
             {item?.name}
           </Text>
-          <Text style={{color: colors.black, fontSize: 8}}>6 Item</Text>
+          <Text style={{color: colors.black, fontSize: 8}}>
+            {item?.quan} Item
+          </Text>
         </View>
         <View
           style={{
@@ -146,6 +156,7 @@ export default function Cart() {
   return (
     <View style={{flex: 1}}>
       <Headers text={'Cart'} />
+      <Loader Loading={loading}/>
       <ScrollView>
         <View
           style={{
