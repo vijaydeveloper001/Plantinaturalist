@@ -7,13 +7,14 @@ import Home from '../../Screens/Home/Home';
 import {Profile} from '../../Screens/Profile/Profile';
 import Cart from '../../Screens/Cart/Cart';
 import Order from '../../Screens/Order/Order';
+import { colors } from '../../Contants/Colors';
 const Tab = createBottomTabNavigator();
 export default function BottomNavigation() {
   return (
     <>
       <Tab.Navigator
         screenOptions={{
-          tabBarStyle: {backgroundColor: 'green', height: 50},
+          tabBarStyle: {backgroundColor: colors.lightgreen, height: 50},
         }}>
         <Tab.Screen
           name={Screens.HOMESCREENS}

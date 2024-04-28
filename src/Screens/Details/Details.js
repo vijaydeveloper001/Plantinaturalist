@@ -16,6 +16,7 @@ import Button from '../../Common/Button';
 import TextFile from '../../Common/TextFile';
 import Headers from '../../Common/Headers/Headers';
 import DetailPageText from '../../Common/Headers/DetailPageText';
+import {getResponsePost} from '../../api/Api';
 export default function DetailPlants(props) {
   const [IncrePlant, setIncrePlant] = useState(1);
   let color = [
@@ -25,6 +26,20 @@ export default function DetailPlants(props) {
     colors.color4,
     colors.color5,
   ];
+
+  const addToCart = async () => {
+    try {
+      let response = await getResponsePost(
+        'https://plants-backend-1.onrender.com/cart/661f5c16b7b61317ef5069f7',
+        {
+          productId: '662266c62546df053c977c6a',
+        },
+      );
+      console.log(response?.data?.updatedCart?.products)
+    } catch (e) {
+      console.log(e, 'errror');
+    }
+  };
 
   const renderItem = ({}) => {
     return (
@@ -190,7 +205,7 @@ export default function DetailPlants(props) {
         </View>
       </ScrollView>
       <View style={styles.OrderConParent}>
-        <Button TextName={'Add to cart'} />
+        <Button TextName={'Add to cart'} press={()=>addToCart()}/>
       </View>
     </View>
   );

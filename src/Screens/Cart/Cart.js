@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Images} from '../../assets/picture';
 import {colors} from '../../Contants/Colors';
 import Headers from '../../Common/Headers/Headers';
@@ -16,28 +16,29 @@ import {useNavigation} from '@react-navigation/native';
 import {Screens} from '../../Contants/NaivgationName';
 import LinearGradient from 'react-native-linear-gradient';
 import ModalItem from '../../Common/ModalItem';
-const data = [
-  {
-    order: 'Your order has been deliverd',
-    rating: true,
-    img: Images.Flower,
-  },
-  {
-    order: 'Your order has been canceled',
-    rating: false,
-    img: Images.Herbs,
-  },
-  {
-    order: 'Your order has been deliverd',
-    rating: true,
-    img: Images.Indoor,
-  },
-  {
-    order: 'Your order has been canceled',
-    rating: false,
-    img: Images.Vegitable,
-  },
-];
+import {getResponsePost} from '../../api/Api';
+// const data = [
+//   {
+//     order: 'Your order has been deliverd',
+//     rating: true,
+//     img: Images.Flower,
+//   },
+//   {
+//     order: 'Your order has been canceled',
+//     rating: false,
+//     img: Images.Herbs,
+//   },
+//   {
+//     order: 'Your order has been deliverd',
+//     rating: true,
+//     img: Images.Indoor,
+//   },
+//   {
+//     order: 'Your order has been canceled',
+//     rating: false,
+//     img: Images.Vegitable,
+//   },
+// ];
 
 const ViewCon = ({text, price, know, color, platfrom}) => {
   return (
@@ -55,25 +56,42 @@ const ViewCon = ({text, price, know, color, platfrom}) => {
 export default function Cart() {
   const navigation = useNavigation();
   const [modal, setmodal] = useState(false);
+  const [data, setdata] = useState([]);
+  const addToCart = async () => {
+    try {
+      let response = await getResponsePost(
+        'https://plants-backend-1.onrender.com/cart/661f5c16b7b61317ef5069f7',
+        {
+          productId: '662266c62546df053c977c6a',
+        },
+      );
+      setdata(response?.data?.updatedCart?.products);
+    } catch (e) {
+      console.log(e, 'errror');
+    }
+  };
+  useEffect(() => {
+    addToCart();
+  }, []);
   const renderitem = ({item}) => {
     return (
       <View style={styles.MainRender}>
-        <Image source={item.img} style={{width: '20%', height: '80%'}} />
+        <Image source={Images.Indoor} style={{width: '20%', height: '80%'}} />
         <View style={styles.TextCon}>
           <Text
             style={{color: colors.lightgreen, fontSize: 18, fontWeight: '600'}}>
-            रु 832{' '}
+            रु {item?.sellPrice}{' '}
             <Text
               style={{
                 textDecorationLine: 'line-through',
                 color: colors.lightgreen2,
               }}>
               {' '}
-              रु 1000
+              रु {item?.mrp}
             </Text>
           </Text>
           <Text style={{color: colors.black, fontSize: 12}} numberOfLines={1}>
-            Flower item
+            {item?.name}
           </Text>
           <Text style={{color: colors.black, fontSize: 8}}>6 Item</Text>
         </View>
