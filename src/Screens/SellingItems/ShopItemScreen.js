@@ -16,6 +16,7 @@ export default function ShopItemScreen({productData}) {
   const navigation = useNavigation();
 
   const renderItemShop = ({item, index}) => {
+    console.log(item)
     return (
       <TouchableOpacity
         style={styles.MainCon}

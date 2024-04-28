@@ -9,6 +9,7 @@ import {
   Pressable,
   FlatList,
   TextInput,
+  Alert,
 } from 'react-native';
 import {colors} from '../../Contants/Colors';
 import {Images} from '../../assets/picture';
@@ -16,6 +17,8 @@ import Button from '../../Common/Button';
 import TextFile from '../../Common/TextFile';
 import Headers from '../../Common/Headers/Headers';
 import DetailPageText from '../../Common/Headers/DetailPageText';
+import {getResponsePost} from '../../api/Api';
+import { useSelector } from 'react-redux';
 export default function DetailPlants(props) {
   const [IncrePlant, setIncrePlant] = useState(1);
   let color = [
@@ -25,6 +28,28 @@ export default function DetailPlants(props) {
     colors.color4,
     colors.color5,
   ];
+  const userdata = useSelector((state)=>state)
+  const [loading, setloading] = useState(false)
+
+  const addToCart = async () => {
+    setloading(true)
+    try {
+      let response = await getResponsePost(
+        `https://plants-backend-1.onrender.com/cart/${userdata?.login?.data?.success?._id}`,
+        {
+          productId: props?.route?.params?.data?._id,
+        },
+      );
+      setloading(false)
+      Alert.alert("Add to cart your product")
+    } catch (e) {
+      setloading(false)
+      
+      console.log(e, 'errror');
+    }
+    setloading(false)
+
+  };
 
   const renderItem = ({}) => {
     return (
@@ -190,7 +215,7 @@ export default function DetailPlants(props) {
         </View>
       </ScrollView>
       <View style={styles.OrderConParent}>
-        <Button TextName={'Add to cart'} />
+        <Button TextName={'Add to cart'} press={()=>addToCart()}/>
       </View>
     </View>
   );

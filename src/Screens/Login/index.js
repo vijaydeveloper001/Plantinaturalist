@@ -9,62 +9,60 @@ import React, {useEffect, useState} from 'react';
 import {colors} from '../../Contants/Colors';
 import TextInputCon from '../../Common/TextInputCon';
 import {getResponseonly} from '../../api/Api';
-import { useDispatch } from 'react-redux';
-import { loginSuccess } from '../../redux/reducers/login';
+import {useDispatch} from 'react-redux';
+import {loginSuccess} from '../../redux/reducers/login';
 import Loader from '../../Common/Loader';
 
-;
 export default function Login() {
-  const dispatch = useDispatch()
-  const [loading, setloading] = useState(false)
+  const dispatch = useDispatch();
+  const [loading, setloading] = useState(false);
   const [data, setdata] = useState('');
-  const [input, setinput] = useState('')
+  const [input, setinput] = useState('');
   const loginapi = async () => {
-   
     let response = await getResponseonly(
       'https://plants-backend-1.onrender.com/user',
     );
-    console.log(response)
+    console.log(response);
     if (response?.status == 200) {
-
-      setloading(false)
+      setloading(false);
       setdata(response?.data);
-      
     }
-    setloading(false)
+    setloading(false);
   };
   useEffect(() => {
-    setloading(true)
-    loginapi(); 
+    setloading(true);
+    loginapi();
   }, []);
 
   const checkLogin = async () => {
-    setloading(true)
-    if (input){
+    setloading(true);
+    if (input) {
       let filter = data?.filter(item =>
         item?.email?.toLowerCase()?.includes(input?.toLowerCase()),
       );
-     
+
       if (filter?.length > 0) {
-        setloading(false)
-        dispatch(loginSuccess(filter[0]))
-        setinput('')
-        setdata('')
+        setloading(false);
+        dispatch(loginSuccess(filter[0]));
+        setinput('');
+        setdata('');
       }
     }
-    setloading(false)
+    setloading(false);
   };
 
   return (
-    <View style={styles.mainCons} >
+    <View style={styles.mainCons}>
       <StatusBar translucent backgroundColor="transparent" />
-      <Loader Loading = {loading}/>
-      <View style = {{paddingHorizontal:10}}>
-      <Text style={styles.headerText}>Login</Text>
-      <TextInputCon text="Email" onChangeText={text => setinput(text)} />
-      <TouchableOpacity style={styles.loginButton} onPress={() => checkLogin()}>
-        <Text style={styles.buttonText}> Login</Text>
-      </TouchableOpacity>
+      <Loader Loading={loading} />
+      <View style={{paddingHorizontal: 10}}>
+        <Text style={styles.headerText}>Login</Text>
+        <TextInputCon text="Email" onChangeText={text => setinput(text)} />
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={() => checkLogin()}>
+          <Text style={styles.buttonText}> Login</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

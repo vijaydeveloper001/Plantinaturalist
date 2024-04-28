@@ -27,7 +27,7 @@ export const colors = {
 	cardGrey: '#96979C',
 	backgroundOrange: '#FAEFDC',
 	primaryDark: '#518DA8',
-	lightgreen:'#1d8038',
+	lightgreen:'#1db338',
 	lightblack:'#121212',
 	lightwheat:'#FBF1E0',
 	yellowDark:'#fcba03',
