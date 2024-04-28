@@ -16,7 +16,7 @@ import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {Screens} from '../../Contants/NaivgationName';
 import LinearGradient from 'react-native-linear-gradient';
 import ModalItem from '../../Common/ModalItem';
-import {getResponseonly} from '../../api/Api';
+import {deleteResponse, getResponsePost, getResponseonly} from '../../api/Api';
 import { useIsFocused } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import Loader from '../../Common/Loader';
@@ -61,6 +61,7 @@ export default function Cart() {
   const [modal, setmodal] = useState(false);
   const [data, setdata] = useState([]);
   const foucs = useIsFocused()
+  const [deleteid, setdeleteid] = useState('')
   const [loading, setloading] = useState(false)
   const userdata = useSelector((state)=>state)
   const addToCart = async () => {
@@ -81,7 +82,33 @@ export default function Cart() {
     setloading(true)
     addToCart();
   }, [foucs]);
+
+
+  const deleteItem = async () => {
+    console.log(deleteid)
+    // setloading(true)
+    try {
+      let response = await deleteResponse(
+        `https://plants-backend-1.onrender.com/cart/${userdata?.login?.data?.success?._id}`,
+      {
+        productId:deleteid
+      });
+      setloading(false)
+      
+      console.log(response)
+      setmodal(false)
+      // console.log(response?.data?.cart?.products)
+      // setdata(response?.data?.cart?.products);
+    } catch (e) {
+      setloading(false)
+      console.log(e, 'errror');
+    }
+    setloading(false)
+  };
+  
+
   const renderitem = ({item}) => {
+    // console.log(item?.productId)
     return (
       <View style={styles.MainRender}>
         <Image source={Images.Indoor} style={{width: '20%', height: '80%'}} />
@@ -112,7 +139,10 @@ export default function Cart() {
             paddingVertical: 8,
           }}>
           <TouchableOpacity
-            onPress={() => setmodal(true)}
+            onPress={() => {
+              setdeleteid(item?.productId)
+              setmodal(true)
+            }}
             style={{alignSelf: 'flex-end', paddingVertical: 10}}>
             <Image source={Images.close} style={{width: 15, height: 15}} />
           </TouchableOpacity>
@@ -257,7 +287,7 @@ export default function Cart() {
         </View>
         <ModalItem
           value={modal}
-          onyes={() => setmodal(false)}
+          onyes={() => deleteItem()}
           oncancel={() => setmodal(false)}
         />
       </ScrollView>

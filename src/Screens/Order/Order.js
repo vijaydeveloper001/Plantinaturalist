@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   Image,
+  ScrollView,
 } from 'react-native';
 import React from 'react';
 import {colors} from '../../Contants/Colors';
@@ -95,13 +96,15 @@ export default function Order() {
   return (
     <View style={styles.Main}>
       <Headers text={'Order Detail'} />
+      <ScrollView style={{paddingHorizontal:15}}>
       <TextInputCon text={'Search...'} search={true} />
       <FlatList
         data={data}
         renderItem={renderItem}
         keyExtractor={(item, index) => index}
-        contentContainerStyle={{paddingVertical: 25}}
+        // contentContainerStyle={{paddingBottom: 25}}
       />
+      </ScrollView>
     </View>
   );
 }
@@ -113,13 +116,8 @@ const styles = StyleSheet.create({
   },
   MainConItem: {
     backgroundColor: colors.white,
-    // height:150,
-    flex: 1,
-    elevation: 10,
-    marginTop: 4,
-    paddingHorizontal: 20,
-    marginHorizontal: 20,
-    paddingVertical: 10,
+    elevation: 1,
+    marginVertical:10
   },
   DateText: {
     color: colors.black,
@@ -137,7 +135,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    elevation: 10,
+    elevation: 2,
     backgroundColor: colors.grey,
 
     paddingHorizontal: 10,

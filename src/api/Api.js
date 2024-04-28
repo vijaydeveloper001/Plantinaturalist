@@ -57,3 +57,25 @@ export const getResponsePost = async (url,data) =>{
         console.log(e,'error','Api resonse error in apit.js files')
     }
 }
+
+export const deleteResponse = async (url, data) => {
+    try {
+        // Make the delete request using Axios
+        const response = await axios.delete(url, {data:data});
+
+        // Check if the request was successful
+        if (response.status === 200) {
+            return response
+            // Return the response data
+            // return response.data;
+        } else {
+            // If the response status is not 200, throw an error
+            throw new Error('API response error: ' + response.statusText);
+        }
+    } catch (error) {
+        // Log and rethrow any errors that occur during the request
+        console.error('Error:', error.message);
+        throw error;
+    }
+};
+
