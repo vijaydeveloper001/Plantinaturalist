@@ -12,7 +12,7 @@ import {Images} from '../../assets/picture';
 import {colors} from '../../Contants/Colors';
 import Headers from '../../Common/Headers/Headers';
 import Button from '../../Common/Button';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {useFocusEffect,useNavigation} from '@react-navigation/native';
 import {Screens} from '../../Contants/NaivgationName';
 import LinearGradient from 'react-native-linear-gradient';
 import ModalItem from '../../Common/ModalItem';
@@ -105,7 +105,6 @@ export default function Cart() {
     }
     setloading(false)
   };
-  
 
   const renderitem = ({item}) => {
     // console.log(item?.productId)

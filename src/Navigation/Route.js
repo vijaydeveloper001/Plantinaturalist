@@ -8,7 +8,8 @@ export default function Route() {
   let userdata = useSelector(state => state?.login?.data?.success);
   return (
     <View style={{flex: 1}}>
-      {userdata ? <AppNavgigation /> : <AuthNavigation />}
+      {/* {userdata ? <AppNavgigation /> : <AuthNavigation />} */}
+      <AppNavgigation />
     </View>
   );
 }
