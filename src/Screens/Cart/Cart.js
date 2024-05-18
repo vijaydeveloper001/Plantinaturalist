@@ -6,42 +6,23 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  Pressable,
+  Alert,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Images} from '../../assets/picture';
 import {colors} from '../../Contants/Colors';
 import Headers from '../../Common/Headers/Headers';
 import Button from '../../Common/Button';
-import {useFocusEffect,useNavigation} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {Screens} from '../../Contants/NaivgationName';
 import LinearGradient from 'react-native-linear-gradient';
 import ModalItem from '../../Common/ModalItem';
 import {deleteResponse, getResponsePost, getResponseonly} from '../../api/Api';
-import { useIsFocused } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
+import {useIsFocused} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 import Loader from '../../Common/Loader';
-// const data = [
-//   {
-//     order: 'Your order has been deliverd',
-//     rating: true,
-//     img: Images.Flower,
-//   },
-//   {
-//     order: 'Your order has been canceled',
-//     rating: false,
-//     img: Images.Herbs,
-//   },
-//   {
-//     order: 'Your order has been deliverd',
-//     rating: true,
-//     img: Images.Indoor,
-//   },
-//   {
-//     order: 'Your order has been canceled',
-//     rating: false,
-//     img: Images.Vegitable,
-//   },
-// ];
+
 
 const ViewCon = ({text, price, know, color, platfrom}) => {
   return (
@@ -60,57 +41,107 @@ export default function Cart() {
   const navigation = useNavigation();
   const [modal, setmodal] = useState(false);
   const [data, setdata] = useState([]);
-  const foucs = useIsFocused()
-  const [deleteid, setdeleteid] = useState('')
-  const [loading, setloading] = useState(false)
-  const userdata = useSelector((state)=>state)
-  const addToCart = async () => {
+  const foucs = useIsFocused();
+  const [deleteid, setdeleteid] = useState('');
+  const [loading, setloading] = useState(false);
+  const userdata = useSelector(state => state);
+  const getCartData = async () => {
     try {
       let response = await getResponseonly(
         `https://plants-backend-1.onrender.com/cart/${userdata?.login?.data?.success?._id}`,
       );
-      setloading(false)
+      setloading(false);
       // console.log(response?.data?.cart?.products)
       setdata(response?.data?.cart?.products);
     } catch (e) {
+      setloading(false);
+      console.log(e, 'errror');
+    }
+    setloading(false);
+  };
+  useEffect(() => {
+    setloading(true);
+    getCartData();
+  }, [foucs]);
+
+  const addToCart = async (id) => {
+    
+    setloading(true)
+    try {
+     let respose =  await getResponsePost(
+        `https://plants-backend-1.onrender.com/cart/${userdata?.login?.data?.success?._id}`,
+        {
+          productId: id,
+        },
+      );
       setloading(false)
+      // Alert.alert("Add to cart your product")
+    } catch (e) {
+      setloading(false)
+      
       console.log(e, 'errror');
     }
     setloading(false)
-  };
-  useEffect(() => {
-    setloading(true)
-    addToCart();
-  }, [foucs]);
 
+  };
+
+  const decreseItem = async(id) => {
+    console.log(id)
+    setloading(true)
+    try {
+     let res = await getResponseonly(
+        `https://plants-backend-1.onrender.com/cart/decreaseProduct/${userdata?.login?.data?.success?._id}`,
+        {
+          productId: id,
+        }
+      );
+      setloading(false)
+      // Alert.alert("Add to cart your product")
+    } catch (e) {
+      setloading(false)
+      
+      console.log(e, 'errror');
+    }
+    setloading(false)
+
+  };
+
+  
+
+  // delete api get response
 
   const deleteItem = async () => {
-    console.log(deleteid)
-    // setloading(true)
+    console.log(deleteid, '<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>');
+    setloading(true)
     try {
       let response = await deleteResponse(
         `https://plants-backend-1.onrender.com/cart/${userdata?.login?.data?.success?._id}`,
-      {
-        productId:deleteid
-      });
-      setloading(false)
-      
-      console.log(response)
-      setmodal(false)
+        {
+          productId: deleteid,
+        },
+      );
+      setloading(false);
+      console.log(response,'delete response');
+      setmodal(false);
       // console.log(response?.data?.cart?.products)
       // setdata(response?.data?.cart?.products);
     } catch (e) {
-      setloading(false)
+      setloading(false);
       console.log(e, 'errror');
     }
-    setloading(false)
+    setloading(false);
   };
 
+
+
   const renderitem = ({item}) => {
-    // console.log(item?.productId)
+    console.log(item?.productId);
     return (
       <View style={styles.MainRender}>
-        <Image source={Images.Indoor} style={{width: '20%', height: '80%'}} />
+        <Image
+          source={Images.Plant}
+          style={{width: '20%', height: '80%', borderRadius: 4}}
+        />
         <View style={styles.TextCon}>
           <Text
             style={{color: colors.lightgreen, fontSize: 18, fontWeight: '600'}}>
@@ -139,14 +170,14 @@ export default function Cart() {
           }}>
           <TouchableOpacity
             onPress={() => {
-              setdeleteid(item?.productId)
-              setmodal(true)
+              setdeleteid(item?.productId);
+              setmodal(true);
             }}
             style={{alignSelf: 'flex-end', paddingVertical: 10}}>
             <Image source={Images.close} style={{width: 15, height: 15}} />
           </TouchableOpacity>
           <View style={styles.ProductIncres}>
-            <TouchableOpacity style={styles.btn}>
+            <Pressable style={styles.btn} onPress={()=>decreseItem(item?.productId)}>
               <Text
                 style={{
                   fontSize: 20,
@@ -155,7 +186,7 @@ export default function Cart() {
                 }}>
                 -
               </Text>
-            </TouchableOpacity>
+            </Pressable>
             <TouchableOpacity>
               <Text
                 style={{
@@ -163,10 +194,10 @@ export default function Cart() {
                   color: colors.black,
                   paddingHorizontal: 10,
                 }}>
-                1
+                {item.quan}
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn}>
+            <Pressable style={styles.btn} onPress={()=>addToCart(item?.productId)}>
               <Text
                 style={{
                   fontSize: 20,
@@ -175,7 +206,7 @@ export default function Cart() {
                 }}>
                 +
               </Text>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </View>
       </View>
@@ -185,7 +216,7 @@ export default function Cart() {
   return (
     <View style={{flex: 1}}>
       <Headers text={'Cart'} />
-      <Loader Loading={loading}/>
+      <Loader Loading={loading} />
       <ScrollView>
         <View
           style={{

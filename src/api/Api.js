@@ -18,10 +18,10 @@ export const getResponse = async (url) =>{
     }
 }
 
-export const getResponseonly = async (url) =>{
-    console.log(url,'sdfgh')
+export const getResponseonly = async (url,data) =>{
+    console.log(url,data,'sdfgh')
     try{
-        let response = await axios.get(url)
+        let response = await axios.get(url,{params:data})
         return response
         // let response = await getApiResponseOnly(url)
         // return response

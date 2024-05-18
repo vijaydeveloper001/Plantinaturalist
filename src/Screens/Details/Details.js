@@ -19,6 +19,7 @@ import Headers from '../../Common/Headers/Headers';
 import DetailPageText from '../../Common/Headers/DetailPageText';
 import {getResponsePost} from '../../api/Api';
 import { useSelector } from 'react-redux';
+import Loader from '../../Common/Loader';
 export default function DetailPlants(props) {
   const [IncrePlant, setIncrePlant] = useState(1);
   let color = [
@@ -67,6 +68,7 @@ export default function DetailPlants(props) {
   };
   return (
     <View style={styles.Main}>
+      <Loader loading={loading}/>
       <Headers text={'Product Info'} icon={true} />
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
         <Image source={Images.Indoor} style={styles.ImageCons} />
