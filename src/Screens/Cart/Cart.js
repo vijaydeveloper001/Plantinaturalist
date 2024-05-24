@@ -65,7 +65,6 @@ export default function Cart() {
   }, [foucs]);
 
   const addToCart = async (id) => {
-    
     setloading(true)
     try {
      let respose =  await getResponsePost(

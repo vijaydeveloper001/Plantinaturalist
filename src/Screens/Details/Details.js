@@ -18,7 +18,7 @@ import TextFile from '../../Common/TextFile';
 import Headers from '../../Common/Headers/Headers';
 import DetailPageText from '../../Common/Headers/DetailPageText';
 import {getResponsePost} from '../../api/Api';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 import Loader from '../../Common/Loader';
 export default function DetailPlants(props) {
   const [IncrePlant, setIncrePlant] = useState(1);
@@ -29,11 +29,11 @@ export default function DetailPlants(props) {
     colors.color4,
     colors.color5,
   ];
-  const userdata = useSelector((state)=>state)
-  const [loading, setloading] = useState(false)
+  const userdata = useSelector(state => state);
+  const [loading, setloading] = useState(false);
 
   const addToCart = async () => {
-    setloading(true)
+    setloading(true);
     try {
       let response = await getResponsePost(
         `https://plants-backend-1.onrender.com/cart/${userdata?.login?.data?.success?._id}`,
@@ -41,15 +41,14 @@ export default function DetailPlants(props) {
           productId: props?.route?.params?.data?._id,
         },
       );
-      setloading(false)
-      Alert.alert("Add to cart your product")
+      setloading(false);
+      Alert.alert('Add to cart your product');
     } catch (e) {
-      setloading(false)
-      
+      setloading(false);
+
       console.log(e, 'errror');
     }
-    setloading(false)
-
+    setloading(false);
   };
 
   const renderItem = ({}) => {
@@ -68,7 +67,7 @@ export default function DetailPlants(props) {
   };
   return (
     <View style={styles.Main}>
-      <Loader loading={loading}/>
+      <Loader loading={loading} />
       <Headers text={'Product Info'} icon={true} />
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
         <Image source={Images.Indoor} style={styles.ImageCons} />
@@ -217,7 +216,7 @@ export default function DetailPlants(props) {
         </View>
       </ScrollView>
       <View style={styles.OrderConParent}>
-        <Button TextName={'Add to cart'} press={()=>addToCart()}/>
+        <Button TextName={'Add to cart'} press={() => addToCart()} />
       </View>
     </View>
   );
