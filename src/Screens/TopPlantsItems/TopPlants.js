@@ -19,13 +19,13 @@ export default function TopPlants() {
             <Image source={item.img} style={styles.ImageStyle} />
           </TouchableOpacity>
         </View>
-        <Text style={styles.TextColor}>{item.title}</Text>
+        <Text style={styles.TextColor} numberOfLines={1}>{item.title}</Text>
       </View>
     );
   };
 
   return (
-    <SafeAreaView >
+    <SafeAreaView style = {{flex:1}}>
       <FlatList
         data={PlantShop}
         renderItem={renderItemFunction}

@@ -11,16 +11,9 @@ export default function Header() {
   return (
     <View style={styles.MainHeader}>
       <View style={styles.MainHeaderLeftSideCon}>
-        <TouchableOpacity>
-          <Image
-            source={Images.Home}
-            style={{width: 100, height: '100%'}}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-        <View>
+        <View style = {{justifyContent:"space-around"}}>
           <Text
-            style={{color: colors.lightgreen, marginLeft: 7}}
+            style={{color: colors.lightgreen, marginLeft: 7,fontSize:20}}
             numberOfLines={1}>
             Vijay kumar
           </Text>

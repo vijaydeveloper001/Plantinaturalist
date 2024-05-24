@@ -5,10 +5,10 @@ import {responsiveHeight,responsiveScreenWidth, } from "react-native-responsive-
 
 export const styles = StyleSheet.create({
     MainHeader:{
-        backgroundColor:colors.white,
+        // backgroundColor:colors.white,
         // height:responsiveHeight(8),
         // flex:0.08,
-        height:responsiveHeight(15),
+        height:responsiveHeight(10),
         justifyContent:'space-between',
         alignItems:'center',
         flexDirection:'row',
