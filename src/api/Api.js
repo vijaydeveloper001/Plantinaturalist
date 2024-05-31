@@ -1,6 +1,62 @@
 import axios from "axios";
 import { getApiResponse, getApiResponseOnly } from "./ApiHit/apiHit";
 
+
+
+export const getResponsePost = async (url,data) =>{
+    console.log(url,'sdfgh')
+    try{
+        let response = await axios.post(url,data)
+        return response
+        // let response = await getApiResponseOnly(url)
+        // return response
+        // if (response.status == 200){
+           
+        //     return response
+        // }else{
+        //     return 'Api resonse error in apit.js files'
+        // }
+        // let res = await response 
+        // console.log(res,'response')
+    }catch(e){
+        console.log(e,'error','Api resonse error in apit.js files')
+    }
+}
+export const deleteResponse = async (url, data) => {
+    console.log(url, data);
+    try {
+        // Method 1: Sending data in the request body (as you have)
+        const response = await axios.delete(url, { data: data ,headers:{
+            "content-type": "application/json"
+        }});
+        
+        // If your server expects data as query parameters, you can try this:
+        // const params = new URLSearchParams(data).toString();
+        // const response = await axios.delete(`${url}?${params}`);
+
+        console.log(response, 'delete');
+        if (response.status === 200) {
+            return response;
+        } else {
+            throw new Error('API response error: ' + response.statusText);
+        }
+    } catch (error) {
+        console.error('Error:', error.message);
+        // Additional debugging information
+        if (error.response) {
+            console.error('Response data:', error.response.data);
+            console.error('Response status:', error.response.status);
+            console.error('Response headers:', error.response.headers);
+        }
+        throw error;
+    }
+};
+
+
+
+
+
+
 export const getResponse = async (url) =>{
     console.log(url,'sdfgh')
     try{
@@ -24,7 +80,7 @@ export const getResponseonly = async (url, data) => {
         let response;
         if (data) {
             // If data is provided, make a GET request with parameters
-            response = await axios.get(url, { params: data });
+            response = await axios.put(url, { params: data });
         } else {
             // If no data is provided, make a simple GET request
             response = await axios.get(url);
@@ -38,38 +94,4 @@ export const getResponseonly = async (url, data) => {
 }
 
 
-export const getResponsePost = async (url,data) =>{
-    console.log(url,'sdfgh')
-    try{
-        let response = await axios.post(url,data)
-        return response
-        // let response = await getApiResponseOnly(url)
-        // return response
-        // if (response.status == 200){
-           
-        //     return response
-        // }else{
-        //     return 'Api resonse error in apit.js files'
-        // }
-        // let res = await response 
-        // console.log(res,'response')
-    }catch(e){
-        console.log(e,'error','Api resonse error in apit.js files')
-    }
-}
-
-export const deleteResponse = async (url, data) => {
-    try {
-        const response = await axios.delete(url, {data:data});
-        console.log(response,'delete')
-        if (response.status === 200) {
-            return response
-        } else {
-            throw new Error('API response error: ' + response.statusText);
-        }
-    } catch (error) {
-        console.error('Error:', error.message);
-        throw error;
-    }
-};
-
+``

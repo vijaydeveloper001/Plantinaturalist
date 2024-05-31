@@ -94,6 +94,7 @@ export default function Cart() {
           productId: id,
         }
       );
+      console.log(res,'response')
       setloading(false)
       // Alert.alert("Add to cart your product")
     } catch (e) {

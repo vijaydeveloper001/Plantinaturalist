@@ -11,8 +11,9 @@ import {dummydata} from '../../Contants/Dummydata';
 import {colors} from '../../Contants/Colors';
 import Headers from '../../Common/Headers/Headers';
 import {Images} from '../../assets/picture';
+import { Screens } from '../../Contants/NaivgationName';
 
-export default function ProductDetail() {
+export default function ProductDetail({navigation}) {
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
