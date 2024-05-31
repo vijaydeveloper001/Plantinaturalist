@@ -18,7 +18,7 @@ import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {Screens} from '../../Contants/NaivgationName';
 import LinearGradient from 'react-native-linear-gradient';
 import ModalItem from '../../Common/ModalItem';
-import {deleteResponse, getResponsePost, getResponseonly} from '../../api/Api';
+import {deleteResponse, getResponsePost, getResponseonly, getResponseonlyPut} from '../../api/Api';
 import {useIsFocused} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import Loader from '../../Common/Loader';
@@ -45,13 +45,14 @@ export default function Cart() {
   const [deleteid, setdeleteid] = useState('');
   const [loading, setloading] = useState(false);
   const userdata = useSelector(state => state);
+  const [totalMrp, settotalMrp] = useState(0)
   const getCartData = async () => {
     try {
       let response = await getResponseonly(
         `https://plants-backend-1.onrender.com/cart/${userdata?.login?.data?.success?._id}`,
       );
       setloading(false);
-      // console.log(response?.data?.cart?.products)
+      settotalMrp(response?.data?.cart?.total)
       setdata(response?.data?.cart?.products);
     } catch (e) {
       setloading(false);
@@ -73,6 +74,8 @@ export default function Cart() {
           productId: id,
         },
       );
+      settotalMrp(respose?.data?.updatedCart?.total)
+      setdata(respose?.data?.updatedCart?.products)
       setloading(false)
       // Alert.alert("Add to cart your product")
     } catch (e) {
@@ -84,27 +87,24 @@ export default function Cart() {
 
   };
 
-  const decreseItem = async(id) => {
-    console.log(id)
-    setloading(true)
+  const decreseItem = async (id) => {
+    console.log(id);
+    setloading(true);
     try {
-     let res = await getResponseonly(
-        `https://plants-backend-1.onrender.com/cart/decreaseProduct/${userdata?.login?.data?.success?._id}`,
-        {
-          productId: id,
-        }
-      );
-      console.log(res,'response')
-      setloading(false)
-      // Alert.alert("Add to cart your product")
+        const userId = userdata?.login?.data?.success?._id;
+        const url = `https://plants-backend-1.onrender.com/cart/decreaseProduct/${userId}`;
+        
+        const res = await getResponseonlyPut(url, {
+            productId: id,
+        });
+        
+        console.log(res, 'response');
     } catch (e) {
-      setloading(false)
-      
-      console.log(e, 'errror');
+        console.error(e, 'error');
+    } finally {
+        setloading(false);
     }
-    setloading(false)
-
-  };
+};
 
   
 
@@ -312,7 +312,7 @@ export default function Cart() {
           <ViewCon text={'Plant Credit'} price={200} />
           <View style={styles.PriceCon}>
             <Text style={[styles.footerStyle]}>TOTAL AMOUNT</Text>
-            <Text style={[styles.footerStyle]}>रु 832</Text>
+            <Text style={[styles.footerStyle]}>रु {totalMrp}</Text>
           </View>
         </View>
         <ModalItem
