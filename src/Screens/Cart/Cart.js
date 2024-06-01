@@ -98,7 +98,9 @@ export default function Cart() {
             productId: id,
         });
         
-        console.log(res, 'response');
+        // console.log(res?.data?.updatedCart?.totalmrp, 'response');
+        settotalMrp(res?.data?.updatedCart?.totalmrp)
+        setdata(res?.data?.updatedCart?.products)
     } catch (e) {
         console.error(e, 'error');
     } finally {
@@ -121,7 +123,8 @@ export default function Cart() {
         },
       );
       setloading(false);
-      console.log(response,'delete response');
+      setdata(response?.data?.updatedCart?.products);
+      settotalMrp(response?.data?.updatedCart?.totalmrp)
       setmodal(false);
       // console.log(response?.data?.cart?.products)
       // setdata(response?.data?.cart?.products);
