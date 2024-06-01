@@ -45,6 +45,7 @@ export default function Cart() {
   const [deleteid, setdeleteid] = useState('');
   const [loading, setloading] = useState(false);
   const userdata = useSelector(state => state);
+  const [totalwithdiscount, settotalwithdiscount] = useState(0)
   const [totalMrp, settotalMrp] = useState(0)
   const getCartData = async () => {
     try {
@@ -52,6 +53,7 @@ export default function Cart() {
         `https://plants-backend-1.onrender.com/cart/${userdata?.login?.data?.success?._id}`,
       );
       setloading(false);
+      settotalwithdiscount(response?.data?.cart?.totalmrp)
       settotalMrp(response?.data?.cart?.total)
       setdata(response?.data?.cart?.products);
     } catch (e) {
@@ -74,6 +76,8 @@ export default function Cart() {
           productId: id,
         },
       );
+      console.log(respose?.data?.updatedCart)
+      settotalwithdiscount(respose?.data?.updatedCart?.totalmrp)
       settotalMrp(respose?.data?.updatedCart?.total)
       setdata(respose?.data?.updatedCart?.products)
       setloading(false)
@@ -97,10 +101,10 @@ export default function Cart() {
         const res = await getResponseonlyPut(url, {
             productId: id,
         });
-        
-        // console.log(res?.data?.updatedCart?.totalmrp, 'response');
-        settotalMrp(res?.data?.updatedCart?.totalmrp)
+        settotalwithdiscount(res?.data?.updatedCart?.totalmrp)
+        settotalMrp(res?.data?.updatedCart?.total)
         setdata(res?.data?.updatedCart?.products)
+        setloading(false)
     } catch (e) {
         console.error(e, 'error');
     } finally {
@@ -124,7 +128,8 @@ export default function Cart() {
       );
       setloading(false);
       setdata(response?.data?.updatedCart?.products);
-      settotalMrp(response?.data?.updatedCart?.totalmrp)
+      settotalwithdiscount(response?.data?.updatedCart?.totalmrp)
+      settotalMrp(response?.data?.updatedCart?.total)
       setmodal(false);
       // console.log(response?.data?.cart?.products)
       // setdata(response?.data?.cart?.products);
@@ -292,10 +297,10 @@ export default function Cart() {
             }}>
             PRICE DETAILS (2 items){' '}
           </Text>
-          <ViewCon text={'Total MRP'} price={200} />
+          <ViewCon text={'Total MRP'} price={totalwithdiscount} />
           <ViewCon
             text={'Discount on MRP'}
-            price={200}
+            price={totalwithdiscount-totalMrp}
             know={true}
             color={colors.lightgreen}
           />
