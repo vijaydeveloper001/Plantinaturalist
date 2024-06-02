@@ -20,21 +20,33 @@ import {BaseUrl} from '../../Contants/apiUrl';
 // }
 const timeout = 2000;
 export const getApiResponse = async url => {
-  console.log(url,'axios method')
+  console.log(url, 'axios method');
   return axios({
     method: 'GET',
     url: BaseUrl + url,
     timeout: timeout,
-    headers:{
-      "Content-Type" : "application/json"
-    }
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
 };
 export const getApiResponseOnly = async url => {
-  console.log(url,'axios method')
+  console.log(url, 'axios method');
   return axios({
     method: 'GET',
     url: url,
+    timeout: timeout,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
+export const getApiResponseWithData = async (url, data) => {
+  return  axios({
+    method: 'GET',
+    url: url,
+    data: data,
     timeout: timeout,
     headers:{
       "Content-Type" : "application/json"

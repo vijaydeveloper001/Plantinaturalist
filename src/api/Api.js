@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {getApiResponse, getApiResponseOnly} from './ApiHit/apiHit';
+import {getApiResponse, getApiResponseOnly, getApiResponseWithData} from './ApiHit/apiHit';
 
 export const getResponsePost = async (url, data) => {
   console.log(url, 'sdfgh');
@@ -30,10 +30,6 @@ export const deleteResponse = async (url, data) => {
         'content-type': 'application/json',
       },
     });
-
-    // If your server expects data as query parameters, you can try this:
-    // const params = new URLSearchParams(data).toString();
-    // const response = await axios.delete(`${url}?${params}`);
 
     console.log(response, 'delete');
     if (response.status === 200) {
@@ -91,4 +87,21 @@ export const getResponseonlyPut = async (url, data) => {
      console.log('API response error in api.js files')
     //   throw new Error('API response error in api.js files');
     }
+};
+
+
+export const getResponseWithDATA = async (url,data) => {
+  console.log(url,data)
+  try {
+    let response = await getApiResponseWithData(url,data);
+    if (response.status == 200) {
+      return response;
+    } else {
+      return 'Api resonse error in apit.js files';
+    }
+    // let res = await response
+    // console.log(res,'response')
+  } catch (e) {
+    console.log(e, 'error', 'Api resonse error in apit.js files');
+  }
 };
