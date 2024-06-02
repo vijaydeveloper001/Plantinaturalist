@@ -51,6 +51,8 @@ export default function Cart() {
   const userdata = useSelector(state => state);
   const [totalwithdiscount, settotalwithdiscount] = useState(0);
   const [totalMrp, settotalMrp] = useState(0);
+  const [cartId, setcartId] = useState('')
+  const [orderedItem, setorderedItem] = useState(false)
   const getCartData = async () => {
     try {
       let response = await getResponseonly(
@@ -60,6 +62,8 @@ export default function Cart() {
       settotalwithdiscount(response?.data?.cart?.totalmrp);
       settotalMrp(response?.data?.cart?.total);
       setdata(response?.data?.cart?.products);
+      setcartId(response?.data?.cart?._id);
+
     } catch (e) {
       setloading(false);
       console.log(e, 'errror');
@@ -69,6 +73,9 @@ export default function Cart() {
   useEffect(() => {
     setloading(true);
     getCartData();
+    return ()=>{
+      setorderedItem(false)
+    }
   }, [foucs]);
 
   const addToCart = async id => {
@@ -140,16 +147,16 @@ export default function Cart() {
     }
     setloading(false);
   };
-
   const placeOrder = async () => {
     let payload = {
-      userId: '661f5c16b7b61317ef5069f7',
-      cartId: '6658a6984a16297b9227222c',
+      userId: userdata?.login?.data?.success?._id,
+      cartId: cartId,
       status: '2',
       paymentId: '12345678',
       deliveryAdress: 'abohar sherewala',
       paymentType: 'UPI',
     };
+    setloading(true)
 
     try {
       let res = await getResponsePost(
@@ -157,14 +164,21 @@ export default function Cart() {
         payload,
       );
       console.log(res?.data, 'RESPONSE OF PAYMENT ORDER PLACED');
+      setorderedItem(true)
+    setloading(true)
+
     } catch (e) {
+      setorderedItem(false)
+    setloading(false)
+
       console.log('error in cart in order function');
     }
+    setloading(false)
     // console.log('order detailes')
   };
 
   const renderitem = ({item}) => {
-    console.log(item?.productId);
+  
     return (
       <View style={styles.MainRender}>
         <Image
@@ -245,6 +259,7 @@ export default function Cart() {
       </View>
     );
   };
+
 
   return (
     <View style={{flex: 1}}>
@@ -355,7 +370,7 @@ export default function Cart() {
         />
       </ScrollView>
       <Button
-        TextName="PLACE ORDER"
+        TextName={orderedItem?"PLACED ORDER":"PLACE ORDER"}
         stle={25}
         press={() => placeOrder()}
         padding={20}
