@@ -28,8 +28,9 @@ export const styles = StyleSheet.create({
     color: colors.black,
     fontSize:13,
     marginTop: 10,
-    alignSelf: 'center',
-    width:80,
+    // alignSelf: 'center',
+    alignSelf:"center",
+    width:40,
   
   },
 });

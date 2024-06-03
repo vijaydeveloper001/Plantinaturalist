@@ -18,11 +18,15 @@ import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {Screens} from '../../Contants/NaivgationName';
 import LinearGradient from 'react-native-linear-gradient';
 import ModalItem from '../../Common/ModalItem';
-import {deleteResponse, getResponsePost, getResponseonly} from '../../api/Api';
+import {
+  deleteResponse,
+  getResponsePost,
+  getResponseonly,
+  getResponseonlyPut,
+} from '../../api/Api';
 import {useIsFocused} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import Loader from '../../Common/Loader';
-
 
 const ViewCon = ({text, price, know, color, platfrom}) => {
   return (
@@ -45,14 +49,21 @@ export default function Cart() {
   const [deleteid, setdeleteid] = useState('');
   const [loading, setloading] = useState(false);
   const userdata = useSelector(state => state);
+  const [totalwithdiscount, settotalwithdiscount] = useState(0);
+  const [totalMrp, settotalMrp] = useState(0);
+  const [cartId, setcartId] = useState('')
+  const [orderedItem, setorderedItem] = useState(false)
   const getCartData = async () => {
     try {
       let response = await getResponseonly(
         `https://plants-backend-1.onrender.com/cart/${userdata?.login?.data?.success?._id}`,
       );
       setloading(false);
-      // console.log(response?.data?.cart?.products)
+      settotalwithdiscount(response?.data?.cart?.totalmrp);
+      settotalMrp(response?.data?.cart?.total);
       setdata(response?.data?.cart?.products);
+      setcartId(response?.data?.cart?._id);
+
     } catch (e) {
       setloading(false);
       console.log(e, 'errror');
@@ -62,57 +73,60 @@ export default function Cart() {
   useEffect(() => {
     setloading(true);
     getCartData();
+    return ()=>{
+      setorderedItem(false)
+    }
   }, [foucs]);
 
-  const addToCart = async (id) => {
-    
-    setloading(true)
+  const addToCart = async id => {
+    setloading(true);
     try {
-     let respose =  await getResponsePost(
+      let respose = await getResponsePost(
         `https://plants-backend-1.onrender.com/cart/${userdata?.login?.data?.success?._id}`,
         {
           productId: id,
         },
       );
-      setloading(false)
+      console.log(respose?.data?.updatedCart);
+      settotalwithdiscount(respose?.data?.updatedCart?.totalmrp);
+      settotalMrp(respose?.data?.updatedCart?.total);
+      setdata(respose?.data?.updatedCart?.products);
+      setloading(false);
       // Alert.alert("Add to cart your product")
     } catch (e) {
-      setloading(false)
-      
+      setloading(false);
+
       console.log(e, 'errror');
     }
-    setloading(false)
-
+    setloading(false);
   };
 
-  const decreseItem = async(id) => {
-    console.log(id)
-    setloading(true)
+  const decreseItem = async id => {
+    console.log(id);
+    setloading(true);
     try {
-     let res = await getResponseonly(
-        `https://plants-backend-1.onrender.com/cart/decreaseProduct/${userdata?.login?.data?.success?._id}`,
-        {
-          productId: id,
-        }
-      );
-      setloading(false)
-      // Alert.alert("Add to cart your product")
+      const userId = userdata?.login?.data?.success?._id;
+      const url = `https://plants-backend-1.onrender.com/cart/decreaseProduct/${userId}`;
+
+      const res = await getResponseonlyPut(url, {
+        productId: id,
+      });
+      settotalwithdiscount(res?.data?.updatedCart?.totalmrp);
+      settotalMrp(res?.data?.updatedCart?.total);
+      setdata(res?.data?.updatedCart?.products);
+      setloading(false);
     } catch (e) {
-      setloading(false)
-      
-      console.log(e, 'errror');
+      console.error(e, 'error');
+    } finally {
+      setloading(false);
     }
-    setloading(false)
-
   };
-
-  
 
   // delete api get response
 
   const deleteItem = async () => {
     console.log(deleteid, '<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>');
-    setloading(true)
+    setloading(true);
     try {
       let response = await deleteResponse(
         `https://plants-backend-1.onrender.com/cart/${userdata?.login?.data?.success?._id}`,
@@ -121,7 +135,9 @@ export default function Cart() {
         },
       );
       setloading(false);
-      console.log(response,'delete response');
+      setdata(response?.data?.updatedCart?.products);
+      settotalwithdiscount(response?.data?.updatedCart?.totalmrp);
+      settotalMrp(response?.data?.updatedCart?.total);
       setmodal(false);
       // console.log(response?.data?.cart?.products)
       // setdata(response?.data?.cart?.products);
@@ -131,11 +147,38 @@ export default function Cart() {
     }
     setloading(false);
   };
+  const placeOrder = async () => {
+    let payload = {
+      userId: userdata?.login?.data?.success?._id,
+      cartId: cartId,
+      status: '2',
+      paymentId: '12345678',
+      deliveryAdress: 'abohar sherewala',
+      paymentType: 'UPI',
+    };
+    setloading(true)
 
+    try {
+      let res = await getResponsePost(
+        'https://plants-backend-1.onrender.com/order',
+        payload,
+      );
+      console.log(res?.data, 'RESPONSE OF PAYMENT ORDER PLACED');
+      setorderedItem(true)
+    setloading(true)
 
+    } catch (e) {
+      setorderedItem(false)
+    setloading(false)
+
+      console.log('error in cart in order function');
+    }
+    setloading(false)
+    // console.log('order detailes')
+  };
 
   const renderitem = ({item}) => {
-    console.log(item?.productId);
+  
     return (
       <View style={styles.MainRender}>
         <Image
@@ -177,7 +220,9 @@ export default function Cart() {
             <Image source={Images.close} style={{width: 15, height: 15}} />
           </TouchableOpacity>
           <View style={styles.ProductIncres}>
-            <Pressable style={styles.btn} onPress={()=>decreseItem(item?.productId)}>
+            <Pressable
+              style={styles.btn}
+              onPress={() => decreseItem(item?.productId)}>
               <Text
                 style={{
                   fontSize: 20,
@@ -197,7 +242,9 @@ export default function Cart() {
                 {item.quan}
               </Text>
             </TouchableOpacity>
-            <Pressable style={styles.btn} onPress={()=>addToCart(item?.productId)}>
+            <Pressable
+              style={styles.btn}
+              onPress={() => addToCart(item?.productId)}>
               <Text
                 style={{
                   fontSize: 20,
@@ -212,6 +259,7 @@ export default function Cart() {
       </View>
     );
   };
+
 
   return (
     <View style={{flex: 1}}>
@@ -289,10 +337,10 @@ export default function Cart() {
             }}>
             PRICE DETAILS (2 items){' '}
           </Text>
-          <ViewCon text={'Total MRP'} price={200} />
+          <ViewCon text={'Total MRP'} price={totalwithdiscount} />
           <ViewCon
             text={'Discount on MRP'}
-            price={200}
+            price={totalwithdiscount - totalMrp}
             know={true}
             color={colors.lightgreen}
           />
@@ -312,7 +360,7 @@ export default function Cart() {
           <ViewCon text={'Plant Credit'} price={200} />
           <View style={styles.PriceCon}>
             <Text style={[styles.footerStyle]}>TOTAL AMOUNT</Text>
-            <Text style={[styles.footerStyle]}>रु 832</Text>
+            <Text style={[styles.footerStyle]}>रु {totalMrp}</Text>
           </View>
         </View>
         <ModalItem
@@ -322,9 +370,9 @@ export default function Cart() {
         />
       </ScrollView>
       <Button
-        TextName="PLACE ORDER"
+        TextName={orderedItem?"PLACED ORDER":"PLACE ORDER"}
         stle={25}
-        press={() => {}}
+        press={() => placeOrder()}
         padding={20}
         height={50}
       />
