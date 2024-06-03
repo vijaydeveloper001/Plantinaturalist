@@ -17,23 +17,27 @@ import {getResponseWithDATA} from '../../api/Api';
 import {useSelector} from 'react-redux';
 import {useIsFocused} from '@react-navigation/native';
 import Loader from '../../Common/Loader';
+import { getApiResponseWithData } from '../../api/ApiHit/apiHit';
 
 export default function Order() {
   const userdata = useSelector(state => state);
   const foucs = useIsFocused();
   const [data, setdata] = useState([]);
+
   const getOrderd = async () => {
+    // Append data to the FormData object
+    // formData.append('userId', userdata?.login?.data?.success?._id);
+    // console.log(formData)
     try {
-      let res = await getResponseWithDATA(
+      let res = await getApiResponseWithData(
         'https://plants-backend-1.onrender.com/order/getByUserId',
-        {
-          userId: userdata?.login?.data?.success?._id
-        }
+        {userId:userdata?.login?.data?.success?._id},
       );
       console.log(res)
-      // setdata(res?.data?.data);
+      // console.log(res);
+      // setdata(res?.data?.data); // Uncomment if you need to use the response data
     } catch (e) {
-      console.log('error in order detailes', e);
+      console.log('Error in order details:', e);
     }
   };
 
@@ -83,12 +87,12 @@ export default function Order() {
       <ScrollView style={{paddingHorizontal: 15}}>
         <TextInputCon text={'Search...'} search={true} />
         {/* {data?.length > 0 ? ( */}
-          <FlatList
-            data={data}
-            renderItem={renderItem}
-            keyExtractor={(item, index) => index}
-            // contentContainerStyle={{paddingBottom: 25}}
-          />
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index}
+          // contentContainerStyle={{paddingBottom: 25}}
+        />
         {/* ) : (
           <Loader Loading={true} />
         )} */}
