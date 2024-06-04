@@ -14,6 +14,7 @@ import Coupons from '../../Screens/Coupons/Coupons';
 import ProductDetail from '../../Screens/ProductDetail/ProductDetail';
 import Search from '../../Screens/Search/Search';
 import BottomNavigation from '../BottomNavigation/BottomNavigation';
+import ShowOrder from '../../Screens/ShowOrders/ShowOrder';
 const Stack = createNativeStackNavigator();
 
 const optionheaders = {
@@ -77,6 +78,11 @@ export default function AppNavgigation() {
       <Stack.Screen
         name={Screens.SEARCH}
         component={Search}
+        options={optionheaders}
+      />
+      <Stack.Screen
+        name={'ShowOrder'}
+        component={ShowOrder}
         options={optionheaders}
       />
     </Stack.Navigator>

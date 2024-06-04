@@ -14,7 +14,7 @@ export default function BottomNavigation() {
     <>
       <Tab.Navigator
         screenOptions={{
-          tabBarStyle: {backgroundColor: colors.lightgreen, height: 50},
+          tabBarStyle: {backgroundColor: colors.lightgreen, height: 50}
         }}>
         <Tab.Screen
           name={Screens.HOMESCREENS}
@@ -45,6 +45,7 @@ export default function BottomNavigation() {
             ),
           }}
         />
+       
         <Tab.Screen
           name={Screens.ORDER}
           component={Order}
@@ -59,7 +60,7 @@ export default function BottomNavigation() {
             ),
           }}
         />
-        <Tab.Screen
+         <Tab.Screen
           name="PROFILE"
           component={Profile}
           options={{

@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     paddingVertical: 25,
+    
   },
   BorderLine: {
     borderWidth: 2,
@@ -27,6 +28,9 @@ export const styles = StyleSheet.create({
     color: colors.black,
     fontSize:13,
     marginTop: 10,
-    textAlign: 'center',
+    // alignSelf: 'center',
+    alignSelf:"center",
+    width:40,
+  
   },
 });

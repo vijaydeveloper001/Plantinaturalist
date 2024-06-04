@@ -6,68 +6,58 @@ import {
   TouchableOpacity,
   View,
   Image,
+  ScrollView,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {colors} from '../../Contants/Colors';
 import {Images} from '../../assets/picture';
 import Headers from '../../Common/Headers/Headers';
 import TextInputCon from '../../Common/TextInputCon';
+import {getResponseWithDATA} from '../../api/Api';
+import {useSelector} from 'react-redux';
+import {useIsFocused} from '@react-navigation/native';
+import Loader from '../../Common/Loader';
+import { getApiResponseOnly, getApiResponseWithData } from '../../api/ApiHit/apiHit';
 
-const data = [
-  {
-    order: 'Your order has been deliverd',
-    rating: true,
-    img: Images.Flower,
-  },
-  {
-    order: 'Your order has been canceled',
-    rating: false,
-    img: Images.Herbs,
-  },
-  {
-    order: 'Your order has been deliverd',
-    rating: true,
-    img: Images.Indoor,
-  },
-  {
-    order: 'Your order has been canceled',
-    rating: false,
-    img: Images.Vegitable,
-  },
-  {
-    order: 'Your order has been deliverd',
-    rating: true,
-    img: Images.Herbs,
-  },
-  {
-    order: 'Your order has been canceled',
-    rating: false,
-    img: Images.nature,
-  },
-  {
-    order: 'Your order has been deliverd',
-    rating: true,
-    img: Images.Flower,
-  },
-  {
-    order: 'Your order has been canceled',
-    rating: false,
-    img: Images.Herbs,
-  },
-];
+export default function Order({navigation}) {
+  const userdata = useSelector(state => state);
+  const foucs = useIsFocused();
+  const [data, setdata] = useState([]);
 
-export default function Order() {
+  const getOrderd = async () => {
+    try {
+      let res = await getApiResponseOnly(
+        `https://plants-backend-1.onrender.com/order/getByUserId/${userdata?.login?.data?.success?._id}`,
+      );
+      // console.log(res);
+      setdata(res?.data?.data); // Uncomment if you need to use the response data
+    } catch (e) {
+      console.log('Error in order details:', e);
+    }
+  };
+
+  useEffect(() => {
+    getOrderd();
+  }, [foucs]);
+
   const renderItem = ({item, index}) => {
+ 
     return (
-      <Pressable style={styles.MainConItem} key={index}>
+      <Pressable style={styles.MainConItem} key={index} onPress={()=>navigation.navigate("ShowOrder",{data:item.cartId})}>
         <View style={styles.inMain}>
-          <Image source={item.img} style={{width: 80, height: '100%'}} />
-          <View style={{flex:1,paddingLeft:12}}>
+          <Image source={Images.Flower} style={{width: 80, height: '100%'}} />
+          <View style={{flex: 1, paddingLeft: 12}}>
             <Text style={styles.DateText} numberOfLines={1}>
-              20 / 07 / 2023
+             Date: {new Date(item?.cartId?.dateModified).toLocaleDateString()}
             </Text>
             <Text style={styles.DateText} numberOfLines={1}>
-              {item.order}
+             Address: {item?.deliveryAdress}
+            </Text>
+            <Text style={styles.DateText} numberOfLines={1}>
+             Price: {item?.cartId?.total} <Text style={[styles.DateText,{textDecorationLine:'line-through'}]}>{item?.cartId?.totalmrp}</Text>
+            </Text>
+            <Text style={[styles.DateText,{color:colors.lightgreen}]} numberOfLines={1}>
+             Order: {item?.status==2?'Ordered':'Cancel'}
             </Text>
           </View>
           <TouchableOpacity>
@@ -95,13 +85,19 @@ export default function Order() {
   return (
     <View style={styles.Main}>
       <Headers text={'Order Detail'} />
-      <TextInputCon text={'Search...'} search={true} />
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => index}
-        contentContainerStyle={{paddingVertical: 25}}
-      />
+      <ScrollView style={{paddingHorizontal: 15}}>
+        <TextInputCon text={'Search...'} search={true} />
+        {data?.length > 0 ? (
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index}
+          // contentContainerStyle={{paddingBottom: 25}}
+        />
+         ) : (
+          <Loader Loading={true} />
+        )} 
+      </ScrollView>
     </View>
   );
 }
@@ -113,13 +109,8 @@ const styles = StyleSheet.create({
   },
   MainConItem: {
     backgroundColor: colors.white,
-    // height:150,
-    flex: 1,
-    elevation: 10,
-    marginTop: 4,
-    paddingHorizontal: 20,
-    marginHorizontal: 20,
-    paddingVertical: 10,
+    elevation: 1,
+    marginVertical: 10,
   },
   DateText: {
     color: colors.black,
@@ -137,7 +128,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    elevation: 10,
+    elevation: 2,
     backgroundColor: colors.grey,
 
     paddingHorizontal: 10,

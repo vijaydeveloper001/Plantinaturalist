@@ -10,7 +10,7 @@ export default function Shipping() {
   return (
     <View style={styles.Main}>
       <Headers text={'Shipping order'} />
-      <ScrollView contentContainerStyle={{paddingBottom: 20}}>
+      <ScrollView contentContainerStyle={{paddingBottom: 20,marginHorizontal:20}}>
         <TextInputCon
           text={'Email'}
           check={true}

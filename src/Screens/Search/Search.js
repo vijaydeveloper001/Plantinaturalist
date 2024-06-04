@@ -4,8 +4,9 @@ import Headers from '../../Common/Headers/Headers'
 import TextInputCon from '../../Common/TextInputCon'
 import ItemSelectby from '../ItemSelect/ItemSelectby'
 import { colors } from '../../Contants/Colors'
+import { Screens } from '../../Contants/NaivgationName'
 
-export default function Search() {
+export default function Search({navigation}) {
   return (
     <View>
       <Headers text='Search' icon={true}/>
@@ -13,7 +14,7 @@ export default function Search() {
       <TextInputCon search={true} text='Search...' /> 
       <View style = {styles.viewCon}>
         <Text style = {styles.title}>Best Deals For Your</Text>
-        <Text style =  {styles.viewAll}>View all</Text>
+        <Text style =  {styles.viewAll} onPress={()=>navigation.navigate(Screens.PRODUCT)}>View all</Text>
       </View>
       <ItemSelectby />
       </View>

@@ -10,6 +10,7 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {colors} from '../../Contants/Colors';
 import {dummydata} from '../../Contants/Dummydata';
+import { Screens } from '../../Contants/NaivgationName';
 export default function ItemSelectby() {
   const navigation = useNavigation();
   const renderItem = ({item}) => {
