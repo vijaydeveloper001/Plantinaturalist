@@ -25,9 +25,6 @@ export default function Order({navigation}) {
   const [data, setdata] = useState([]);
 
   const getOrderd = async () => {
-    // Append data to the FormData object
-    // formData.append('userId', userdata?.login?.data?.success?._id);
-    // console.log(formData)
     try {
       let res = await getApiResponseOnly(
         `https://plants-backend-1.onrender.com/order/getByUserId/${userdata?.login?.data?.success?._id}`,
@@ -44,19 +41,23 @@ export default function Order({navigation}) {
   }, [foucs]);
 
   const renderItem = ({item, index}) => {
+ 
     return (
-      <Pressable style={styles.MainConItem} key={index} onPress={()=>navigation.navigate("ShowOrder",{data:item.cartId?.products})}>
+      <Pressable style={styles.MainConItem} key={index} onPress={()=>navigation.navigate("ShowOrder",{data:item.cartId})}>
         <View style={styles.inMain}>
           <Image source={Images.Flower} style={{width: 80, height: '100%'}} />
           <View style={{flex: 1, paddingLeft: 12}}>
             <Text style={styles.DateText} numberOfLines={1}>
-              {new Date(item?.cartId?.dateModified).toLocaleDateString()}
+             Date: {new Date(item?.cartId?.dateModified).toLocaleDateString()}
             </Text>
             <Text style={styles.DateText} numberOfLines={1}>
-              {item?.deliveryAdress}
+             Address: {item?.deliveryAdress}
             </Text>
             <Text style={styles.DateText} numberOfLines={1}>
-              {item?.cartId?.total} <Text style={[styles.DateText,{textDecorationLine:'line-through'}]}>{item?.cartId?.totalmrp}</Text>
+             Price: {item?.cartId?.total} <Text style={[styles.DateText,{textDecorationLine:'line-through'}]}>{item?.cartId?.totalmrp}</Text>
+            </Text>
+            <Text style={[styles.DateText,{color:colors.lightgreen}]} numberOfLines={1}>
+             Order: {item?.status==2?'Ordered':'Cancel'}
             </Text>
           </View>
           <TouchableOpacity>
