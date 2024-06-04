@@ -17,25 +17,20 @@ import {getResponseWithDATA} from '../../api/Api';
 import {useSelector} from 'react-redux';
 import {useIsFocused} from '@react-navigation/native';
 import Loader from '../../Common/Loader';
-import { getApiResponseWithData } from '../../api/ApiHit/apiHit';
+import { getApiResponseOnly, getApiResponseWithData } from '../../api/ApiHit/apiHit';
 
-export default function Order() {
+export default function Order({navigation}) {
   const userdata = useSelector(state => state);
   const foucs = useIsFocused();
   const [data, setdata] = useState([]);
 
   const getOrderd = async () => {
-    // Append data to the FormData object
-    // formData.append('userId', userdata?.login?.data?.success?._id);
-    // console.log(formData)
     try {
-      let res = await getApiResponseWithData(
-        'https://plants-backend-1.onrender.com/order/getByUserId',
-        {userId:userdata?.login?.data?.success?._id},
+      let res = await getApiResponseOnly(
+        `https://plants-backend-1.onrender.com/order/getByUserId/${userdata?.login?.data?.success?._id}`,
       );
-      console.log(res)
       // console.log(res);
-      // setdata(res?.data?.data); // Uncomment if you need to use the response data
+      setdata(res?.data?.data); // Uncomment if you need to use the response data
     } catch (e) {
       console.log('Error in order details:', e);
     }
@@ -46,17 +41,23 @@ export default function Order() {
   }, [foucs]);
 
   const renderItem = ({item, index}) => {
-    console.log(item, 'sdfdsf');
+ 
     return (
-      <Pressable style={styles.MainConItem} key={index}>
+      <Pressable style={styles.MainConItem} key={index} onPress={()=>navigation.navigate("ShowOrder",{data:item.cartId})}>
         <View style={styles.inMain}>
           <Image source={Images.Flower} style={{width: 80, height: '100%'}} />
           <View style={{flex: 1, paddingLeft: 12}}>
             <Text style={styles.DateText} numberOfLines={1}>
-              20 / 07 / 2023
+             Date: {new Date(item?.cartId?.dateModified).toLocaleDateString()}
             </Text>
             <Text style={styles.DateText} numberOfLines={1}>
-              {item.order}
+             Address: {item?.deliveryAdress}
+            </Text>
+            <Text style={styles.DateText} numberOfLines={1}>
+             Price: {item?.cartId?.total} <Text style={[styles.DateText,{textDecorationLine:'line-through'}]}>{item?.cartId?.totalmrp}</Text>
+            </Text>
+            <Text style={[styles.DateText,{color:colors.lightgreen}]} numberOfLines={1}>
+             Order: {item?.status==2?'Ordered':'Cancel'}
             </Text>
           </View>
           <TouchableOpacity>
@@ -86,16 +87,16 @@ export default function Order() {
       <Headers text={'Order Detail'} />
       <ScrollView style={{paddingHorizontal: 15}}>
         <TextInputCon text={'Search...'} search={true} />
-        {/* {data?.length > 0 ? ( */}
+        {data?.length > 0 ? (
         <FlatList
           data={data}
           renderItem={renderItem}
           keyExtractor={(item, index) => index}
           // contentContainerStyle={{paddingBottom: 25}}
         />
-        {/* ) : (
+         ) : (
           <Loader Loading={true} />
-        )} */}
+        )} 
       </ScrollView>
     </View>
   );
