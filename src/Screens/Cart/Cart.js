@@ -28,7 +28,7 @@ import {useIsFocused} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import Loader from '../../Common/Loader';
 
-const ViewCon = ({text, price, know, color, platfrom}) => {
+export const ViewCon = ({text, price, know, color, platfrom}) => {
   return (
     <View style={styles.PriceCon}>
       <Text style={styles.Price}>
