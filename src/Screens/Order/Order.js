@@ -43,6 +43,11 @@ export default function Order({navigation}) {
   const renderItem = ({item, index}) => {
  
     return (
+      <>
+      <View>
+        <Text style={[styles.DateText,{marginTop:2,color:colors.lightgreen}]}>{item?.status==2?'Delivered':'Canceled'}</Text>
+        <Text style={[styles.DateText,{marginTop:2,color:colors.lightgreen}]}>{item?.status==2?'On Tue,20 May':'on Wed,8 May as per your request'}</Text>
+      </View>
       <Pressable style={styles.MainConItem} key={index} onPress={()=>navigation.navigate("ShowOrder",{data:item.cartId})}>
         <View style={styles.inMain}>
           <Image source={Images.Flower} style={{width: 80, height: '100%'}} />
@@ -80,6 +85,7 @@ export default function Order({navigation}) {
           </>
         )}
       </Pressable>
+      </>
     );
   };
   return (
@@ -108,7 +114,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   MainConItem: {
-    backgroundColor: colors.white,
+    backgroundColor: '#1111',
     elevation: 1,
     marginVertical: 10,
   },

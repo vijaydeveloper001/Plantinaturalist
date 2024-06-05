@@ -11,11 +11,11 @@ import React, {useState} from 'react';
 import {styles} from './styles';
 import {colors} from '../../Contants/Colors';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import firestore from '@react-native-firebase/firestore';
+// import firestore from '@react-native-firebase/firestore';
 import RNFS from 'react-native-fs';
 import base64 from 'base64-js';
-import storage from '@react-native-firebase/storage';
-import {ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage';
+// import storage from '@react-native-firebase/storage';
+// import {ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage';
 
 export default function AddData() {
   const [data, setdata] = useState({
@@ -25,88 +25,88 @@ export default function AddData() {
     img: '',
   });
   console.log(data);
-  const openCamera = async () => {
-    try {
-      await launchCamera({mediaType: 'photo', quality: 0.1}, async image => {
-        console.log(image);
-        // let upload = storage().ref('upload');
-        const filename = image?.assets[0]?.uri.substring(
-          image?.assets[0]?.uri.lastIndexOf('/') + 1,
-        );
-        const reference = storage().ref(filename);
-        try {
-          await reference.putFile(image?.assets[0]?.uri);
-          const downloadURL = await reference.getDownloadURL();
-          console.log('Image uploaded successfully!', downloadURL);
-          setdata({...data, img: downloadURL});
-        } catch (error) {
-          console.error('Error uploading image: ', error);
-        }
+  // const openCamera = async () => {
+  //   try {
+  //     await launchCamera({mediaType: 'photo', quality: 0.1}, async image => {
+  //       console.log(image);
+  //       // let upload = storage().ref('upload');
+  //       const filename = image?.assets[0]?.uri.substring(
+  //         image?.assets[0]?.uri.lastIndexOf('/') + 1,
+  //       );
+  //       const reference = storage().ref(filename);
+  //       try {
+  //         await reference.putFile(image?.assets[0]?.uri);
+  //         const downloadURL = await reference.getDownloadURL();
+  //         console.log('Image uploaded successfully!', downloadURL);
+  //         setdata({...data, img: downloadURL});
+  //       } catch (error) {
+  //         console.error('Error uploading image: ', error);
+  //       }
 
-        // let imageRef = storage().ref('/' + image?.assets[0]?.uri);
-        // imageRef
-        //   .getDownloadURL()
-        //   .then(url => {
-        //     //from url you can fetch the uploaded image easily
-        //     console.log(url);
-        //   })
-        //   .catch(e => console.log('getting downloadURL of image error => ', e));
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  //       // let imageRef = storage().ref('/' + image?.assets[0]?.uri);
+  //       // imageRef
+  //       //   .getDownloadURL()
+  //       //   .then(url => {
+  //       //     //from url you can fetch the uploaded image easily
+  //       //     console.log(url);
+  //       //   })
+  //       //   .catch(e => console.log('getting downloadURL of image error => ', e));
+  //     });
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
-  const openGallery = async () => {
-    try {
-      const result = await launchImageLibrary(
-        {mediaType: 'photo'},
-        async image => {
-          console.log(image);
+  // const openGallery = async () => {
+  //   try {
+  //     const result = await launchImageLibrary(
+  //       {mediaType: 'photo'},
+  //       async image => {
+  //         console.log(image);
 
-          const filename = image?.assets[0]?.uri.substring(
-            image?.assets[0]?.uri.lastIndexOf('/') + 1,
-          );
-          const reference = storage().ref(filename);
-          try {
-            await reference.putFile(image?.assets[0]?.uri);
-            const downloadURL = await reference.getDownloadURL();
-            console.log('Image uploaded successfully!', downloadURL);
-            setdata({...data, img: downloadURL});
-          } catch (error) {
-            console.error('Error uploading image: ', error);
-          }
-          // setdata({...data, img: image?.assets[0]?.uri});
-        },
-      );
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  //         const filename = image?.assets[0]?.uri.substring(
+  //           image?.assets[0]?.uri.lastIndexOf('/') + 1,
+  //         );
+  //         const reference = storage().ref(filename);
+  //         try {
+  //           await reference.putFile(image?.assets[0]?.uri);
+  //           const downloadURL = await reference.getDownloadURL();
+  //           console.log('Image uploaded successfully!', downloadURL);
+  //           setdata({...data, img: downloadURL});
+  //         } catch (error) {
+  //           console.error('Error uploading image: ', error);
+  //         }
+  //         // setdata({...data, img: image?.assets[0]?.uri});
+  //       },
+  //     );
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
-  const addData = async () => {
-    try {
-      if (data.name && data.soil && data.location && data.img) {
-        let upload = firestore().collection('PostData').doc().set({
-          Name: data.name,
-          Soil: data.soil,
-          Location: data.location,
-          image: data.img,
-        });
-        console.log(upload);
-      }
+  // const addData = async () => {
+  //   try {
+  //     if (data.name && data.soil && data.location && data.img) {
+  //       let upload = firestore().collection('PostData').doc().set({
+  //         Name: data.name,
+  //         Soil: data.soil,
+  //         Location: data.location,
+  //         image: data.img,
+  //       });
+  //       console.log(upload);
+  //     }
 
-      setdata({
-        name: '',
-        soil: '',
-        location: '',
-        image: '',
-      });
-      Alert.alert('', 'Upload Succesfully');
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  //     setdata({
+  //       name: '',
+  //       soil: '',
+  //       location: '',
+  //       image: '',
+  //     });
+  //     Alert.alert('', 'Upload Succesfully');
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   return (
     <View style={styles.Main}>
