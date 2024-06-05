@@ -44,12 +44,13 @@ export default function Order({navigation}) {
   }, [foucs]);
 
   const renderItem = ({item, index}) => {
+    console.log(item)
     return (
       <>
         <View style={styles.deliveryedCon}>
-          <Pressable style={styles.btncON}>
+         {item?.status==4&& <Pressable style={styles.btncON}>
             <Image source={Images.close} style={{width: 10, height: 10}} />
-          </Pressable>
+          </Pressable>}
           <View style={{flex: 1, paddingLeft: 10}}>
             <Text style={styles.deliveryText}>
               {item?.status == 2 ? 'Delivered' : 'Canceled'}
@@ -64,7 +65,7 @@ export default function Order({navigation}) {
         <Pressable
           style={styles.MainConItem}
           key={index}
-          onPress={() => navigation.navigate('ShowOrder', {data: item.cartId})}>
+          onPress={() => navigation.navigate('ShowOrder', {data: item.cartId,address:item?.deliveryAdress})}>
           <View style={styles.inMain}>
             <Image source={Images.Flower} style={{width: 80, height: '95%',}} />
             <View style={{flex: 1, paddingLeft: 12}}>

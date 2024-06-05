@@ -4,10 +4,17 @@ import {Images} from '../../assets/picture';
 import {colors} from '../../Contants/Colors';
 import Headers from '../../Common/Headers/Headers';
 import {ViewCon} from '../Cart/Cart';
-
+import StepIndicator from 'react-native-step-indicator';
 export default function ShowOrder({route}) {
-  const {data} = route?.params;
-  console.log(data);
+  const labels = [
+    'Order',
+    'Order Confirm',
+    'Order Shipping',
+    'Order droping',
+    'Placed',
+  ];
+  const {data,address} = route?.params;
+ 
   const renderItem = ({item, index}) => {
     return (
       <Pressable style={styles.MainConItem} key={index}>
@@ -39,6 +46,7 @@ export default function ShowOrder({route}) {
         renderItem={renderItem}
         keyExtractor={(item, index) => index}
         contentContainerStyle={{marginHorizontal: 20}}
+        ListFooterComponentStyle={{marginBottom: 50}}
         ListFooterComponent={() => {
           return (
             <>
@@ -60,16 +68,26 @@ export default function ShowOrder({route}) {
                   </Text>
                 </View>
               </View>
-              {/* <View style={styles.total}>
-                <View style={styles.inCon}>
-                  <Text style={[styles.DateText]}>Total Mrp</Text>
-                  <Text style={[styles.DateText]}>Total Price</Text>
-                </View>
-                <View style={styles.inCon}>
-                  <Text style={[styles.DateText]}>{data?.totalmrp}</Text>
-                  <Text style={[styles.DateText]}>{data?.total}</Text>
-                </View>
-              </View> */}
+              <View style={styles.columnwraper}>
+                <StepIndicator
+                  customStyles={styles.customStyles}
+                  currentPosition={3}
+                  labels={labels}
+                />
+              </View>
+              <View style={styles.columnwraper}>
+                <Text
+                  style={[styles.deliveryText, {color: '#000', fontSize: 18}]}>
+                  Delivery Addresss
+                </Text>
+                <Text
+                  style={[styles.deliveryText, {color: '#000', marginTop: 10}]}>
+                  {address}
+                </Text>
+                <Text style={[styles.deliveryText, {color: '#000'}]}>
+                  152116
+                </Text>
+              </View>
               <View style={styles.columnwraper}>
                 <Text
                   style={{
@@ -106,6 +124,11 @@ export default function ShowOrder({route}) {
                   <Text style={[styles.footerStyle]}>रु {data.total}</Text>
                 </View>
               </View>
+              <Pressable style={styles.getInVoice}>
+                <Text style={{color: colors.lightgreen, fontWeight: '500'}}>
+                  Get Invoice
+                </Text>
+              </Pressable>
             </>
           );
         }}
@@ -178,11 +201,10 @@ const styles = StyleSheet.create({
   },
   columnwraper: {
     backgroundColor: colors.white,
-    marginTop: 20,
     borderRadius: 5,
     padding: 20,
-    elevation: 5,
-    marginVertical: 20,
+    elevation: 3,
+    marginVertical: 10,
   },
   PriceCon: {
     flexDirection: 'row',
@@ -201,5 +223,19 @@ const styles = StyleSheet.create({
     color: '#fc0377',
     fontWeight: '500',
     fontSize: 15,
+  },
+  getInVoice: {
+    borderRadius: 5,
+    height: 45,
+    borderColor: colors.lightgreen,
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  customStyles: {
+    labelSize: 10,
+    customStyles:{
+      
+    }
   },
 });
