@@ -53,6 +53,7 @@ export default function Cart() {
   const [totalMrp, settotalMrp] = useState(0);
   const [cartId, setcartId] = useState('')
   const [orderedItem, setorderedItem] = useState(false)
+  const {locality,streetNo,pincode,state,tehsil,name} = userdata?.login?.data?.success
   const getCartData = async () => {
     try {
       let response = await getResponseonly(
@@ -276,16 +277,19 @@ export default function Cart() {
             <Text style={styles.Price}>
               Delivery to,{' '}
               <Text style={{fontWeight: '600'}} numberOfLines={1}>
-                152116
+                {name}
               </Text>
             </Text>
             <Text style={styles.Price} numberOfLines={1}>
-              Mohali,Chandigarh
+              {locality}
+            </Text>
+            <Text style={styles.Price} numberOfLines={1}>
+              {streetNo},{state},{pincode}
             </Text>
           </View>
           <TouchableOpacity
             style={styles.changeAddress}
-            onPress={() => navigation.navigate(Screens.SHIPING)}>
+            onPress={() => navigation.navigate('EditProfile')}>
             <Text style={{color: colors.lightgreen3}}>Change</Text>
           </TouchableOpacity>
         </View>

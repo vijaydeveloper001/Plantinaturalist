@@ -41,11 +41,10 @@ export default function EditProfile() {
     }
     setloading(false);
   };
-
   return (
     <View style={styles.main}>
       <Headers text={'Edit Profile'} />
-      <Loader Loading={loading}/>
+      <Loader Loading={loading} />
       <ScrollView
         style={styles.inMain}
         contentContainerStyle={{paddingBottom: 40}}>
