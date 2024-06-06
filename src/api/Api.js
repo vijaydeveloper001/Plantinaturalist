@@ -77,11 +77,11 @@ export const getResponseonly = async url => {
 };
 
 export const getResponseonlyPut = async (url, data) => {
-    console.log('Request URL:', url);
-    console.log('Request Data:', data);
+    // console.log('Request URL:', url);
+    // console.log('Request Data:', data);
     try {
       const response = await axios.put(url, data);
-      console.log('Response:', response); // Log the response data
+      // console.log('Response:', response); // Log the response data
       return response; // Return the response data
     } catch (e) {
      console.log('API response error in api.js files')

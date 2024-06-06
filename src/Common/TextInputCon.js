@@ -34,6 +34,7 @@ export default function TextInputCon({
           placeholder={text}
           placeholderTextColor={colors.black}
           style={{color: colors.black, flex: 1}}
+          onChangeText={gettext}
           editable = {!edit}
           {...rest}
         />

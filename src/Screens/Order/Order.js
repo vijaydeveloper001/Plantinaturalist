@@ -67,7 +67,7 @@ export default function Order({navigation}) {
           key={index}
           onPress={() => navigation.navigate('ShowOrder', {data: item.cartId,address:item?.deliveryAdress})}>
           <View style={styles.inMain}>
-            <Image source={Images.Flower} style={{width: 80, height: '95%',}} />
+            <Image source={Images.Flower} style={{width: 80, height: '95%',borderRadius:5}} />
             <View style={{flex: 1, paddingLeft: 12}}>
               <Text style={styles.DateText} numberOfLines={1}>
                 Date:{' '}
@@ -86,11 +86,11 @@ export default function Order({navigation}) {
                   {item?.cartId?.totalmrp}
                 </Text>
               </Text>
-              <Text
+              {/* <Text
                 style={[styles.DateText, {color: colors.lightgreen}]}
                 numberOfLines={1}>
                 Order: {item?.status == 2 ? 'Ordered' : 'Cancel'}
-              </Text>
+              </Text> */}
             </View>
             <TouchableOpacity>
               <Image
@@ -99,7 +99,7 @@ export default function Order({navigation}) {
               />
             </TouchableOpacity>
           </View>
-          {true && (
+          {/* {true && (
             <>
               <View style={{flex: 0.2}} />
               <View style={styles.RatingCon}>
@@ -116,7 +116,7 @@ export default function Order({navigation}) {
                 })}
               </View>
             </>
-          )}
+          )} */}
         </Pressable>
       </>
     );
@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1111',
     paddingHorizontal:4,
     marginVertical: 10,
+    borderRadius:5
   },
   DateText: {
     color: colors.black,

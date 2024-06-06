@@ -3,9 +3,10 @@ import React from 'react';
 import { colors } from '../Contants/Colors';
 import LinearGradient from 'react-native-linear-gradient';
 
-export default function Button({TextName,press,stle,padding,height}) {
+export default function Button({TextName,press,stle,padding,height,style,...rest}) {
+  console.log(rest)
   return (
-    <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}}  colors={['#A2D240', '#166D3B']} style={{...styles.addToCart,marginTop:stle?stle:0,marginBottom:padding?padding:null,height:height?height:40}} onTouchStart={press?press:null}>
+    <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}}  colors={['#A2D240', '#166D3B']} style={{...styles.addToCart,marginTop:stle?stle:0,marginBottom:padding?padding:null,height:height?height:40,...style}} {...rest} onTouchStart={press?press:null}>
       <Text style={styles.addToCartText}>{TextName}</Text>
     </LinearGradient>
   );

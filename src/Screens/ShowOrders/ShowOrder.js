@@ -19,10 +19,10 @@ export default function ShowOrder({route}) {
     return (
       <Pressable style={styles.MainConItem} key={index}>
         <View style={styles.inMain}>
-          <Image source={Images.Flower} style={{width: 80, height: '100%'}} />
+          <Image source={Images.Flower} style={{width: 80, height: '100%',borderRadius:5}} />
           <View style={styles.itemName}>
             <Text style={styles.DateText} numberOfLines={1}>
-              Name: {item?.name}
+              {item?.name}
             </Text>
             <Text style={styles.DateText} numberOfLines={1}>
               SellPrice: {item?.sellPrice}
@@ -34,6 +34,7 @@ export default function ShowOrder({route}) {
               MRP: {item?.mrp}
             </Text>
           </View>
+          <Image source={Images.close} style={{width: 15, height: 15,position:"absolute",right:0,top:0,margin:10}} />
         </View>
       </Pressable>
     );
@@ -124,11 +125,11 @@ export default function ShowOrder({route}) {
                   <Text style={[styles.footerStyle]}>रु {data.total}</Text>
                 </View>
               </View>
-              <Pressable style={styles.getInVoice}>
+              {/* <Pressable style={styles.getInVoice}>
                 <Text style={{color: colors.lightgreen, fontWeight: '500'}}>
                   Get Invoice
                 </Text>
-              </Pressable>
+              </Pressable> */}
             </>
           );
         }}
@@ -143,6 +144,7 @@ const styles = StyleSheet.create({
     elevation: 1,
     marginVertical: 10,
     height: 90,
+   
   },
   DateText: {
     color: colors.black,
@@ -154,6 +156,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     height: 90,
+    padding:10
   },
   total: {
     backgroundColor: '#fff',
@@ -169,7 +172,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 12,
     justifyContent: 'space-around',
-    height: 90,
+    height: '100%',
   },
   inCon: {
     justifyContent: 'space-around',
