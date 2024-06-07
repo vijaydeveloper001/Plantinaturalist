@@ -82,7 +82,7 @@ export default function Home() {
 
   return (
     <View style={styles.Main}>
-      <StatusBar backgroundColor={colors.lightgreen} />
+      <StatusBar backgroundColor={'#f2f2f0'} barStyle={'dark-content'}/>
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
         <SafeAreaView>
           <Header />

@@ -19,7 +19,7 @@ export default function Headers({text, icon}) {
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <Image
           source={Images.back}
-          style={{width: 15, height: 15, tintColor: colors.white}}
+          style={{width: 15, height: 15, tintColor: colors.black}}
         />
       </TouchableOpacity>
       <Text style={[styles.HeaderText, {textAlign: icon ? 'left' : 'center'}]}>
@@ -56,14 +56,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: colors.lightgreen,
+    backgroundColor: '#f2f2f0',
     height: 40,
     paddingHorizontal: 20,
   },
   HeaderText: {
     fontSize: 20,
     fontWeight: '400',
-    color: colors.white,
+    color: colors.black,
     flex: 1,
     marginLeft: 10,
   },

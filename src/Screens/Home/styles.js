@@ -5,7 +5,8 @@ import { colors } from "../../Contants/Colors"
 export const styles = StyleSheet.create({
     Main:{
         flex:1,
-        paddingHorizontal:10
+        paddingHorizontal:10,
+        
     },
     BtnCon:{
         

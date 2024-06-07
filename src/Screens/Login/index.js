@@ -43,7 +43,9 @@ export default function Login() {
 
       if (filter?.length > 0) {
         setloading(false);
-        dispatch(loginSuccess(filter[0]));
+        setTimeout(() => {
+          dispatch(loginSuccess(filter[0]));
+        }, 3000);
         setinput('');
         setdata('');
       }
