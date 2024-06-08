@@ -95,15 +95,15 @@ export default function Home() {
           />
           <TopPlants />
           <Banner />
-          <FlatList
+          {/* <FlatList
             data={DataofHomeScreen}
             renderItem={ItemSelect}
             contentContainerStyle={styles.BtnConParent}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             keyExtractor={(item, index) => index}
-          />
-          <ItemSelectby />
+          /> */}
+          {/* <ItemSelectby /> */}
           <Text style={styles.ItemTypeText}>Shop by Category</Text>
           {layer1.length <= 0 ? (
             <Shimmer />

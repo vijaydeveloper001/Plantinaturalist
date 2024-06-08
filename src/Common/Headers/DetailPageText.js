@@ -6,7 +6,9 @@ import {colors} from '../../Contants/Colors';
 export default function DetailPageText({text}) {
   return (
     <View style={styles.MainCon}>
-      <Image source={Images.Flower} style={{width: 20, height: 20,borderRadius:2}} />
+      <View style = {styles.imagesCon}>
+      <Image source={Images.Flower} style={styles.plantiCON} />
+      </View>
       <Text style={styles.TextDetail}>{text}</Text>
     </View>
   );
@@ -14,14 +16,26 @@ export default function DetailPageText({text}) {
 
 const styles = StyleSheet.create({
   MainCon: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal:20,
-    marginTop:20
+   
+    // alignItems: 'center',
+    // paddingHorizontal: 20,
   },
   TextDetail: {
-    color: colors.white,
+    color: colors.black,
     fontWeight: '600',
-    marginLeft: 10,
+    marginTop: 8,
   },
+  plantiCON: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 2,
+    borderRadius:999,
+  },
+  imagesCon:{
+    backgroundColor:colors.grey,
+    borderRadius:999,
+    padding:5,
+  width:40,
+  height:40
+  }
 });

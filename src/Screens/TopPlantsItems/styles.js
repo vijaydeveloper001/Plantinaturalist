@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     
   },
   BorderLine: {
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: colors.lightgreen,
     justifyContent: 'center',
     alignItems: 'center',
@@ -29,8 +29,8 @@ export const styles = StyleSheet.create({
     fontSize:13,
     marginTop: 10,
     // alignSelf: 'center',
-    alignSelf:"center",
-    width:40,
+    textAlign:"center",
+    width:50,
   
   },
 });

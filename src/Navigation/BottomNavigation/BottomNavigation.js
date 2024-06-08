@@ -14,7 +14,7 @@ export default function BottomNavigation() {
     <>
       <Tab.Navigator
         screenOptions={{
-          tabBarStyle: {backgroundColor: colors.lightgreen, height: 50}
+          tabBarStyle: {backgroundColor: colors.lightgreen}
         }}>
         <Tab.Screen
           name={Screens.HOMESCREENS}

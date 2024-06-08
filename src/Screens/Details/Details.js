@@ -53,13 +53,9 @@ export default function DetailPlants(props) {
 
   const renderItem = ({}) => {
     return (
-      <View
-        style={[
-          styles.container,
-          {backgroundColor: color[Math.floor(Math.random() * color.length)]},
-        ]}>
+      <View style={[styles.container, {backgroundColor: '#fff'}]}>
         <DetailPageText text={'Water'} />
-        <Text style={{fontSize: 60, color: colors.white}}>
+        <Text style={{fontSize: 30, color: colors.black}}>
           25<Text style={{fontSize: 14}}>%</Text>
         </Text>
       </View>
@@ -70,7 +66,7 @@ export default function DetailPlants(props) {
       <Loader loading={loading} />
       <Headers text={'Product Info'} icon={true} />
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
-        <Image source={Images.Indoor} style={styles.ImageCons} />
+        <Image source={Images.rose} style={styles.ImageCons} />
         <View style={styles.InsideCon}>
           <View>
             <Text style={styles.TextStyle}>
@@ -106,7 +102,7 @@ export default function DetailPlants(props) {
                   ...styles.discountPrice,
                   fontSize: 13,
                   color: colors.red,
-                  fontWeight: '600',
+                  // fontWeight: '500',
                 }}>
                 40% off
               </Text>
@@ -215,9 +211,12 @@ export default function DetailPlants(props) {
           </Text>
         </View>
       </ScrollView>
-      <View style={styles.OrderConParent}>
-        <Button TextName={'Add to cart'} press={() => addToCart()} />
-      </View>
+
+      <Button
+        TextName={'Add to cart'}
+        press={() => addToCart()}
+        style={styles.OrderConParent}
+      />
     </View>
   );
 }
@@ -233,6 +232,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginVertical: 20,
     borderRadius: 1,
+    borderRadius: 10,
   },
   TextStyle: {
     color: colors.black,
@@ -255,7 +255,10 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   OrderConParent: {
-    paddingBottom: 30,
+    position: 'relative',
+    bottom: 10,
+    left: 0,
+    right: 0,
   },
   discription: {
     textAlign: 'center',
@@ -325,9 +328,10 @@ const styles = StyleSheet.create({
     height: 140,
     width: 150,
     borderRadius: 10,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 10,
+    // paddingVertical: 10,
+    elevation: 4,
+    padding: 10,
+    justifyContent: 'center',
   },
   colorIncCons: {
     flexDirection: 'row',

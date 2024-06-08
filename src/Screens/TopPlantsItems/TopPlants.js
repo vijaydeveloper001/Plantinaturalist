@@ -18,7 +18,7 @@ export default function TopPlants() {
 
   const renderItemFunction = ({item}) => {
     return (
-      <View style={{marginRight: 10}}>
+      <View style={{marginRight: 10,alignItems:"center"}}>
         <Pressable style={styles.BorderLine} onPress={()=>navigation.navigate(Screens.PRODUCT)}>
           <Image source={item.img} style={styles.ImageStyle} />
         </Pressable>
