@@ -15,11 +15,12 @@ export default function TextInputCon({
   search,
   edit,
   press,
+  style,
   ...rest
 }) {
   const [checkbox, setcheckbox] = useState(false);
   return (
-    <View style={{...styles.Main, marginTop: margin ? margin : 20}}>
+    <View style={{...styles.Main, marginTop: margin ? margin : 20,...style}}>
       {TopText && (
         <Text style={{...styles.FieldsText, fontSize: 30, paddingVertical: 20}}>
           {TopText}

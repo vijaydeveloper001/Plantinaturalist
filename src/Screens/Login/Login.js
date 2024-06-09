@@ -4,6 +4,7 @@ import {
   View,
   StatusBar,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {colors} from '../../Contants/Colors';
@@ -12,8 +13,9 @@ import {getResponseonly} from '../../api/Api';
 import {useDispatch} from 'react-redux';
 import {loginSuccess} from '../../redux/reducers/login';
 import Loader from '../../Common/Loader';
+import Button from '../../Common/Button';
 
-export default function Login() {
+export default function Login({navigation}) {
   const dispatch = useDispatch();
   const [loading, setloading] = useState(false);
   const [data, setdata] = useState('');
@@ -29,10 +31,10 @@ export default function Login() {
     }
     setloading(false);
   };
-  useEffect(() => {
-    setloading(true);
-    loginapi();
-  }, []);
+  // useEffect(() => {
+  //   setloading(true);
+  //   loginapi();
+  // }, []);
 
   const checkLogin = async () => {
     setloading(true);
@@ -55,16 +57,28 @@ export default function Login() {
 
   return (
     <View style={styles.mainCons}>
-      <StatusBar translucent backgroundColor="transparent" />
-      <Loader Loading={loading} />
+      <StatusBar backgroundColor={'#fff'} barStyle={'dark-content'} />
+      {/* <Loader Loading={loading} /> */}
       <View style={{paddingHorizontal: 10}}>
-        <Text style={styles.headerText}>Login</Text>
-        <TextInputCon text="Email" onChangeText={text => setinput(text)} />
-        <TouchableOpacity
-          style={styles.loginButton}
-          onPress={() => checkLogin()}>
-          <Text style={styles.buttonText}> Login</Text>
-        </TouchableOpacity>
+        <Text style={styles.headerText}>
+          Login with phone number or sign up
+        </Text>
+        <View style = {styles.inConCode}>
+          <Text style={styles.textNUMBERcODE}>+91</Text>
+          <TextInput
+            placeholder="Continue with your number"
+            keyboardType="numeric"
+            onChangeText={text => setinput(text)}
+            style = {styles.con}
+            placeholderTextColor={'#dae9f2'}
+            
+          />
+        </View>
+        <Button
+          style={{marginHorizontal: 0, marginTop: 20}}
+          TextName="Continue"
+          press = {()=>navigation.navigate('Otp')}
+        />
       </View>
     </View>
   );
@@ -73,7 +87,8 @@ export default function Login() {
 const styles = StyleSheet.create({
   mainCons: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#fff',
+    // justifyContent: 'center',
     // alignItems:'center'
   },
   container: {
@@ -83,11 +98,12 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   headerText: {
-    fontSize: 50,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    fontSize: 20,
+    fontWeight: '500',
+    // marginBottom: 20,
     color: colors.lightgreen,
-    textAlign: 'center',
+    textAlign: 'left',
+    marginTop:50
   },
   input: {
     height: 40,
@@ -147,4 +163,27 @@ const styles = StyleSheet.create({
     color: colors.lightgreen,
     fontWeight: '700',
   },
+  textNUMBERcODE: {
+    color: colors.black,
+     fontSize:15,
+    fontWeight:'600'
+  },
+  inConCode:{
+    borderRadius: 5,
+    backgroundColor: colors.white,
+    elevation: 1,
+    paddingHorizontal: 10,
+    marginTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  con:{
+    flex:1,
+    // marginTop:-10,
+    color:'#dae9f2',
+    paddingHorizontal:20,
+    fontSize:15,
+    fontWeight:'600'
+  
+  }
 });

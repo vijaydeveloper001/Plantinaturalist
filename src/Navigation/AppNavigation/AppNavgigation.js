@@ -91,6 +91,7 @@ export default function AppNavgigation() {
         component={EditProfile}
         options={optionheaders}
       />
+      
     </Stack.Navigator>
   );
 }
