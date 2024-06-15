@@ -15,8 +15,8 @@ const Loader = ({Loading=false}) => {
       <Modal visible = {Loading} transparent>
         <View style={styles.LoaderCon}>
         <View style={styles.LoaderConIn}>
-          <ActivityIndicator size="large" color={colors.black} />
-          <Text style={styles.LoaderConText}>Loading... Please wait</Text>
+          <ActivityIndicator size="large" color={'#5454'} />
+          {/* <Text style={styles.LoaderConText}>Loading... Please wait</Text> */}
           </View>
         </View>
       </Modal>
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: 5,
     padding: 10,
+    elevation:10
   }
 });
 
