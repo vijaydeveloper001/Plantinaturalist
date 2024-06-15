@@ -3,15 +3,11 @@ import {
   ActivityIndicator,
   View,
   StyleSheet,
-  Dimensions,
-  Text,
   Modal,
 } from 'react-native';
 import {colors} from '../Contants/Colors';
-
 const Loader = ({Loading=false}) => {
   return (
-    // <View style={styles.loaderContainer}>
       <Modal visible = {Loading} transparent>
         <View style={styles.LoaderCon}>
         <View style={styles.LoaderConIn}>
@@ -20,11 +16,8 @@ const Loader = ({Loading=false}) => {
           </View>
         </View>
       </Modal>
-    //  </View>
   );
 };
-
-const {height, width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   loaderContainer: {

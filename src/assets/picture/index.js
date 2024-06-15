@@ -25,6 +25,9 @@ export const Images = {
     HomeIcon:require('./home.png'),
     shopingIcon:require('./shopping-cart.png'),
     close:require('./close.png'),
-    rose:require('./rose.jpg')
+    rose:require('./rose.jpg'),
+    replacement:require('./replacement.png'),
+    granty:require('./grant.png'),
+    fast:require('./fast.png')
 
 }

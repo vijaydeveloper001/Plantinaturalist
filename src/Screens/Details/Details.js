@@ -20,8 +20,44 @@ import DetailPageText from '../../Common/Headers/DetailPageText';
 import {getResponsePost} from '../../api/Api';
 import {useSelector} from 'react-redux';
 import Loader from '../../Common/Loader';
+import TypoGraphy from '../../Common/Typography';
+import FastImage from 'react-native-fast-image';
+
+const RenderImageWithText = ({image, text}) => {
+  return (
+    <View style={{justifyContent: 'center', alignItems: 'center'}}>
+      <Image source={image} style={{width: 30, height: 30}} />
+      <TypoGraphy style={{color: '#000', fontSize: 14}}>{text}</TypoGraphy>
+    </View>
+  );
+};
+
+const DotWithText = ({text}) => {
+  return (
+    <View
+      style={{
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingLeft: 40,
+        paddingTop: 20,
+      }}>
+      <View
+        style={{
+          width: 5,
+          height: 5,
+          borderRadius: 999,
+          backgroundColor: '#000',
+        }}
+      />
+      <TypoGraphy style={{color: '#000', fontSize: 14, paddingHorizontal: 10}}>
+        hELLLO
+      </TypoGraphy>
+    </View>
+  );
+};
+
 export default function DetailPlants(props) {
-  const [IncrePlant, setIncrePlant] = useState(1);
+ 
   let color = [
     colors.color1,
     colors.color2,
@@ -120,12 +156,14 @@ export default function DetailPlants(props) {
             />
           </Pressable>
         </View>
-        <FlatList
+        {
+          false && <FlatList
           data={[0, 1, 2, 3, 4, 5, 6]}
           renderItem={renderItem}
           horizontal={true}
           contentContainerStyle={{paddingHorizontal: 20, paddingVertical: 10}}
         />
+        }
         <TextFile
           text={'Select Color: White'}
           styles={{
@@ -154,23 +192,9 @@ export default function DetailPlants(props) {
               },
             )}
           </View>
-          <View style={styles.IncreCon}>
-            <Text
-              onPress={() =>
-                IncrePlant >= 1 ? setIncrePlant(IncrePlant - 1) : ''
-              }
-              style={styles.IncreText}>
-              -
-            </Text>
-            <Text style={styles.IncreText}>{IncrePlant}</Text>
-            <Text
-              onPress={() => setIncrePlant(IncrePlant + 1)}
-              style={styles.IncreText}>
-              +
-            </Text>
-          </View>
+         
         </View>
-        <View style={styles.inputFieldCon}>
+        {/* <View style={styles.inputFieldCon}>
           <TextInput
             keyboardType="numeric"
             style={[styles.inputStyle]}
@@ -180,7 +204,7 @@ export default function DetailPlants(props) {
           <Pressable>
             <Text style={styles.colorInput}>Check</Text>
           </Pressable>
-        </View>
+        </View> */}
         <View style={styles.termsCon}>
           <Image source={Images.HomeIcon} style={{width: 20, height: 20}} />
           <Text style={styles.free}>
@@ -210,8 +234,45 @@ export default function DetailPlants(props) {
             <Text style={styles.free2}>Apply</Text>
           </Text>
         </View>
-      </ScrollView>
+        <View style={styles.granty}>
+          <RenderImageWithText image={Images.granty} text={'Granty'} />
+          <RenderImageWithText image={Images.fast} text={'fast'} />
+          <RenderImageWithText
+            image={Images.replacement}
+            text={'replacement'}
+          />
+        </View>
+        <TypoGraphy style={styles.aboutText}>About me</TypoGraphy>
+        <TypoGraphy style={styles.aboutTextIn}>
+          Plants are also amazingly adaptable, finding ways to grow even in
+          impossible environments, both hot and cold. Plants manufacture their
+          own food from sunlight, absorb nutrients from the ground, and fool
+          insects into spreading their pollen. Truly, they are some of nature's
+          finest creations.
+        </TypoGraphy>
+        <FastImage
+          source={Images.Indoor}
+          style={{
+            height: 250,
+            marginHorizontal: 20,
+            borderRadius: 5,
+            marginVertical: 20,
+          }}
+        />
+        <TypoGraphy
+          style={{
+            color: '#000',
+            fontSize: 20,
 
+            marginHorizontal: 30,
+          }}>
+          What's in the box
+        </TypoGraphy>
+        <DotWithText />
+        <DotWithText />
+        <DotWithText />
+        <DotWithText />
+      </ScrollView>
       <Button
         TextName={'Add to cart'}
         press={() => addToCart()}
@@ -364,5 +425,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     marginVertical: 2,
+  },
+  granty: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    paddingVertical: 20,
+  },
+  aboutTextIn: {
+    color: '#000',
+    fontSize: 13,
+    marginHorizontal: 20,
+    lineHeight: 20,
+  },
+  aboutText: {
+    color: '#000',
+    marginHorizontal: 20,
+    paddingBottom: 20,
+    fontSize: 20,
+    fontWeight: '500',
   },
 });

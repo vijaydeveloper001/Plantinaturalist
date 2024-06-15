@@ -5,30 +5,13 @@ import {Images} from '../../assets/picture';
 import {useNavigation} from '@react-navigation/native';
 import {Screens} from '../../Contants/NaivgationName';
 import {colors} from '../../Contants/Colors';
+import TypoGraphy from '../Typography';
 
 export default function Header() {
   const navigation = useNavigation();
   return (
     <View style={styles.MainHeader}>
-      <View style={styles.MainHeaderLeftSideCon}>
-        <View style = {{justifyContent:"space-around"}}>
-          <Text
-            style={{color: colors.lightgreen, marginLeft: 7,fontSize:20}}
-            numberOfLines={1}>
-            Vijay kumar
-          </Text>
-          <Text style={{color: 'grey', marginLeft: 7}} numberOfLines={1}>
-            Mohali,Chandigarh
-          </Text>
-        </View>
-      </View>
-      <View />
-      <TouchableOpacity style={styles.IconHeartCon}>
-        <Image
-          source={Images.wallet}
-          style={{width: 20, height: 20, tintColor: colors.white}}
-        />
-      </TouchableOpacity>
+      <TypoGraphy style={styles.comHeader}>Home</TypoGraphy>
       <TouchableOpacity
         style={styles.IconHeartCon}
         onPress={() => navigation.navigate(Screens.FAV)}>

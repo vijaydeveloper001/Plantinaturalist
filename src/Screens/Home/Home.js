@@ -82,7 +82,7 @@ export default function Home() {
 
   return (
     <View style={styles.Main}>
-      <StatusBar backgroundColor={'#f2f2f0'} barStyle={'dark-content'}/>
+      <StatusBar backgroundColor={'#f2f2f0'} barStyle={'dark-content'} />
       <ScrollView contentContainerStyle={{paddingBottom: 20}}>
         <SafeAreaView>
           <Header />
@@ -95,15 +95,15 @@ export default function Home() {
           />
           <TopPlants />
           <Banner />
-          {/* <FlatList
+          <FlatList
             data={DataofHomeScreen}
             renderItem={ItemSelect}
             contentContainerStyle={styles.BtnConParent}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             keyExtractor={(item, index) => index}
-          /> */}
-          {/* <ItemSelectby /> */}
+          />
+          <ItemSelectby />
           <Text style={styles.ItemTypeText}>Shop by Category</Text>
           {layer1.length <= 0 ? (
             <Shimmer />
