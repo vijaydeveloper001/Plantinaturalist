@@ -65,6 +65,7 @@ export default function Otp() {
           TextName={'Verify'}
           style={{marginHorizontal: 0, marginTop: 20}}
           press={() => setstart(true)}
+        // press={()=>dispatch(loginSuccess(filter[0]))}
         />
       </View>
     </View>
