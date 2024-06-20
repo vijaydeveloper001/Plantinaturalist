@@ -144,14 +144,12 @@ export default function DetailPlants(props) {
               </Text>
             </View>
           </View>
-          <Pressable>
+          <Pressable style = {styles.bgfav}>
             <Image
-              source={Images.fav}
+              source={Images.fav2}
               style={{
-                width: 30,
-                height: 30,
-                alignSelf: 'flex-start',
-                marginTop: 9,
+                width: 25,
+                height: 25,
               }}
             />
           </Pressable>
@@ -445,4 +443,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '500',
   },
+  bgfav:{
+    backgroundColor:'#f5f5f5',
+    position:"absolute",
+    right:20,
+    padding:10,
+    borderRadius:999,
+    justifyContent:"center",
+    alignItems:"center"
+  }
 });

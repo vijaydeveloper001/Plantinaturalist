@@ -13,11 +13,12 @@ import {colors} from '../../Contants/Colors';
 import Headers from '../../Common/Headers/Headers';
 import {Images} from '../../assets/picture';
 import {responsiveScreenWidth} from 'react-native-responsive-dimensions';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginSuccess } from '../../redux/reducers/login';
+import {useDispatch, useSelector} from 'react-redux';
+import {loginSuccess} from '../../redux/reducers/login';
 export function Profile({navigation}) {
-  const userdata = useSelector(state=>state?.login?.data?.success)
-  const dispatch = useDispatch()
+  const userdata = useSelector(state => state?.login?.data?.success);
+  const dispatch = useDispatch();
+  console.log(userdata)
   return (
     <View style={{backgroundColor: colors.white, flex: 1}}>
       <Headers text={'Profile'} />
@@ -38,7 +39,7 @@ export function Profile({navigation}) {
               resizeMode="contain"
             />
           </TouchableOpacity>
-          <View style = {{flex:1}}>
+          <View style={{flex: 1}}>
             <Text
               style={{color: colors.lightgreen, marginLeft: 7, fontSize: 20}}
               numberOfLines={1}>
@@ -52,14 +53,14 @@ export function Profile({navigation}) {
                 fontSize: 16,
               }}
               numberOfLines={1}>
-              {userdata?.mobileNo}
+              {userdata?.locality}
             </Text>
           </View>
-          <Pressable onPress={()=>navigation.navigate("EditProfile")}>
-            <Text style = {styles.edit}>edit</Text>
+          <Pressable onPress={() => navigation.navigate('EditProfile')}>
+            <Text style={styles.edit}>edit</Text>
           </Pressable>
         </View>
-     
+
         <View />
         <ProfileCon text={'Profile'} />
         <ProfileCon text={'Refer A Friend'} />
@@ -68,7 +69,7 @@ export function Profile({navigation}) {
         <ProfileCon text={'Feedback'} />
         <ProfileCon text={'Favourites'} />
         <ProfileCon text={'Delete Account'} />
-        <ProfileCon text={'Logout'}  press={()=>dispatch(loginSuccess(''))}/>
+        <ProfileCon text={'Logout'} press={() => dispatch(loginSuccess(''))} />
       </ScrollView>
     </View>
   );
@@ -79,14 +80,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: responsiveScreenWidth(1),
-    flex:1,
+    flex: 1,
     paddingVertical: 50,
-    justifyContent:"space-between",
-    padding:5
+    justifyContent: 'space-between',
+    padding: 5,
   },
-  edit:{
-    color:'#000',
-    fontSize:15,
-   
-  }
+  edit: {
+    color: '#000',
+    fontSize: 15,
+  },
 });

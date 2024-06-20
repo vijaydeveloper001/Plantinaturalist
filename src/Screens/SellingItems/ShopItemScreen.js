@@ -21,7 +21,7 @@ export default function ShopItemScreen({productData}) {
       <TouchableOpacity
         style={styles.MainCon}
         onPress={() => navigation.navigate(Screens.DETAILSCREEN, {data: item})}>
-        <Image source={Images.Flower} style={styles.ImageShopStyle} />
+        <Image source={Images.glass} style={styles.ImageShopStyle} />
         <Text style={styles.discountText}>-25%</Text>
         <Text style={styles.shopNameText}>
           {item?.name ? item?.name : 'Testing'}
@@ -30,12 +30,12 @@ export default function ShopItemScreen({productData}) {
           Stock: {item?.countInStock ? item?.countInStock : 5}
         </Text>
 
-        <View style={styles.PriceCon}>
+    
           {/* <Text style = {styles.cureentprice}>रु 3,000</Text> */}
           <Text style={styles.discountPrice}>
             रु {item?.price ? item?.price : 100}
           </Text>
-        </View>
+       
         <Text style={{...styles.shopNameText, fontSize: 12, paddingBottom: 10}}>
           Rating: {item?.rating ? item?.rating : 'Testing'}
         </Text>

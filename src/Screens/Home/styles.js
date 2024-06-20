@@ -37,5 +37,16 @@ export const styles = StyleSheet.create({
         fontWeight:'700',
         // textAlign:'center',
         marginTop:20,
-    }
+    },
+    plants:{
+        color:'grey',
+        fontSize:18,
+        fontWeight:'500'
+    },
+    plantCon:{
+        flexDirection:"row",
+        justifyContent:"space-around",
+        marginTop:20
+    },
+   
 })

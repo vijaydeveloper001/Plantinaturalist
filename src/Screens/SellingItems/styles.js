@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
     color: colors.black,
     marginTop: 3,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
   contentContainerStyles: {
     marginTop: 20,
@@ -50,6 +50,7 @@ export const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '500',
     color: colors.lightgreen,
+    paddingHorizontal:10
   },
   addToCartText: {
     color: colors.white,

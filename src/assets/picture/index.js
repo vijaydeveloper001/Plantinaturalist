@@ -28,6 +28,10 @@ export const Images = {
     rose:require('./rose.jpg'),
     replacement:require('./replacement.png'),
     granty:require('./grant.png'),
-    fast:require('./fast.png')
+    fast:require('./fast.png'),
+    glass:require('./glass.jpg'),
+    fav2:require('./fav.png')
+
+
 
 }

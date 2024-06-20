@@ -31,10 +31,10 @@ export default function Login({navigation}) {
     }
     setloading(false);
   };
-  // useEffect(() => {
-  //   setloading(true);
-  //   loginapi();
-  // }, []);
+  useEffect(() => {
+    setloading(true);
+    loginapi();
+  }, []);
 
   const checkLogin = async () => {
     setloading(true);
@@ -58,7 +58,7 @@ export default function Login({navigation}) {
   return (
     <View style={styles.mainCons}>
       <StatusBar backgroundColor={'#fff'} barStyle={'dark-content'} />
-      {/* <Loader Loading={loading} /> */}
+      <Loader Loading={loading} />
       <View style={{paddingHorizontal: 10}}>
         <Text style={styles.headerText}>
           Login with phone number or sign up
@@ -67,7 +67,7 @@ export default function Login({navigation}) {
           <Text style={styles.textNUMBERcODE}>+91</Text>
           <TextInput
             placeholder="Continue with your number"
-            keyboardType="numeric"
+            // keyboardType="numeric"
             onChangeText={text => setinput(text)}
             style = {styles.con}
             placeholderTextColor={'#dae9f2'}
@@ -77,7 +77,7 @@ export default function Login({navigation}) {
         <Button
           style={{marginHorizontal: 0, marginTop: 20}}
           TextName="Continue"
-          press = {()=>navigation.navigate('Otp')}
+          press = {()=>checkLogin()}
         />
       </View>
     </View>

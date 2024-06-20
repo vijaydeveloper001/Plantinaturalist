@@ -3,7 +3,7 @@ import {Images} from '../assets/picture';
 export const dummydata = [
   {
     id: 0,
-    img: Images.nature,
+    img: Images.glass,
   },
   {
     id: 1,
@@ -11,7 +11,7 @@ export const dummydata = [
   },
   {
     id: 2,
-    img: Images.Herbs,
+    img: Images.glass,
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ export const DataofHomeScreen = [
 export const PlantShop = [
   {
     id: 0,
-    img:Images.Plant,
+    img:Images.glass,
     title: 'Plant',
   },
   {
@@ -60,7 +60,7 @@ export const PlantShop = [
   },
   {
     id: 0,
-    img:Images.Herbs,
+    img:Images.glass,
     title: 'Herbs Seeds',
   },
   {

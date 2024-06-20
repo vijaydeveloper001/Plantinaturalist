@@ -25,6 +25,7 @@ import ItemSelectby from '../ItemSelect/ItemSelectby';
 import Shimmer from '../../Common/Shimmer';
 import {useNavigation} from '@react-navigation/native';
 import {Screens} from '../../Contants/NaivgationName';
+import TypoGraphy from '../../Common/Typography';
 export default function Home() {
   const [data, setdata] = useState({
     indexofFlatlist: 0,
@@ -33,6 +34,7 @@ export default function Home() {
   const [prouctData, setprouctData] = useState([]);
   const [layer1, setlayer1] = useState([]);
   const dispatch = useDispatch();
+  const [plantsChange, setplantsChange] = useState('Plants');
   const navigation = useNavigation();
   const ItemSelect = ({item, index}) => {
     return (
@@ -104,17 +106,46 @@ export default function Home() {
             keyExtractor={(item, index) => index}
           />
           <ItemSelectby />
-          <Text style={styles.ItemTypeText}>Shop by Category</Text>
-          {layer1.length <= 0 ? (
-            <Shimmer />
-          ) : (
-            <ShopItemScreen layer1={layer1} />
+          <View style={styles.plantCon}>
+            <TypoGraphy
+              onPress={() => setplantsChange('Plants')}
+              style={[
+                styles.plants,
+                {color: plantsChange == 'Plants' ? colors.lightgreen : 'grey'},
+              ]}>
+              New Plants
+            </TypoGraphy>
+            <TypoGraphy
+              onPress={() => setplantsChange('Accessories')}
+              style={[
+                styles.plants,
+                {
+                  color:
+                    plantsChange == 'Accessories' ? colors.lightgreen : 'grey',
+                },
+              ]}>
+              Accessories
+            </TypoGraphy>
+          </View>
+          {plantsChange == 'Accessories' && (
+            <>
+              <Text style={styles.ItemTypeText}>Shop by Category</Text>
+              {layer1.length <= 0 ? (
+                <Shimmer />
+              ) : (
+                <ShopItemScreen layer1={layer1} />
+              )}
+            </>
           )}
-          <Text style={styles.ItemTypeText}>Bestsellers</Text>
-          {prouctData.length <= 0 ? (
-            <Shimmer />
-          ) : (
-            <SellingItems productData={prouctData} />
+          {plantsChange == 'Plants' && (
+            <>
+              <Text style={styles.ItemTypeText}>Bestsellers</Text>
+              {prouctData.length <= 0 ? (
+                <Shimmer />
+              ) : (
+                <SellingItems productData={prouctData} />
+              )}
+            </>
           )}
         </SafeAreaView>
       </ScrollView>
